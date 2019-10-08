@@ -7,10 +7,12 @@
 
     <%= stylesheet_link_tag 'application', media: 'all' %>
     <%= javascript_pack_tag 'application' %>
-    <%= javascript_pack_tag 'wiki_art_clone' %>
+    <link href="https://fonts.googleapis.com/css?family=Roboto+Condensed:400,700&amp;subset=cyrillic,cyrillic-ext" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,700&amp;subset=cyrillic,cyrillic-ext" rel="stylesheet">
   </head>
 
   <body>
     <%= yield %>
+    <%= javascript_pack_tag 'wiki_art_clone' %>
   </body>
 </html>

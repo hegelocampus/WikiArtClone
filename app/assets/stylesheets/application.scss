@@ -13,3 +13,29 @@
  *= require_tree .
  *= require_self
  */
+@import "variables";
+
+html {
+  height: 100%;
+}
+
+body {
+  font-family: sans-serif;
+  background: white;
+}
+
+header {
+  width: 100%;
+  .top-nav {
+    padding: 0 20px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: nowrap;
+    height: 68px;
+    width: 85%;
+    .nav-menu-auth {
+      width: 68px;
+    }
+  }
+}

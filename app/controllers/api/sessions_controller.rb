@@ -5,7 +5,7 @@ class Api::SessionsController < ApplicationController
     if @user && log_in(@user)
       render "api/users/show", status: :created
     else
-      render json: ["Incorrect Username/Password combination"], status: :unprocessable_entity
+      render json: ["Incorrect Email/Password combination"], status: :unprocessable_entity
     end
   end
 

@@ -29,6 +29,11 @@ gem 'bootsnap', '>= 1.4.2', require: false
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
+  gem "better_errors", "~> 2.5"
+  gem "annotate", "~> 2.6"
+  gem "binding_of_caller", "~> 0.8.0"
+  gem "pry-rails", "~> 0.3.9"
+  gem "faker", "~> 2.2"
 end
 
 group :development do
@@ -52,17 +57,7 @@ end
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 
 gem "react-rails", "~> 2.6"
-
-gem "faker", "~> 2.2"
-
-
-gem "better_errors", "~> 2.5", :groups => [:development, :test]
-gem "annotate", "~> 2.6", :groups => [:development, :test]
-gem "binding_of_caller", "~> 0.8.0", :groups => [:development, :test]
-gem "pry-rails", "~> 0.3.9", :groups => [:development, :test]
-
 gem "jquery-rails", "~> 4.3"
-
 gem "bcrypt", "~> 3.1"
-
 gem "sassc", "~> 2.2"
+

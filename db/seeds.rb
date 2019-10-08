@@ -12,9 +12,10 @@ ActiveRecord::Base.connection.tables.each do |t|
 end
 
 25.times do
-  first_name = Faker::Name.first_name
-  last_name = Faker::Name.last_name
+  username = Faker::Twitter.unique.screen_name
+  email = Faker::Internet.unique.email
+  password = Faker::Alphanumeric.alphanumeric(number: 10)
 
-  User.create(f_name: first_name, l_name: last_name)
+  User.create(username: username, email: email, password: password)
 end
 

@@ -1,3 +1,3 @@
-class School < ApplicationRecord
+class Selectors::School < ApplicationRecord
   has_many :artists
 end

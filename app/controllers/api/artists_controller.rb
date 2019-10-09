@@ -1,7 +1,7 @@
 class Api::ArtistsController < ApplicationController
-  ##def index
-  ##  @artists = Artist
-  ##end
+  def index
+    @artists = Artist.join(selector_params.keys).find_by(selector_params)
+  end
 
   def show
     @artist = Artist.find_by(id: params(:artist[:id]))
@@ -25,6 +25,15 @@ class Api::ArtistsController < ApplicationController
       :art_movement_id,
       :wiki_url,
       :image_id
+    )
+  end
+
+  def selector_params
+    params.require(:selectors).permit(
+      :nationality,
+      :school,
+      :field,
+      :art_movement
     )
   end
 end

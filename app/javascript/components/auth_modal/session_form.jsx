@@ -16,6 +16,7 @@ export default class SessionForm extends React.Component {
 
     this.handleSubmit = this.handleSubmit.bind(this);
     this.update = this.update.bind(this);
+    this.handleGuestLogin = this.handleGuestLogin.bind(this);
   }
 
   handleSubmit(e) {
@@ -25,6 +26,14 @@ export default class SessionForm extends React.Component {
 
   update(e) {
     this.setState({[e.target.name]: e.target.value });
+  }
+
+  handleGuestLogin(e) {
+    e.preventDefault();
+    this.setState({
+      email: "example@example.com",
+      password: "testusr1"
+    }, () => this.handleSubmit(e))
   }
 
   render() {
@@ -60,7 +69,7 @@ export default class SessionForm extends React.Component {
                 placeholder='Confirm'
                 type='password'
                 required onChange={ this.update }
-                value={ this.state.passwordConfirmation} 
+                value={ this.state.passwordConfirmation}
               />
               <input type='submit' value="Create Account" />
             </>
@@ -68,6 +77,7 @@ export default class SessionForm extends React.Component {
             <input type='submit' value="Sign In" />
           ))}
         </form>
+        <button type="button" onClick={ this.handleGuestLogin } >Guest Login</button>
       </div>
     );
   }

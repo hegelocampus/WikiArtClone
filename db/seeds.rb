@@ -11,11 +11,12 @@ ActiveRecord::Base.connection.tables.each do |t|
   ActiveRecord::Base.connection.reset_pk_sequence!(t)
 end
 
+User.create(email: 'example@example.com', password: 'testusr1')
+
 25.times do
-  username = Faker::Twitter.unique.screen_name
   email = Faker::Internet.unique.email
   password = Faker::Alphanumeric.alphanumeric(number: 10)
 
-  User.create(username: username, email: email, password: password)
+  User.create(email: email, password: password)
 end
 

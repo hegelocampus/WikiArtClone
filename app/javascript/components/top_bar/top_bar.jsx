@@ -1,14 +1,13 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
 import MainNav from './main_nav';
 import AuthModal from '../auth_modal/auth_modal';
+import UserMenu from './top_bar_user_menu';
+
 
 export default ({logout, currentUser}) => {
   const authContent = (currentUser ? (
-    <React.Fragment>
-      <button onClick={ logout }>Sign Out</button>
-    </React.Fragment>
-  ) : (
+    <UserMenu currentUser={ currentUser } logout={ logout } />
+      ) : (
     <AuthModal />
   ))
   return (
@@ -16,7 +15,7 @@ export default ({logout, currentUser}) => {
       <nav className="top-nav">
         <MainNav />
         <div className="top-bar-logo-container">
-          <img src={window.logoURL} alt="WikiArt logo" className="top-bar-logo" />
+          <img src={ window.logoURL } alt="WikiArt logo" className="top-bar-logo" />
         </div>
         { authContent }
       </nav>

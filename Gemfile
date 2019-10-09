@@ -33,7 +33,6 @@ group :development, :test do
   gem "annotate", "~> 2.6"
   gem "binding_of_caller", "~> 0.8.0"
   gem "pry-rails", "~> 0.3.9"
-  gem "faker", "~> 2.2"
 end
 
 group :development do
@@ -57,6 +56,8 @@ end
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 
 gem "react-rails", "~> 2.6"
+
+gem "faker", "~> 2.2"
 
 gem "bcrypt-ruby", "~> 3.1"
 

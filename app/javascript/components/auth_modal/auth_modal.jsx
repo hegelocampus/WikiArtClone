@@ -8,7 +8,7 @@ export default (props) => {
 
   return (
     <React.Fragment>
-      <button onClick={() => setShowModal(true)}>Sign In</button>
+      <a onClick={() => setShowModal(true)} className="nav-menu-auth" />
       <Modal
         isOpen={showModal}
         onRequestClose={() => setShowModal(false)}

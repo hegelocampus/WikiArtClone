@@ -12,7 +12,8 @@ const splash = () => (
 export default () => (
   <React.Fragment>
     <TopBar />
-    <Route path="/" component={ splash } />
-    <AuthRoute path={["/login", "/sign-up"]} component={ AuthModal } />
+    <main>
+      <Route path="/" component={ splash } />
+    </main>
   </React.Fragment>
 );

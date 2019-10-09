@@ -4,7 +4,7 @@ import MainNav from './main_nav';
 import AuthModal from '../auth_modal/auth_modal';
 
 export default ({logout, currentUser}) => {
-  const content = (currentUser ? (
+  const authContent = (currentUser ? (
     <React.Fragment>
       <button onClick={ logout }>Sign Out</button>
     </React.Fragment>
@@ -16,12 +16,9 @@ export default ({logout, currentUser}) => {
       <nav className="top-nav">
         <MainNav />
         <div className="top-bar-logo-container">
-          <h1>WikiArt</h1>
-          <h3>Visual Art Encyclopedia</h3>
+          <img src={window.logoURL} alt="WikiArt logo" className="top-bar-logo" />
         </div>
-        <div className="nav-menu-auth">
-          { content }
-        </div>
+        { authContent }
       </nav>
     </header>
   )

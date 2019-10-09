@@ -33,14 +33,39 @@ header {
     justify-content: space-between;
     flex-wrap: nowrap;
     height: 68px;
-    width: 85%;
 
     .top-bar-logo-container {
       font-size: 30px;
+      color: $grey;
+      width: 172px;
+      height: 100%;
+      .top-bar-logo {
+        width: 100%;
+        height: 100%;
+      }
     }
 
     .nav-menu-auth {
       width: 68px;
+      display: block;
+      background: image-url("auth-icon@2x.png") 23px center no-repeat;
+      background-size: 15px 21px;
+      &:hover {
+        cursor: pointer;
+      }
     }
+  }
+}
+
+main, .top-nav {
+  width: 85%;
+  margin: 0 auto;
+}
+
+main {
+  h1 {
+    font-size: 30px;
+    font-weight: 700;
+    margin: 0 auto;
   }
 }

@@ -80,3 +80,55 @@ main {
     margin: 0 auto;
   }
 }
+
+.big-button {
+  width: 100%;
+  font-family: 'Roboto Condensed';
+  font-size: 20px;
+  font-weight: 700;
+  height: 45px;
+  border-radius: 5px;
+  background-color: white;
+  border: $lightgrey;
+  &:hover{
+    cursor: pointer;
+    background-color: $blue;
+    color: white;
+  }
+}
+
+.ReactModal__Content {
+  height: 600px;
+  width: 600px;
+  margin: 30px auto;
+  padding: 0;
+
+  .modal-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    .modal-content-form, .modal-content-secondary {
+      @extend .modal-content;
+      width: 80%;
+      align-items: center;
+    }
+    span, input, button {
+      margin: 25px auto 0 auto ;
+    }
+    input, button {
+      width: 100%;
+    }
+  }
+
+  .modal-header {
+    width: 100%;
+    height: 64px;
+    border-bottom: 1px solid $lightgrey;
+    border-top: 3px solid $blue;
+    h3 {
+      margin: 25px 0 17px 25px;
+      font-size: 22px;
+      font-weight: 800;
+    }
+  }
+}

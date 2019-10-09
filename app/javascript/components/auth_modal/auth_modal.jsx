@@ -13,6 +13,13 @@ export default (props) => {
         isOpen={showModal}
         onRequestClose={() => setShowModal(false)}
         contentLabel="Example Modal"
+        style={
+          {
+            content: {
+              padding: 0,
+            }
+          }
+        }
       >
         <ModalContent formType="login" />
       </Modal>

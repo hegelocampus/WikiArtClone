@@ -40,11 +40,15 @@ export default class ModalContent extends React.Component {
     }
     return (
       <div className="modal-content">
-        <h3 className="modal-header-title">
-          { headerContent }
-        </h3>
+        <div className="modal-header">
+          <h3 className="modal-header-title">
+            { headerContent }
+          </h3>
+        </div>
         <SessionForm formType={ this.state.formType } />
-        { footer }
+        <div className="modal-content-secondary">
+          { footer }
+        </div>
       </div>
     );
   }

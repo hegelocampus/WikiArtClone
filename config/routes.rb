@@ -1,4 +1,14 @@
 Rails.application.routes.draw do
+  namespace :api do
+    get 'selectors/index'
+    get 'selectors/show'
+  end
+  namespace :api do
+    get 'artists/index'
+    get 'artists/show'
+    get 'artists/create'
+    get 'artists/edit'
+  end
   root 'static_pages#root'
 
   namespace :api, defaults: {format: :json} do

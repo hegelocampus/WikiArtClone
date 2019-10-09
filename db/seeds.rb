@@ -20,3 +20,41 @@ User.create(email: 'example@example.com', password: 'testusr1')
   User.create(email: email, password: password)
 end
 
+10.times do
+  Selectors::Nationality.create(name: Faker::Nation.unique.nationality)
+end
+
+10.times do
+  Selectors::School.create(name: Faker::Verb.unique.past_participle)
+end
+
+art_movement_names = [
+  "Art Deco",
+  "Art Nouveau",
+  "Avant-garde",
+  "Conceptual Art",
+  "Expressionism",
+  "Art burt",
+  "Pop Art",
+  "Realism"
+]
+
+art_movement_names.each do |name|
+  Selectors::ArtMovement.create(name: name)
+end
+
+field_names = [
+  "drawing",
+  "etching",
+  "assemblage",
+  "collage",
+  "printmaking",
+  "lithography"
+]
+
+field_names.each do |name|
+  Selectors::Field.create(name: name)
+end
+
+
+

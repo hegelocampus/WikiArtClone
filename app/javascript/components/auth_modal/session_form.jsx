@@ -78,16 +78,15 @@ export default class SessionForm extends React.Component {
             </>
           ) : (
             <button type='submit' className="big-button">Sign In</button>
+            <span>or sign in with</span>
+            <button
+              type="button"
+              onClick={ this.handleGuestLogin }
+              className="big-button"
+            >
+              Guest Login
+            </button>
           ))}
-
-          <span>or sign in with</span>
-          <button
-            type="button"
-            onClick={ this.handleGuestLogin }
-            className="big-button"
-          >
-            Guest Login
-          </button>
         </form>
       </React.Fragment>
     );

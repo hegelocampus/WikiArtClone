@@ -8,15 +8,23 @@ export default (props) => {
 
   return (
     <React.Fragment>
-      <a onClick={() => setShowModal(true)} className="nav-menu-auth" />
+      <a onClick={() => setShowModal(true)} className="nav-menu-auth-anchor">
+        <span>Log In</span>
+      </a>
       <Modal
         isOpen={showModal}
         onRequestClose={() => setShowModal(false)}
-        contentLabel="Example Modal"
+        contentLabel="Sign In/Sign up"
         style={
           {
+            overlay: {
+              backgroundColor: null,
+            },
             content: {
               padding: 0,
+              backgroundColor: null,
+              border: null,
+              fontColor: null
             }
           }
         }

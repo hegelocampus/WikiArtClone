@@ -21,11 +21,12 @@ html {
 
 body {
   font-family: sans-serif;
-  background: white;
+  background: $background-color;
 }
 
 header {
   width: 100%;
+  border-bottom: $medium-accent-color;
   .top-nav {
     padding: 0 20px;
     margin: 0 auto;
@@ -36,35 +37,58 @@ header {
 
     .top-bar-logo-container {
       font-size: 30px;
-      color: $grey;
-      width: 172px;
       height: 100%;
+      flex-grow: 1;
       .top-bar-logo {
+        width: 172px;
         width: 100%;
         height: 100%;
+      }
+    }
+
+    .nav-menu-auth-anchor {
+      font-size: 15px;
+      font-weight: 600;
+      align-items: center;
+      color: $light-accent-color;
+      width: 88px;
+      white-space: nowrap;
+      display: flex;
+      flex-wrap: nowrap;
+      &:hover {
+        cursor: pointer;
+      }
+      &::after {
+        content: '';
+        margin: 0 6px;
+        background-image: image-url("auth-icon@2x.png");
+        background-size: cover;
+        width: 15px;
+        height: 20px
       }
     }
 
     .nav-menu-auth {
-      width: 68px;
-      display: block;
-      background: image-url("auth-icon@2x.png") 23px center no-repeat;
-      background-size: 15px 21px;
-      &:hover {
-        cursor: pointer;
-      }
+      height: 100%;
+      width: 100%;
     }
 
-    .top-menu-user-menu-wrapper {
-      @extend .nav-menu-auth;
-      background: image-url("user-logged.svg") center no-repeat;
-      background-size: 24px 24px;
-      a {
-        display: block;
-        width: 100%;
-        height: 100%;
-      }
-    }
+  }
+}
+
+.top-menu-user-menu-wrapper {
+  font-size: 16px;
+  font-weight: 600;
+
+  align-items: center;
+  color: $light-accent-color;
+  width: 90px;
+  background: image-url("user-logged.svg") center no-repeat;
+  background-size: 25px 25px;
+  a {
+    display: block;
+    width: 100%;
+    height: 100%;
   }
 }
 
@@ -88,7 +112,7 @@ main {
   font-weight: 700;
   height: 45px;
   border-radius: 5px;
-  background-color: white;
+  background-color: $background-color;
   border: $lightgrey;
   &:hover{
     cursor: pointer;
@@ -97,13 +121,37 @@ main {
   }
 }
 
+.ReactModal__Overlay {
+  background-color: rgba(28, 26, 24, 0.85);
+  transition: opacity .15s ease;
+}
+
 .ReactModal__Content {
-  height: 600px;
+  position: fixed;
+  height: 400px;
   width: 600px;
   margin: 30px auto;
   padding: 0;
+  background-color: $background-color;
+  transform: translate(0,0);
+  transition: transform .3 ease-out;
 
-  .modal-content {
+  .modal-header {
+    width: 100%;
+    height: 64px;
+    border-bottom: 1px solid $dark-accent-color;
+    border-top: 3px solid $light-accent-color;
+    h3 {
+      margin: 25px 0 17px 25px;
+      color: $lightest-accent-color;
+      font-size: 22px;
+      font-weight: 800;
+    }
+  }
+}
+
+.modal-content {
+    position: relative;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -113,22 +161,26 @@ main {
       align-items: center;
     }
     span, input, button {
-      margin: 25px auto 0 auto ;
+      color: $lightest-accent-color;
+      font-size: 18px;
+      margin: 15px auto 0 auto ;
     }
-    input, button {
-      width: 100%;
-    }
-  }
 
-  .modal-header {
-    width: 100%;
-    height: 64px;
-    border-bottom: 1px solid $lightgrey;
-    border-top: 3px solid $blue;
-    h3 {
-      margin: 25px 0 17px 25px;
-      font-size: 22px;
-      font-weight: 800;
+    input {
+      border: none;
+      background-color: inherit;
+      border-bottom: solid $light-accent-color 1px;
+    }
+
+    input, button {
+      padding: 5px;
+      width: 100%;
+      background-color: $background-color;
+    }
+
+    button:hover {
+      cursor: pointer;
+      background-color: $medium-accent-color;
+      color: white;
     }
   }
-}

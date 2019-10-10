@@ -4,7 +4,7 @@ class Api::ArtistsController < ApplicationController
   end
 
   def show
-    @artist = Artist.find_by(id: params(:artist[:id]))
+    @artist = Artist.find_by(id: params[:id])
   end
 
   def create

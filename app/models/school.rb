@@ -1,3 +1,3 @@
 class School < ApplicationRecord
-  has_many :artists
+  include Selector
 end

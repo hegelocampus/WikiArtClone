@@ -1,3 +1,3 @@
 class Nationality < ApplicationRecord
-  has_many :artists
+  include Selector
 end

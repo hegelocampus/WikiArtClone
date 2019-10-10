@@ -21,11 +21,11 @@ User.create(email: 'example@example.com', password: 'testusr1')
 end
 
 10.times do
-  Selectors::Nationality.create(name: Faker::Nation.unique.nationality)
+  Nationality.create(name: Faker::Nation.unique.nationality)
 end
 
 10.times do
-  Selectors::School.create(name: Faker::Verb.unique.past_participle)
+  School.create(name: Faker::Verb.unique.past_participle)
 end
 
 art_movement_names = [
@@ -40,7 +40,7 @@ art_movement_names = [
 ]
 
 art_movement_names.each do |name|
-  Selectors::ArtMovement.create(name: name)
+  ArtMovement.create(name: name)
 end
 
 field_names = [
@@ -53,8 +53,29 @@ field_names = [
 ]
 
 field_names.each do |name|
-  Selectors::Field.create(name: name)
+  Field.create(name: name)
 end
 
+10.times do
+  name = Faker::FunnyName.unique.name
+  birth = Faker::Date.backward
+  death = Faker::Date.between(from: birth, to: Date.today)
+  wiki_url = "https://en.wikipedia.org/wiki/Special:Random"
+  nationality = Nationality.all.sample.id
+  school = School.all.sample.id
+  field = Field.all.sample.id
+  art_movement = ArtMovement.all.sample.id
+  artist = Artist.create(
+    name: name,
+    birth_date: birth,
+    death_date: death,
+    wiki_url: wiki_url,
+    nationality_id: nationality,
+    school_id: school,
+    field_id: field,
+    art_movement_id: art_movement
+  )
 
+  Image.create(imageable_id: artist.id, imageable_type: Artist, url: "https://dog.ceo/api/breed/retriever/images/random")
+end
 

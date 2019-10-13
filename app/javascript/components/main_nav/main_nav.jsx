@@ -1,5 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import ArtistMenu from './artist_menu';
+import ArtworkMenu from './artwork_menu';
 
 export default (props) => {
   return (
@@ -8,16 +10,12 @@ export default (props) => {
         <Link to={"/"}>Home</Link>
       </li>
       <li>
-        <Link to={""}>Artists</Link>
+        <ArtistMenu />
       </li>
       <li>
-        <Link to={""}>Artworks</Link>
+        <ArtworkMenu />
       </li>
     </ul>
   )
-}
-
-const Artists = () => {
-
 }
 

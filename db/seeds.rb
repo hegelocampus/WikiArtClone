@@ -6,12 +6,13 @@
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
 require 'faker'
+require 'http'
 
 ActiveRecord::Base.connection.tables.each do |t|
   ActiveRecord::Base.connection.reset_pk_sequence!(t)
 end
 
-User.create(email: 'example@example.com', password: 'testusr1')
+User.create(email: 'exampleuser@example.com', password: 'testusr1')
 
 25.times do
   email = Faker::Internet.unique.email
@@ -21,7 +22,7 @@ User.create(email: 'example@example.com', password: 'testusr1')
 end
 
 10.times do
-  Nationality.create(name: Faker::Nation.unique.nationality)
+  Nationality.create(name: Faker::Nation.unique.nationality.singularize)
 end
 
 10.times do
@@ -56,11 +57,15 @@ field_names.each do |name|
   Field.create(name: name)
 end
 
-10.times do
+wikis = HTTP.get('https://en.wikipedia.org/w/api.php?action=query&format=json&list=random&rnlimit=10&rnnamespace=0').parse["query"]["random"]
+
+photos = HTTP.get('https://dog.ceo/api/breed/retriever/images/random/10').parse["message"]
+
+(0...10).each do |i|
   name = Faker::FunnyName.unique.name
   birth = Faker::Date.backward
   death = Faker::Date.between(from: birth, to: Date.today)
-  wiki_url = "https://en.wikipedia.org/wiki/Special:Random"
+  wiki_url = "https://en.wikipedia.org/wiki/#{ wikis[i]['title'].split(' ').join('_') }"
   nationality = Nationality.all.sample.id
   school = School.all.sample.id
   field = Field.all.sample.id
@@ -76,6 +81,8 @@ end
     art_movement_id: art_movement
   )
 
-  Image.create(imageable_id: artist.id, imageable_type: Artist, url: "https://dog.ceo/api/breed/retriever/images/random")
+  imgUrl = photos[i]
+
+  Image.create(imageable_id: artist.id, imageable_type: Artist, url: imgUrl)
 end
 

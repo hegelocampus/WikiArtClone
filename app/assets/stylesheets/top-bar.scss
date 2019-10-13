@@ -1,0 +1,105 @@
+@import "variables";
+
+header {
+  width: 100%;
+  height: 60px;
+  border-bottom: $medium-accent-color solid 1px;
+  .top-nav {
+    padding: 0 20px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: nowrap;
+    height: 100%;
+
+    .nav-menu-auth-anchor {
+      font-size: 15px;
+      font-weight: 600;
+      align-items: center;
+      color: $light-accent-color;
+      width: 88px;
+      white-space: nowrap;
+      display: flex;
+      flex-wrap: nowrap;
+      &:hover {
+        cursor: pointer;
+      }
+      &::after {
+        content: '';
+        margin: 0 6px;
+        background-image: image-url("auth-icon@2x.png");
+        background-size: cover;
+        width: 15px;
+        height: 20px
+      }
+    }
+
+    .nav-menu-auth {
+      height: 100%;
+      width: 100%;
+    }
+
+  }
+}
+
+.top-menu-user-menu-wrapper {
+  font-size: 16px;
+  font-weight: 600;
+  position: relative;
+
+  align-items: center;
+  color: $light-accent-color;
+  border-left: solid 1px $dark-accent-color;
+  border-right: solid 1px $dark-accent-color;
+  width: 90px;
+  background: image-url("user-logged.svg") center no-repeat;
+  background-size: 25px 25px;
+  a {
+    display: block;
+    width: 100%;
+    height: 100%;
+  }
+}
+
+.top-menu-user-menu-list {
+  position: absolute;
+  right: 0px;
+  background-color: $dark-accent-color;
+  width: 210px;
+  li {
+    font-weight: 500;
+    font-size: 14px;
+    margin-top: 3px;
+    padding: 5px 10px;
+    a {
+    }
+    &:hover:not(:first-child) {
+      background-color: $medium-accent-color;
+      cursor: pointer;
+    }
+  }
+  li:first-child {
+    overflow-wrap: break-word;
+    border-bottom: solid 1px $medium-accent-color;
+    color: $medium-accent-color;
+  }
+}
+
+.top-bar-logo-container {
+  height: 100%;
+  flex-grow: 1;
+  .top-bar-logo {
+    display: block;
+    font-size: 30px;
+    margin: 0 auto;
+    padding: 2px 0;
+    width: 200px;
+    height: 100%;
+  }
+}
+
+main, .top-nav {
+  width: 85%;
+  margin: 0 auto;
+}
+

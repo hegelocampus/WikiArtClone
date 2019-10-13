@@ -63,3 +63,5 @@ gem "bcrypt-ruby", "~> 3.1"
 
 gem "jquery-rails", "~> 4.3"
 
+
+gem "http", "~> 4.1"

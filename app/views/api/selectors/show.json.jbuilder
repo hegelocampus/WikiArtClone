@@ -1,2 +1,7 @@
-<h1>Api::Selectors#show</h1>
-<p>Find me in app/views/api/selectors/show.html.erb</p>
+json.key_format! camelize: :lower
+json.set! @selector.model_name.name do
+  json.set! @selector.id do
+    json.partial! '/api/selectors/selector.json.jbuilder', selector: @selector
+  end
+end
+

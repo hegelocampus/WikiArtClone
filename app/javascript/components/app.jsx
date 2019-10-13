@@ -3,7 +3,7 @@ import { Route, Switch } from 'react-router-dom';
 import TopBar from './top_bar/top_bar_container';
 import { AuthRoute, ProtectedRoute } from '../utils/route_utils';
 import AuthModal from './auth_modal/auth_modal.jsx';
-import Artist from './artist/artist_container';
+import Artist from './artist/artist';
 import MainNav from './main_nav/main_nav';
 
 

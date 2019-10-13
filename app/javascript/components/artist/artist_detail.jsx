@@ -12,18 +12,8 @@ const fetchSelectorAssociations = (pathName, obj) => {
     .filter(attribute => typeof attribute[1] === 'number' && attribute[0] !== 'id')
     .map(att => [att[0].match(/(.+)(?=Id$)/)[0], att[1]]);
 
-  useEffect(() => {
-    assocVars.forEach(attribute => dispatch(fetchSelector(attribute[0], attribute[1])));
-    },
-    [obj]
-  )
-  // It may make more sense to just fetch the associations with the artist and
-  // then add them to selectors with the RECEIVE_ARTIST action
-
   assocVars.forEach(attribute => {
-    console.log(attribute);
     const attributeVal = useSelector(state => {
-      console.log(state.entities.selectors);
       if (state.entities.selectors[attribute[0]]) {
         return state.entities.selectors[attribute[0]][attribute[1]].name;
       } else {
@@ -40,7 +30,6 @@ export default (props) => {
   let { artist, pathName } = props;
   debugger
   const parsed = fetchSelectorAssociations(pathName, artist);
-  console.log(parsed);
   return (
     <div className="artist-detail">
       <figure>

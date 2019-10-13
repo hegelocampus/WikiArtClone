@@ -5,9 +5,10 @@ export const RECEIVE_ARTIST = 'RECEIVE_ARTIST';
 export const DELETE_ARTIST = 'DELETE_ARTIST';
 export const RECEIVE_ARTIST_ERRORS = 'RECEIVE_ARTIST_ERRORS';
 
-const receiveArtist = (artist) => ({
+const receiveArtist = (artist, selectors) => ({
   type: RECEIVE_ARTIST,
-  artist
+  artist,
+  selectors
 });
 
 const receiveArtists = (artists) => ({
@@ -27,7 +28,7 @@ const receiveErrors = (errors) => ({
 
 export const requestArtist = (id) => (dispatch) => ArtistApiUtil.fetchArtist(id)
   .then(
-    artist => dispatch(receiveArtist(artist.artist))
+    (query) => dispatch(receiveArtist(query.artist, query.selectors))
   );
 
 export const requestArtists = (selectors) => (dispatch) => ArtistApiUtil.fetchArtists(selectors)
@@ -37,13 +38,13 @@ export const requestArtists = (selectors) => (dispatch) => ArtistApiUtil.fetchAr
 
 export const createArtist = (newArtist) => (dispatch) => ArtistApiUtil.createArtist(newArtist)
   .then(
-    artist => dispatch(receiveArtist(artist)),
+    (artist, selectors) => dispatch(receiveArtist(artist)),
     errors => dispatch(receiveErrors(errors))
   );
 
 export const updateArtist = (newArtist) => (dispatch) => ArtistApiUtil.updateArtist(newArtist)
   .then(
-    artist => dispatch(receiveArtist(artist)),
+    (artist, selectors) => dispatch(receiveArtist(artist)),
     errors => dispatch(receiveErrors(errors))
   );
 

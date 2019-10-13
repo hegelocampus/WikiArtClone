@@ -20,7 +20,10 @@ export default class SessionForm extends React.Component {
   }
 
   handleSubmit(e) {
-    e.preventDefault();
+    if (e) {
+      e.preventDefault();
+    }
+
     this.props.processForm(this.state);
   }
 
@@ -29,11 +32,10 @@ export default class SessionForm extends React.Component {
   }
 
   handleGuestLogin(e) {
-    e.preventDefault();
     this.setState({
-      email: "example@example.com",
+      email: "ExampleUser@example.com",
       password: "testusr1"
-    }, () => this.handleSubmit(e))
+    }, () => this.handleSubmit())
   }
 
   render() {

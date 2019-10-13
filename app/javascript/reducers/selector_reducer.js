@@ -8,9 +8,7 @@ export default (state = {}, action) => {
     case RECEIVE_ARTIST:
       return merge({}, state,  action.selectors);
     case RECEIVE_SELECTORS:
-      let newState = merge({}, state);
-      newState[action.selectorName] = action.selectors;
-      return newState;
+      return merge({}, state, action.selectors);
     default:
       return state;
   }

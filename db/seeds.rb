@@ -12,7 +12,7 @@ ActiveRecord::Base.connection.tables.each do |t|
   ActiveRecord::Base.connection.reset_pk_sequence!(t)
 end
 
-User.create(email: 'exampleuser@example.com', password: 'testusr1')
+User.create(email: 'ExampleUser@example.com', password: 'testusr1')
 
 25.times do
   email = Faker::Internet.unique.email
@@ -81,8 +81,9 @@ photos = HTTP.get('https://dog.ceo/api/breed/retriever/images/random/10').parse[
     art_movement_id: art_movement
   )
 
-  imgUrl = photos[i]
+  img_url = photos[i]
+  img_caption = Faker::Lorem.sentence
 
-  Image.create(imageable_id: artist.id, imageable_type: Artist, url: imgUrl)
+  Image.create(imageable_id: artist.id, caption: img_caption, imageable_type: Artist, url: img_url)
 end
 

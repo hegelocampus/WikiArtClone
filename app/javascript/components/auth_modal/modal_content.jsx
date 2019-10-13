@@ -1,55 +1,54 @@
-import React from 'react';
+import React, { useState } from 'react';
+import { useDispatch } from 'react-redux';
+import { CLEAR_ERRORS  } from '../../actions/session_actions';
+
 import SessionForm from './session_form_container.js';
 
-export default class ModalContent extends React.Component {
-  constructor(props) {
-    super(props);
+export default (props) => {
+  const [formType, setFormType] = useState("login");
+  const dispatch = useDispatch();
 
-    this.state = { formType: "login"}
-
-    this.changeForm = this.changeForm.bind(this);
-  }
-
-  changeForm(type) {
+  const changeForm = (type) => {
     return (e) => {
       e.preventDefault();
-      this.setState({formType: type});
+      setFormType(type);
+      dispatch({type: CLEAR_ERRORS});
     }
   }
 
-  render() {
-    let headerContent, footer;
-    if (this.state.formType === 'login') {
-      headerContent = "Sign In";
-      footer = (
-        <span>Don't have an account?
-          <a href='#' onClick={ this.changeForm("signup") } >
-            Sign up
-          </a>
-        </span>
-      )
-    } else {
-      headerContent = "Sign up";
-      footer = (
-        <span>Already have an account?
-          <a href='#' onClick={ this.changeForm("login") } >
-            Sign In
-          </a>
-        </span>
-      );
-    }
-    return (
-      <div className="modal-content">
-        <div className="modal-header">
-          <h3 className="modal-header-title">
-            { headerContent }
-          </h3>
-        </div>
-        <SessionForm formType={ this.state.formType } />
-        <div className="modal-content-secondary">
-          { footer }
-        </div>
-      </div>
+  let headerContent, footer;
+  if (formType === 'login') {
+    headerContent = "Sign In";
+    footer = (
+      <span>Don't have an account?
+        <a href='#' onClick={ changeForm("signup") } >
+          Sign up
+        </a>
+      </span>
+    )
+  } else {
+    headerContent = "Sign up";
+    footer = (
+      <span>Already have an account?
+        <a href='#' onClick={ changeForm("login") } >
+          Sign In
+        </a>
+      </span>
     );
   }
+
+  return (
+    <div className="modal-content">
+      <div className="modal-header">
+        <h3 className="modal-header-title">
+          { headerContent }
+        </h3>
+      </div>
+      <SessionForm formType={ formType } />
+      <div className="modal-content-secondary">
+        { footer }
+      </div>
+    </div>
+  );
 }
+

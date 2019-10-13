@@ -15,7 +15,7 @@ const receiveSelector = (selectorName, selector) => ({
   selectorName
 })
 
-export const fetchSelectors = selectorName => dispatch => (
+export const requestSelectors = selectorName => dispatch => (
   SelectorApiUtils.fetchSelectors(selectorName)
   .then(
     selectors => dispatch(receiveSelectors(selectorName, selectors))

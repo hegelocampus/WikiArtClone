@@ -1,8 +1,8 @@
 import React, { useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import { Route, Switch } from 'react-router-dom';
 import ArtistDetail from './artist_detail'
 import { requestArtist } from '../../actions/artist_actions';
-import { useDispatch, useSelector } from 'react-redux';
 
 export default (props) => {
   const dispatch = useDispatch();

@@ -5,6 +5,7 @@ import { AuthRoute, ProtectedRoute } from '../utils/route_utils';
 import AuthModal from './auth_modal/auth_modal.jsx';
 import Artist from './artist/artist';
 import MainNav from './main_nav/main_nav';
+import SelectorIndex from './selector/selector_index';
 
 
 const Splash = () => (
@@ -20,9 +21,7 @@ export default () => (
         <Route path={'/profile/:userId'}>
           <h1>User show page</h1>
         </Route>
-        <Route path={'/artists-by-:selector'}>
-          <h1>Selector index page</h1>
-        </Route>
+        <Route path={'/artists-by-:selector'} component={ SelectorIndex } />
         <Route path={'/:artistId'} component={ Artist } />
         <Route path="/" component={ Splash } />
       </Switch>

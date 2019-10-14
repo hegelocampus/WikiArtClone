@@ -44,10 +44,13 @@ export default (props) => {
 
   let artistLis;
   artists.length > 0 ? (
-    artistLis = artists.map(({ id, name }) => (
-      <li key={`artist-${ id }`}>
+    artistLis = artists.map(({ id, name, imageUrl }) => (
+      <li key={`artist-${ id }`} className="artist-li">
         <Link to={ `/${ id }` }>
-          { name }
+          <figure className="artist-li-fig">
+            <img src={ imageUrl } alt={`${ name } profile image`} />
+          </figure>
+          <span>{ name }</span>
         </Link>
       </li>
     ))
@@ -57,7 +60,9 @@ export default (props) => {
 
   return (
     <React.Fragment>
-      <h2>{ subSelector }</h2>
+      <div className="selectors-title">
+        <h2>{ subSelector }</h2>
+      </div>
       <ul className="artist-ul">
         { artistLis }
       </ul>

@@ -1,5 +1,65 @@
 @import "variables";
 
-.selectors-ul {
+.selectors-title {
+  display: block;
+  padding-top: 20px;
+  margin: 0 0 25px;
+  h2 {
+    color: $light-accent-color;
+    font-size: 24px;
+    font-family: $sans-serif;
+    text-transform: uppercase;
+    border-bottom: 1px $light-accent-color solid;
+  }
+}
+
+.selectors-ul, .artist-ul {
+  font-size: 16px;
+  font-weight: 700;
   columns: 3;
 }
+
+.selectors-ul {
+  li {
+    line-height: 15px;
+    padding: 5px 0;
+    //color: #5f828b;
+    //color: #87a27c;
+    font-weight: normal;
+  }
+}
+
+.artist-ul {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-template-rows: 280px;
+  grid-gap: 20px;
+}
+
+.artist-li {
+  height: 100%;
+  width: 100%;
+  display: block;
+  a {
+    height: 100%;
+    width: 100%;
+    span {
+      display: block;
+      margin-top: 15px;
+    }
+  }
+}
+
+.artist-li-fig {
+  display: flex;
+  align-items: center;
+  height: 195px;
+  background-color: $dark-accent-color;
+  img {
+    max-height: 100%;
+    max-width: 100%;
+    margin: 0 auto;
+    display: block;
+  }
+}
+

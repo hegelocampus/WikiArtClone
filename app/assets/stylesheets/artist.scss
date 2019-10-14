@@ -1,6 +1,7 @@
 @import "variables";
 
 .artist-detail {
+  padding-top: 25px;
   display: grid;
   grid-template: auto auto / 38% 1fr ;
   grid-gap: 5px;
@@ -8,6 +9,22 @@
 
 .artist-detail-image {
   width: 100%;
+}
+
+.artist-attribute-section {
+  padding-left: 20px;
+  h3 {
+    line-height: 26px;
+    font-size: 24px;
+    font-weight: 700;
+    margin-bottom: 14px;
+  }
+}
+
+.artist-attribute-item {
+  text-transform: capitalize;
+  a > span {
+  }
 }
 
 .artist-wiki {

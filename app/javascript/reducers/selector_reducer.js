@@ -7,9 +7,6 @@ export default (state = {}, action) => {
   switch (action.type) {
     case RECEIVE_SELECTOR:
       return merge({}, state, action.selector );
-      //  [Object.keys(action.selector)[0]]:
-      //    Object.values(action.selector)[0]
-      //});
     case RECEIVE_ARTIST:
       return merge({}, state,  action.selectors);
     case RECEIVE_SELECTORS:

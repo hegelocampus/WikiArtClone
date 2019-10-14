@@ -8,8 +8,6 @@ import { useFetchAssociations } from '../hooks/utils';
 export default (props) => {
   const dispatch = useDispatch();
 
-  //const artistRef = useRef();
-
   const artist = useSelector(state => (
     state.entities.artists[props.match.params.artistId]
   ));

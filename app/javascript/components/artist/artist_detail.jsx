@@ -9,7 +9,7 @@ export default ({ artist, parsed }) => {
         <img src={artist.imageUrl} className="artist-detail-image" alt={`image of ${ artist.name }`}/>
         <figcaption>{ artist.imageCaption || '' }</figcaption>
       </figure>
-      <article>
+      <article className="artist-attribute-section">
         <h3>{ artist.name }</h3>
         <ul className="artist-attributes">
           <li className="artist-attribute-item">

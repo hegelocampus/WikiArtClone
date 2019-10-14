@@ -29,7 +29,6 @@ export default (props) => {
   )
 
   const artists = useSelector(state => Object.values(state.entities.artists));
-  console.log(artists);
 
   let artistLis;
   artists.length > 0 ? (

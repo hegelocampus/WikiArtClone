@@ -32,7 +32,6 @@ export const useFetchAssociations = (obj) => {
   useSelector(state => {
     let attributeVal;
     assocVars.forEach(attribute => {
-      console.log(attribute);
       if (state.entities.selectors[attribute[0]]) {
         attributeVal = state.entities.selectors[attribute[0]][attribute[1]];
       } else {

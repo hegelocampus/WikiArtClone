@@ -82,7 +82,7 @@ photos = HTTP.get('https://dog.ceo/api/breed/retriever/images/random/15').parse[
   )
 
   img_url = photos[i]
-  img_caption = Faker::Lorem.sentence
+  img_caption = Faker::Hipster.sentence
 
   Image.create(imageable_id: artist.id, caption: img_caption, imageable_type: Artist, url: img_url)
 end

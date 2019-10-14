@@ -11,10 +11,12 @@ export default (props) => {
   const match = useRouteMatch();
 
   return (
-    <Switch>
-      <Route path={`${match.path}/:SubSelId`} component={ SelectorArtists }/>
-      <Route path={ match.path } component={ SelectorIndex } />
-    </Switch>
+    <div className="selector-container">
+      <Switch>
+        <Route path={`${match.path}/:SubSelId`} component={ SelectorArtists }/>
+        <Route path={ match.path } component={ SelectorIndex } />
+      </Switch>
+    </div>
   );
 }
 

@@ -8,6 +8,7 @@ import {
   useRouteMatch,
 } from 'react-router-dom';
 
+import { fetchSelector } from '../../actions/selector_actions';
 import { requestArtistsBySelector } from '../../actions/artist_actions';
 
 export default (props) => {
@@ -24,11 +25,22 @@ export default (props) => {
     dispatch(requestArtistsBySelector({
       [mainSelector]: match.params.SubSelId
     }));
+    dispatch(fetchSelector(mainSelector, match.params.SubSelId))
   },
   [props, match]
   )
 
   const artists = useSelector(state => Object.values(state.entities.artists));
+  const subSelector = useSelector(state => {
+    console.log(state.entities.selectors[mainSelector]);
+    if (state.entities.selectors[mainSelector]) {
+      return state
+      .entities
+      .selectors[mainSelector][match.params.SubSelId]
+    } else {
+      return null;
+    }
+  });
 
   let artistLis;
   artists.length > 0 ? (
@@ -44,9 +56,12 @@ export default (props) => {
   );
 
   return (
-    <ul className="artist-ul">
-      { artistLis }
-    </ul>
+    <React.Fragment>
+      <h2>{ subSelector }</h2>
+      <ul className="artist-ul">
+        { artistLis }
+      </ul>
+    </React.Fragment>
   )
 }
 

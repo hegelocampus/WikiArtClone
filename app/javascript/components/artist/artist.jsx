@@ -22,7 +22,7 @@ export default (props) => {
   let parsed = useFetchAssociations(artist);
 
   return (
-    <React.Fragment>
+    <div className="artist-container">
       <h2>
         /Bread/Crumbs/Go/Here
       </h2>
@@ -37,7 +37,7 @@ export default (props) => {
       <h1>[Artist's famous artworks]</h1>
       <h1>Related Artworks</h1>
       <h1>Featured Artworks</h1>
-    </React.Fragment>
+    </div>
   )
 }
 

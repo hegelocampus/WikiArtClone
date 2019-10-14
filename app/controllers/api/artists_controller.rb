@@ -1,6 +1,10 @@
 class Api::ArtistsController < ApplicationController
   def index
-    @artists = Artist.join(selector_params.keys).find_by(selector_params)
+    parsedSelectors = selector_params
+    p parsedSelectors
+
+    @artists = Artist.joins(parsedSelectors.keys)
+      .where(parsedSelectors)
   end
 
   def show
@@ -29,11 +33,14 @@ class Api::ArtistsController < ApplicationController
   end
 
   def selector_params
-    params.require(:selectors).permit(
+    params.require(:selectors)
+      .permit(
       :nationality,
       :school,
       :field,
-      :art_movement
+      :artMovement
     )
+      .to_hash.transform_keys { |k| k.underscore.to_sym }
+      .transform_values(&:to_i)
   end
 end

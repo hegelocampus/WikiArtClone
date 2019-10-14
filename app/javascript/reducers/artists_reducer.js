@@ -10,7 +10,7 @@ export default (state = {}, action) => {
         [artist.id]: artist
       });
     case RECEIVE_ARTISTS:
-      return merge({}, state, action.artists)
+      return merge({}, action.artists)
     case DELETE_ARTIST:
       let newState = merge({}, state);
       delete newState[action.artistId];

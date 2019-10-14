@@ -1,6 +1,6 @@
 import React, { useState, useRef} from 'react';
 import { Link } from 'react-router-dom';
-import { actionOnOutsideClick } from '../hooks/utils';
+import { useActionOnOutsideClick } from '../hooks/utils';
 
 //const emailGrab = /(.+)(?=\@)/;
 
@@ -8,7 +8,7 @@ export default ({ currentUser, logout }) => {
   const [visable, setVisable] = useState(false);
   const dropDown = useRef(null);
 
-  actionOnOutsideClick(dropDown, () => setVisable(false));
+  useActionOnOutsideClick(dropDown, () => setVisable(false));
 
   return (
     <div className="top-menu-user-menu-wrapper" ref={ dropDown }>

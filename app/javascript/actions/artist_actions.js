@@ -36,6 +36,11 @@ export const requestArtists = (selectors) => (dispatch) => ArtistApiUtil.fetchAr
     artists => dispatch(receiveArtists(artists))
   );
 
+export const requestArtistsBySelector = (selectors) => (dispatch) => ArtistApiUtil.fetchArtists(selectors)
+  .then(
+    artists => dispatch(receiveArtists(artists))
+  );
+
 export const createArtist = (newArtist) => (dispatch) => ArtistApiUtil.createArtist(newArtist)
   .then(
     (artist, selectors) => dispatch(receiveArtist(artist)),

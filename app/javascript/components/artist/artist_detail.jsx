@@ -1,11 +1,8 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import ArtistWiki from './artist_wiki_container';
-import { fetchSelectorAssociations } from '../hooks/utils';
 
-export default (props) => {
-  let { artist, pathName } = props;
-  const parsed = fetchSelectorAssociations(pathName, artist);
+export default ({ artist, parsed }) => {
   return (
     <div className="artist-detail">
       <figure>
@@ -25,25 +22,25 @@ export default (props) => {
           </li>
           <li className="artist-attribute-item">
             <s>Nationality:</s>
-            <Link to={ `/artist-by-nationality/${ artist.nationalityId }` }>
+            <Link to={ `/artists-by-nationality/${ artist.nationalityId }` }>
               <span>{ parsed.nationality }</span>
             </Link>
           </li>
           <li className="artist-attribute-item">
             <s>School:</s>
-            <Link to={ `/artist-by-school/${ artist.schoolId }` }>
+            <Link to={ `/artists-by-school/${ artist.schoolId }` }>
               <span>{ parsed.school }</span>
             </Link>
           </li>
           <li className="artist-attribute-item">
             <s>Field:</s>
-            <Link to={ `/artist-by-field/${ artist.fieldId }` }>
+            <Link to={ `/artists-by-field/${ artist.fieldId }` }>
               <span>{ parsed.field }</span>
             </Link>
           </li>
           <li className="artist-attribute-item">
             <s>Art Movement:</s>
-            <Link to={ `/artist-by-art-movement/${ artist.artMovementId }` }>
+            <Link to={ `/artists-by-art-movement/${ artist.artMovementId }` }>
               <span>{ parsed.artMovement }</span>
             </Link>
           </li>
@@ -53,7 +50,11 @@ export default (props) => {
           </li>
         </ul>
       </article>
-      <ArtistWiki artistId={ artist.id } artistWiki={ artist.wikiUrl }/>
+      { artist.wikiUrl ? (
+        <ArtistWiki artistId={ artist.id } artistWiki={ artist.wikiUrl }/>
+      ) : (
+        null
+      )}
     </div>
   );
 }

@@ -21,11 +21,11 @@ User.create(email: 'ExampleUser@example.com', password: 'testusr1')
   User.create(email: email, password: password)
 end
 
-10.times do
+5.times do
   Nationality.create(name: Faker::Nation.unique.nationality.singularize)
 end
 
-10.times do
+5.times do
   School.create(name: Faker::Verb.unique.past_participle)
 end
 
@@ -57,11 +57,11 @@ field_names.each do |name|
   Field.create(name: name)
 end
 
-wikis = HTTP.get('https://en.wikipedia.org/w/api.php?action=query&format=json&list=random&rnlimit=10&rnnamespace=0').parse["query"]["random"]
+wikis = HTTP.get('https://en.wikipedia.org/w/api.php?action=query&format=json&list=random&rnlimit=15&rnnamespace=0').parse["query"]["random"]
 
-photos = HTTP.get('https://dog.ceo/api/breed/retriever/images/random/10').parse["message"]
+photos = HTTP.get('https://dog.ceo/api/breed/retriever/images/random/15').parse["message"]
 
-(0...10).each do |i|
+(0...15).each do |i|
   name = Faker::FunnyName.unique.name
   birth = Faker::Date.backward
   death = Faker::Date.between(from: birth, to: Date.today)

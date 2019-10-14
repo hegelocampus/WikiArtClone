@@ -1,0 +1,70 @@
+@import "variables";
+
+.ReactModal__Overlay {
+  background-color: rgba(28, 26, 24, 0.85);
+  transition: opacity .15s ease;
+}
+
+.ReactModal__Content {
+  position: fixed;
+  height: 450px;
+  width: 600px;
+  margin: 30px auto;
+  padding: 0;
+  background-color: $background-color;
+  transform: translate(0,0);
+  transition: transform .3 ease-out;
+
+  .modal-header {
+    width: 100%;
+    height: 64px;
+    border-bottom: 1px solid $dark-accent-color;
+    border-top: 3px solid $light-accent-color;
+    h3 {
+      margin: 25px 0 17px 25px;
+      color: $lightest-accent-color;
+      font-size: 22px;
+      font-weight: 800;
+    }
+  }
+}
+
+.modal-content {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  .modal-content-form, .modal-content-secondary {
+    @extend .modal-content;
+    width: 80%;
+    align-items: center;
+  }
+  span, input, button {
+    color: $lightest-accent-color;
+    font-size: 18px;
+    margin: 15px auto 0 auto;
+  }
+
+  input {
+    border: none;
+    background-color: inherit;
+    border-bottom: solid $light-accent-color 1px;
+  }
+
+  input, button {
+    padding: 5px;
+    width: 100%;
+    background-color: $background-color;
+  }
+
+  button:hover {
+    cursor: pointer;
+    background-color: $medium-accent-color;
+    color: white;
+  }
+}
+
+.modal-content-errors-container {
+  margin: 15px auto 0 auto;
+}
+

@@ -1,16 +1,24 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
+import { CSSTransition } from 'react-transition-group';
 
 export default () => {
   const [visable, setVisable] = useState(false);
 
   return (
     <React.Fragment>
-      <a onClick={ () => visable ? setVisable(false) : setVisable(true) }>
+      <a className={`main-nav-main-cat${ (visable ? ' main-nav-visable' : '' )}`}
+        onClick={ () => visable ? setVisable(false) : setVisable(true) }
+      >
         <h4>Artists</h4>
       </a>
-      { visable ? (
-        <ul>
+      <CSSTransition
+        in={visable}
+        timeout={700}
+        unmountOnExit
+        classNames="slide"
+      >
+        <ul key="main-nav-ul" className="main-nav-subselectors">
           <li>
             <Link to="/artists-by-art-movement">
               <h5>Art movements</h5>
@@ -32,9 +40,7 @@ export default () => {
             </Link>
           </li>
         </ul>
-      ):(
-        null
-      )}
+      </CSSTransition>
     </React.Fragment>
   )
 }

@@ -87,14 +87,13 @@ header {
 
 .top-bar-logo-container {
   height: 100%;
-  flex-grow: 1;
+  margin: 4px;
+  padding: 2px 0px;
   .top-bar-logo {
     display: block;
     font-size: 30px;
-    margin: 0 auto;
-    padding: 2px 0;
     width: 200px;
-    height: 100%;
+    height: 85%;
   }
 }
 

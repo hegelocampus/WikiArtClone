@@ -1,0 +1,15 @@
+@import "variables";
+
+.artist-detail {
+  display: grid;
+  grid-template: auto auto / 38% 1fr ;
+  grid-gap: 5px;
+}
+
+.artist-detail-image {
+  width: 100%;
+}
+
+.artist-wiki {
+  grid-column: 1 / span 3;
+}

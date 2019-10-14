@@ -26,9 +26,26 @@ body {
 }
 
 main {
-  display: flex;
-  flex-direction: column;
-  align-items: stretch;
+  display: grid;
+  grid-template: auto / 20% 1fr ;
+  grid-gap: 5px;
+}
+
+.main-nav {
+  grid-column-start: 1;
+  grid-row: 1 / span last-line;
+}
+
+.main-nav-main-cat {
+  display: block;
+  height: 40px;
+  line-height: 40px;
+  font-size: 20px;
+  color: $light-accent-color;
+  &.main-nav-visable {
+    color: $medium-accent-color;
+    font-weight: 600;
+  }
 }
 
 s {
@@ -45,7 +62,6 @@ main {
   h1 {
     font-size: 30px;
     font-weight: 700;
-    margin: 0 auto;
   }
 }
 
@@ -134,7 +150,7 @@ main {
 
 .artist-detail {
   display: grid;
-  grid-template: auto auto / 43% 1fr ;
+  grid-template: auto auto / 38% 1fr ;
   grid-gap: 5px;
 }
 

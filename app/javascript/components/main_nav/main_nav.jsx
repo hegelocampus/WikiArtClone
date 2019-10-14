@@ -5,9 +5,9 @@ import ArtworkMenu from './artwork_menu';
 
 export default (props) => {
   return (
-    <ul>
-      <li>
-        <Link to={"/"}>Home</Link>
+    <ul className="main-nav">
+      <li >
+        <Link className="main-nav-main-cat" to={"/"}>Home</Link>
       </li>
       <li>
         <ArtistMenu />

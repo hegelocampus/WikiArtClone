@@ -23,7 +23,9 @@ export default (props) => {
 
   return (
     <React.Fragment>
-      /Bread/Crumbs/Go/Here
+      <h2>
+        /Bread/Crumbs/Go/Here
+      </h2>
       <Switch>
         <Route path={'/:artistName/:artworkName'}>
           <h1>Artwork show page</h1>

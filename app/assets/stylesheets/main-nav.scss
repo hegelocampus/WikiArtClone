@@ -1,0 +1,58 @@
+@import "variables";
+
+.main-nav {
+  grid-column-start: 1;
+  grid-row: 1 / span last-line;
+}
+
+.main-nav-main-cat {
+  display: block;
+  height: 40px;
+  line-height: 38px;
+  font-size: 20px;
+  padding-left: 10px;
+  color: $light-accent-color;
+  &:hover {
+    cursor: pointer;
+  }
+  &.main-nav-visable {
+    color: $medium-accent-color;
+    font-weight: 600;
+    border-left: 3px solid $lightest-accent-color;
+  }
+}
+
+.slide-enter {
+  max-height: 0;
+}
+
+.slide-enter-active {
+  transition: max-height 700ms ease-out;
+  max-height: 300px;
+}
+
+
+.slide-exit {
+  max-height: 300px;
+}
+
+.slide-exit-active {
+  max-height: 0;
+  transition: max-height 400ms ease-in-out;
+}
+
+.main-nav-subselectors {
+  overflow: hidden;
+  li > a {
+    display: block;
+    padding-left: 18px;
+    h5 {
+      line-height: 36px;
+      height: 36px;
+      font-size: 18px;
+      font-family: 'Roboto Condensed';
+    }
+  }
+}
+
+

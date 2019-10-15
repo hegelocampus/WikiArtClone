@@ -46,7 +46,6 @@ header {
   font-size: 16px;
   font-weight: 600;
   position: relative;
-
   align-items: center;
   color: $light-accent-color;
   border-left: solid 1px $dark-accent-color;
@@ -54,10 +53,15 @@ header {
   width: 90px;
   background: image-url("user-logged.svg") center no-repeat;
   background-size: 25px 25px;
+
   a {
     display: block;
     width: 100%;
     height: 100%;
+  }
+
+  &:hover {
+    cursor: pointer;
   }
 }
 
@@ -79,6 +83,7 @@ header {
     }
   }
   li:first-child {
+    cursor: default;
     overflow-wrap: break-word;
     border-bottom: solid 1px $medium-accent-color;
     color: $medium-accent-color;

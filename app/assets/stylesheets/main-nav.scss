@@ -46,6 +46,9 @@
   li > a {
     display: block;
     padding-left: 18px;
+    &:hover {
+      background-color: $dark-accent-color;
+    }
     h5 {
       line-height: 36px;
       height: 36px;

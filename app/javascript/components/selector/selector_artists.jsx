@@ -32,11 +32,10 @@ export default (props) => {
 
   const artists = useSelector(state => Object.values(state.entities.artists));
   const subSelector = useSelector(state => {
-    console.log(state.entities.selectors[mainSelector]);
     if (state.entities.selectors[mainSelector]) {
       return state
       .entities
-      .selectors[mainSelector][match.params.SubSelId]
+      .selectors[mainSelector][match.params.SubSelId].name
     } else {
       return null;
     }

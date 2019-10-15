@@ -32,7 +32,7 @@ export default (props) => {
           { artist ? <ArtistDetail artist={ artist } parsed={ parsed } /> : null }
         </Route>
       </Switch>
-      <h1>[Artist's famous artworks]</h1>
+      <h1>Artist's famous artworks</h1>
       <h1>Related Artworks</h1>
       <h1>Featured Artworks</h1>
     </div>

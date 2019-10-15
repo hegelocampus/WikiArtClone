@@ -17,8 +17,14 @@ export default ({ artist, parsed }) => {
             <span>{ artist.birthDate }</span>
           </li>
           <li className="artist-attribute-item">
-            <s>Died:</s>
-            <span>{ artist.deathDate }</span>
+            { artist.deathDate ? (
+              <>
+                <s>Died:</s>
+                <span>{ artist.deathDate }</span>
+              </>
+            ) : (
+              null
+            )}
           </li>
           <li className="artist-attribute-item">
             <s>Nationality:</s>
@@ -46,7 +52,9 @@ export default ({ artist, parsed }) => {
           </li>
           <li className="artist-attribute-item">
             <s>Wikipedia:</s>
-            <span>{ artist.wikiUrl }</span>
+            <a href={ artist.wikiUrl }>
+              <span>{ artist.wikiUrl }</span>
+            </a>
           </li>
         </ul>
       </article>

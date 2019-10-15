@@ -19,15 +19,15 @@ export default (props) => {
 
   const selectors = useSelector(state => {
     let sel =  state.entities.selectors[mainSelector];
-    return (sel ? Object.entries(sel) : sel);
+    return (sel ? Object.values(sel) : sel);
   });
 
   let selectorLis;
   selectors ? (
-    selectorLis = selectors.map(keyVal => (
-      <li key={`subSel-${keyVal[0]}`}>
-        <Link to={ `/artists-by-${mainSelector}/${keyVal[0]}` }>
-          { keyVal[1] }
+    selectorLis = selectors.map(sel => (
+      <li key={`subSel-${sel.id}`}>
+        <Link to={ `/artists-by-${mainSelector}/${sel.id}` }>
+          { sel.name }
         </Link>
       </li>
     ))

@@ -19,26 +19,23 @@ export const useActionOnOutsideClick = (ref, action) => {
 
 export const useFetchAssociations = (obj) => {
   const parsedAttributes = {};
-  const dispatch = useDispatch();
-
-  let assocVars = [];
-
-  if (obj) {
-    assocVars = Object.entries(obj)
-      .filter(attribute => typeof attribute[1] === 'number' && attribute[0] !== 'id')
-      .map(att => [att[0].match(/(.+)(?=Id$)/)[0], att[1]]);
-  }
 
   useSelector(state => {
-    let attributeVal;
-    assocVars.forEach(attribute => {
-      if (state.entities.selectors[attribute[0]]) {
-        attributeVal = state.entities.selectors[attribute[0]][attribute[1]];
-      } else {
-        attributeVal = null;
-      }
-      parsedAttributes[attribute[0]] = attributeVal;
-    })
+    if (obj) {
+      Object.entries(obj).forEach(att => {
+        if (typeof att[1] === 'number' && att[0] !== 'id') {
+          let parsedName = att[0].match(/(.+)(?=Id$)/)[0];
+
+          let selector = state.entities.selectors[parsedName];
+          let attributeVal = (selector && selector[att[1]] ? (
+            selector[att[1]]["name"]
+          ) : (
+            null
+          ));
+          parsedAttributes[parsedName] = attributeVal;
+        }
+      })
+    }
   });
 
   return parsedAttributes;

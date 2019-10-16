@@ -1,0 +1,64 @@
+@import "variables";
+
+.artist-form {
+  ul > li {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    min-width: 230px;
+    padding: 20px;
+    font-size: 16px;
+    div {
+      background-color: $dark-accent-color;
+      padding: 20px 30px;
+    }
+  }
+}
+
+.artist-form-subheader {
+  font-size: 22px;
+  margin-bottom: 5px;
+  height: auto;
+  min-height: 30px;
+  font-weight: 800;
+  border-bottom: none;
+}
+
+.artist-form-input {
+  width: 100%;
+  color: $lightest-accent-color;
+  height: 30px;
+  line-height: 30px;
+  padding: 0px;
+  margin-bottom: 20px;
+  background-color: inherit;
+  border: none;
+  border-bottom: solid $light-accent-color 1px;
+  &:hover {
+    cursor: text;
+  }
+}
+
+.artst-form-buttons-container {
+  div {
+    background-color: $background-color;
+    button {
+      color: $lightest-accent-color;
+      font-weight: 800;
+      font-size: 18px;
+      background-color: $dark-accent-color;
+      border: solid 1px $medium-accent-color;
+      border-radius: 5px;
+      margin: 0;
+      min-width: 150px;
+    }
+    button, span {
+      height: 40px;
+      margin-right: 15px;
+      &:hover {
+        cursor: pointer;
+      }
+    }
+  }
+}
+

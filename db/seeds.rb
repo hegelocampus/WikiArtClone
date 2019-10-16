@@ -14,7 +14,7 @@ end
 
 User.create(email: 'ExampleUser@example.com', password: 'testusr1')
 
-25.times do
+10.times do
   email = Faker::Internet.unique.email
   password = Faker::Alphanumeric.alphanumeric(number: 10)
 
@@ -22,11 +22,13 @@ User.create(email: 'ExampleUser@example.com', password: 'testusr1')
 end
 
 10.times do
-  Nationality.create(name: Faker::Nation.unique.nationality.singularize)
+  nat = Nationality.create(name: Faker::Nation.unique.nationality.singularize)
+  nat.create_sel_type(selector_id: nat.id)
 end
 
 10.times do
-  School.create(name: Faker::Verb.unique.past_participle)
+  s = School.create(name: Faker::Verb.unique.past_participle)
+  s.create_sel_type(selector_id: s.id)
 end
 
 art_movement_names = [
@@ -41,7 +43,8 @@ art_movement_names = [
 ]
 
 art_movement_names.each do |name|
-  ArtMovement.create(name: name)
+  am = ArtMovement.create(name: name)
+  am.create_sel_type(selector_id: am.id)
 end
 
 field_names = [
@@ -54,7 +57,8 @@ field_names = [
 ]
 
 field_names.each do |name|
-  Field.create(name: name)
+  f = Field.create(name: name)
+  f.create_sel_type(selector_id: f.id)
 end
 
 wikis = HTTP.get('https://en.wikipedia.org/w/api.php?action=query&format=json&list=random&rnlimit=50&rnnamespace=0').parse["query"]["random"]

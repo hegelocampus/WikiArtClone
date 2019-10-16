@@ -12,6 +12,27 @@ class Api::ArtistsController < ApplicationController
   end
 
   def create
+    p params
+    @artist = Artist.new(artist_params.slice(
+      :id,
+      :name,
+      :birth_date,
+      :death_date,
+      :nationality_id,
+      :school_id,
+      :field_id,
+      :art_movement_id,
+      :wiki_url,
+    ))
+    @image = @artist.build_image(
+      url: artist_params[:image_url],
+      caption: artist_params[:image_caption],
+    )
+    if @artist.save && @image.save
+      render :show
+    else
+      render @artist.errors + @image.errors
+    end
   end
 
   def edit
@@ -20,15 +41,18 @@ class Api::ArtistsController < ApplicationController
   private
 
   def artist_params
-    params.require(:artist).permit(
+    params.require(:artist).transform_keys(&:underscore).permit(
       :id,
       :name,
+      :birth_date,
+      :death_date,
       :nationality_id,
       :school_id,
       :field_id,
       :art_movement_id,
       :wiki_url,
-      :image_id
+      :image_url,
+      :image_caption,
     )
   end
 

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_10_09_193820) do
+ActiveRecord::Schema.define(version: 2019_10_15_155609) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -19,6 +19,14 @@ ActiveRecord::Schema.define(version: 2019_10_09_193820) do
     t.string "name", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "artist_selectors", force: :cascade do |t|
+    t.string "selector_type", null: false
+    t.bigint "selector_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["selector_type", "selector_id"], name: "index_artist_selectors_on_selector_type_and_selector_id"
   end
 
   create_table "artists", force: :cascade do |t|

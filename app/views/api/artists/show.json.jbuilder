@@ -11,24 +11,30 @@ end
 
 
 json.selectors do
-  json.nationality do
-    json.set! @artist.nationality_id do
-      json.id @artist.nationality.id
-      json.name @artist.nationality.name
+  if @artist.nationality
+    json.nationality do
+      json.set! @artist.nationality_id do
+        json.id @artist.nationality.id
+        json.name @artist.nationality.name
+      end
     end
   end
 
-  json.school do
-    json.set! @artist.school_id do
-      json.id @artist.school.id
-      json.name @artist.school.name
+  if @artist.school
+    json.school do
+      json.set! @artist.school_id do
+        json.id @artist.school.id
+        json.name @artist.school.name
+      end
     end
   end
 
-  json.field do
-    json.set! @artist.field_id do
-      json.id @artist.field.id
-      json.name @artist.field.name
+  if @artist.field
+    json.field do
+      json.set! @artist.field_id do
+        json.id @artist.field.id
+        json.name @artist.field.name
+      end
     end
   end
 

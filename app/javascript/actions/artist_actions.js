@@ -43,13 +43,13 @@ export const requestArtistsBySelector = (selectors) => (dispatch) => ArtistApiUt
 
 export const createArtist = (newArtist) => (dispatch) => ArtistApiUtil.createArtist(newArtist)
   .then(
-    (artist, selectors) => dispatch(receiveArtist(artist)),
+    artist => dispatch(receiveArtist(artist)),
     errors => dispatch(receiveErrors(errors))
   );
 
 export const updateArtist = (newArtist) => (dispatch) => ArtistApiUtil.updateArtist(newArtist)
   .then(
-    (artist, selectors) => dispatch(receiveArtist(artist)),
+    (artist) => dispatch(receiveArtist(artist)),
     errors => dispatch(receiveErrors(errors))
   );
 

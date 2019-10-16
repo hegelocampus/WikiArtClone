@@ -18,16 +18,30 @@ export default ({ currentUser, logout }) => {
       { visable ? (
         <ul className="top-menu-user-menu-list">
           <li>
-            <a className="display-name">{ currentUser.username || currentUser.email.match(/(.+)(?=\@)/)[0] }</a>
+            <a className="display-name">
+              { currentUser.username || currentUser.email.match(/(.+)(?=\@)/)[0] }
+            </a>
           </li>
           <li>
-            <Link to={`/profile/${currentUser.id}`} className="user-menu-link">My account</Link>
+            <Link
+              to={`/profile/${currentUser.id}`}
+              onClick={ () => setVisable(false) }
+              className="user-menu-link"
+            >
+              My account
+            </Link>
           </li>
           <li>
-            <Link to={`/profile/${currentUser.id}/albums`} className="user-menu-link">My albums</Link>
+            <Link
+              to={`/profile/${currentUser.id}/albums`}
+              className="user-menu-link"
+            >
+              My albums
+            </Link>
           </li>
           <li>
-            <Link to='/edit/new' className="user-menu-link">Add artist</Link>
+            <Link
+              to='/edit/new' className="user-menu-link">Add artist</Link>
           </li>
           <li>
             <a onClick={ logout } className="user-menu-link">Sign Out</a>

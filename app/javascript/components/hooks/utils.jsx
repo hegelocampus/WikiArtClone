@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import { useSelector } from 'react-redux';
 import { fetchSelector } from '../../actions/selector_actions';
 
 export const useActionOnOutsideClick = (ref, action) => {

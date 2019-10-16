@@ -21,7 +21,7 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   //window.store = store;
-  //window.fetchSelectors = SelectorAcions.fetchSelectors;
+  //window.requestAllSelectors = SelectorAcions.requestAllSelectors;
   //window.fetchSelector = SelectorAcions.fetchSelector;
 
   const root = document.getElementById('root');

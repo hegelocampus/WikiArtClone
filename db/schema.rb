@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_10_15_155609) do
+ActiveRecord::Schema.define(version: 2019_10_16_180741) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -47,8 +47,37 @@ ActiveRecord::Schema.define(version: 2019_10_15_155609) do
     t.index ["school_id"], name: "index_artists_on_school_id"
   end
 
+  create_table "artwork_selectors", force: :cascade do |t|
+    t.string "selector_type", null: false
+    t.bigint "selector_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["selector_type", "selector_id"], name: "index_artwork_selectors_on_selector_type_and_selector_id"
+  end
+
+  create_table "artworks", force: :cascade do |t|
+    t.string "name"
+    t.string "date"
+    t.bigint "style_id", null: false
+    t.bigint "genre_id", null: false
+    t.bigint "artist_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.boolean "famous", default: false
+    t.index ["artist_id"], name: "index_artworks_on_artist_id"
+    t.index ["genre_id"], name: "index_artworks_on_genre_id"
+    t.index ["name"], name: "index_artworks_on_name"
+    t.index ["style_id"], name: "index_artworks_on_style_id"
+  end
+
   create_table "fields", force: :cascade do |t|
     t.string "name", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "genres", force: :cascade do |t|
+    t.string "name"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
@@ -75,6 +104,12 @@ ActiveRecord::Schema.define(version: 2019_10_15_155609) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
+  create_table "styles", force: :cascade do |t|
+    t.string "name"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
   create_table "users", force: :cascade do |t|
     t.string "email", null: false
     t.string "password_digest", null: false
@@ -89,4 +124,7 @@ ActiveRecord::Schema.define(version: 2019_10_15_155609) do
   add_foreign_key "artists", "fields"
   add_foreign_key "artists", "nationalities"
   add_foreign_key "artists", "schools"
+  add_foreign_key "artworks", "artists"
+  add_foreign_key "artworks", "genres"
+  add_foreign_key "artworks", "styles"
 end

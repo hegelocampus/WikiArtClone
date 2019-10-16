@@ -1,16 +1,25 @@
 class Api::AllSelectorsController < ApplicationController
+  #TODO implement the ArtistSelector and ArtworkSelector model
   def index
-    # This is set up right if I want to start using it sometime
-    # ArtistSelector.all
-    @art_movements = ArtMovement.all
-    @fields = Field.all
-    @nationalities = Nationality.all
-    @schools = School.all
+    type = params[:type]
+    if type == "artist"
+      @selectors = {
+        art_movements: ArtMovement.all,
+        fields: Field.all,
+        nationalities: Nationality.all,
+        schools: School.all,
+      }
+    elsif type == "artwork"
+      @selectors = {
+        styles: Style.all,
+        genres: Genre.all
+      }
+    end
   end
 
   private
 
-  def selectors_params
-    params.require(:selector)
+  def selector_params
+    params.require(:type)
   end
 end

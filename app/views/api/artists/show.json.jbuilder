@@ -9,6 +9,14 @@ json.artist do
   json.art_movement_id @artist.art_movement_id
 end
 
+#Artist artworks will be added to this when they are implemented
+json.artworks do
+  @artworks.each do |artwork|
+    json.set! artwork.id do
+      json.partial! artwork
+    end
+  end
+end
 
 json.selectors do
   if @artist.nationality
@@ -45,6 +53,4 @@ json.selectors do
     end
   end
 end
-
-#Artist artworks will be added to this when they are implemented
 

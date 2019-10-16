@@ -87,8 +87,82 @@ photos = HTTP.get('https://dog.ceo/api/breed/retriever/images/random/50').parse[
   )
 
   img_url = photos[i]
-  img_caption = Faker::Hipster.sentence
+  #img_caption = Faker::Hipster.sentence
+  img_caption = Faker::Marketing.buzzwords
 
-  Image.create(imageable_id: artist.id, caption: img_caption, imageable_type: Artist, url: img_url)
+  Image.create(
+    imageable_id: artist.id,
+    caption: img_caption,
+    imageable_type: Artist,
+    url: img_url
+  )
+end
+
+style_names = [
+  "Art Deco",
+  "Pop Art",
+  "Kinetic Art",
+  "Cyber Art",
+  "Conceptual Art",
+  "Minimalism",
+  "Expressionism",
+  "Abstract Expressionism",
+  "Cubism",
+  "Color Field Painting",
+  "Northern Renaissance",
+  "Baroque"
+]
+
+style_names.each do |name|
+  am = Style.create(name: name)
+  am.create_sel_type(selector_id: am.id)
+end
+
+genre_names = [
+  "animal painting",
+  "bird-and-flower painting",
+  "caricature",
+  "cityscape",
+  "design",
+  "installation",
+  "illustration",
+  "religious painting",
+  "poster",
+  "genre painting",
+  "nude painting",
+  "performance"
+]
+
+genre_names.each do |name|
+  am = Genre.create(name: name)
+  am.create_sel_type(selector_id: am.id)
+end
+
+200.times do
+  name = Faker::TvShows::TwinPeaks.quote
+  style = Style.all.sample.id
+  genre = Genre.all.sample.id
+  artist = Artist.all.sample
+  date = Faker::Date.between(
+    from: artist.birth_date,
+    to: (artist.death_date || Date.today)
+  ).year
+  artwork = Artwork.create(
+    name: name,
+    date: date,
+    style_id: style,
+    genre_id: genre,
+    artist_id: artist.id
+  )
+
+  img_url = Faker::LoremFlickr.pixelated_image
+  img_caption = Faker::Marketing.buzzwords
+
+  Image.create(
+    imageable_id: artwork.id,
+    caption: img_caption,
+    imageable_type: Artwork,
+    url: img_url
+  )
 end
 

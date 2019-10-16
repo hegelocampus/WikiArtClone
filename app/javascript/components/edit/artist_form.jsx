@@ -48,8 +48,10 @@ export default class ArtistForm extends React.Component {
       }
     })
 
-    this.props.formAction(parsed)
-      .then(artist => (artist ? this.props.history.push(`/${artist.id}`) : null));
+    this.props.formAction(parsed).then(({artist}) => {
+      console.log(artist);
+      artist ? this.props.history.push(`/${artist.id}`) : null;
+    });
   }
 
   handleCancel(e) {

@@ -7,7 +7,6 @@ export const fetchArtist = id => $.ajax({
   url: `/api/artists/${id}`,
 });
 
-// The following haven't been setup in the controllers yet
 
 export const createArtist = artist => $.ajax({
   url: 'api/artists',
@@ -15,13 +14,17 @@ export const createArtist = artist => $.ajax({
   data: { artist }
 });
 
+//TODO Test updateArtist
 export const updateArtist = artist => $.ajax({
   url: `api/artists/${artist.id}`,
   type: 'patch',
   data: { artist }
 });
 
+//TODO Implement delete artist
+
 export const deleteArtist = artistId => $.ajax({
   url: `api/artists/${artistId}`,
   type: 'delete'
 });
+

@@ -1,7 +1,6 @@
 class Api::ArtistsController < ApplicationController
   def index
     parsedSelectors = selector_params
-    p parsedSelectors
 
     @artists = Artist.joins(parsedSelectors.keys)
       .where(parsedSelectors)
@@ -9,12 +8,11 @@ class Api::ArtistsController < ApplicationController
 
   def show
     @artist = Artist.find_by(id: params[:id])
+    @artworks = @artist.artworks
   end
 
   def create
-    p params
     @artist = Artist.new(artist_params.slice(
-      :id,
       :name,
       :birth_date,
       :death_date,
@@ -36,6 +34,31 @@ class Api::ArtistsController < ApplicationController
   end
 
   def edit
+    @artist = Artist.find_by(id: params[:id])
+
+    parsedArtistParams = artist_params.slice(
+      :id,
+      :name,
+      :birth_date,
+      :death_date,
+      :nationality_id,
+      :school_id,
+      :field_id,
+      :art_movement_id,
+      :wiki_url,
+    )
+    parsedImageParams = {
+      url: artist_params[:image_url],
+      caption: artist_params[:image_caption],
+    }
+
+    @image = @artist.image
+
+    if @artist.update(parsedArtistParams) && @image.update(parsedImageParams)
+      render :show
+    else
+      render @artist.errors + @image.errors
+    end
   end
 
   private

@@ -1,0 +1,9 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  selector: one
+  selector_type: Selector
+
+two:
+  selector: two
+  selector_type: Selector

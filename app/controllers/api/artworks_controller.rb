@@ -1,13 +1,17 @@
 class Api::ArtworksController < ApplicationController
   def index
-    parsedSelectors = selector_params
-
-    @artworks = Artwork.joins(parsedSelectors.keys)
-      .where(parsedSelectors)
+    if params[:artist_id]
+      @artist = Artist.find_by(id: params[:artist_id])
+      @artworks = @artist.artworks
+    else
+      parsedSelectors = selector_params
+      @artworks = Artwork.joins(parsedSelectors.keys).where(parsedSelectors)
+    end
   end
 
   def show
-    @artwork = Artwork.find_by(id: params[:id])
+    @artist = Artist.find_by(id: params[:artist_id])
+    @artwork = @artist.artworks.find_by(id: params[:id])
   end
 
   def create

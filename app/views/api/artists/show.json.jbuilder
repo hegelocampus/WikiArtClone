@@ -7,6 +7,9 @@ json.artist do
   json.school_id (@artist[:school_id] ? @artist.school_id : nil)
   json.field_id (@artist[:field_id] ? @artist.field_id : nil)
   json.art_movement_id @artist.art_movement_id
+  json.artworks do
+    json.array! @artist.artworks, :id
+  end
 end
 
 #Artist artworks will be added to this when they are implemented

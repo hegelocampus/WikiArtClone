@@ -138,11 +138,14 @@ genre_names.each do |name|
   am.create_sel_type(selector_id: am.id)
 end
 
-200.times do
+art_photos = HTTP.get('https://dog.ceo/api/breeds/image/random/50').parse["message"]
+
+(0..200).each do |i|
   name = Faker::TvShows::TwinPeaks.quote
   style = Style.all.sample.id
   genre = Genre.all.sample.id
   artist = Artist.all.sample
+  famous = [true, false].sample
   date = Faker::Date.between(
     from: artist.birth_date,
     to: (artist.death_date || Date.today)
@@ -150,12 +153,13 @@ end
   artwork = Artwork.create(
     name: name,
     date: date,
+    famous: famous,
     style_id: style,
     genre_id: genre,
     artist_id: artist.id
   )
 
-  img_url = Faker::LoremFlickr.pixelated_image
+  img_url = art_photos[i % art_photos.length]
   img_caption = Faker::Marketing.buzzwords
 
   Image.create(

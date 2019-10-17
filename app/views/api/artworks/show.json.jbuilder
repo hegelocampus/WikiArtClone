@@ -8,7 +8,7 @@ json.artwork do
 end
 
 json.artist do
-  json.partial! @artwork.artist, as: :artist
+  json.partial! @artist, as: :artist
 end
 
 

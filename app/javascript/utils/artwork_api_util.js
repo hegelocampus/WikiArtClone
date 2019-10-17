@@ -3,8 +3,8 @@ export const fetchArtworks = selectors => $.ajax({
   data: {selectors}
 });
 
-export const fetchArtwork = id => $.ajax({
-  url: `/api/artworks/${id}`,
+export const fetchArtwork = (artistId, artworkId) => $.ajax({
+  url: `/api/artists/${artistId}/artworks/${artworkId}`,
 });
 
 export const createArtwork = artwork => $.ajax({

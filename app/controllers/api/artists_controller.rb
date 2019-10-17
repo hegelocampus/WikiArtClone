@@ -1,4 +1,6 @@
 class Api::ArtistsController < ApplicationController
+  #TODO require current user before adding artwork
+  #TODO add user_id as foreign key onto artists
   def index
     parsedSelectors = selector_params
 
@@ -8,7 +10,7 @@ class Api::ArtistsController < ApplicationController
 
   def show
     @artist = Artist.find_by(id: params[:id])
-    @artworks = @artist.artworks
+    @artworks = @artist.artworks.where(famous: true)
   end
 
   def create

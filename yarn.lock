@@ -6127,6 +6127,13 @@ rc@^1.2.7:
     minimist "^1.2.0"
     strip-json-comments "~2.0.1"
 
+react-breadcrumbs-dynamic@^1.2.1:
+  version "1.2.1"
+  resolved "https://registry.yarnpkg.com/react-breadcrumbs-dynamic/-/react-breadcrumbs-dynamic-1.2.1.tgz#7e9f046f717b45fc4e56d23d73fe81b212615472"
+  integrity sha512-6vw1RHQ2cHaHptRVQ+pwt6Vej/O6NGNBnEzC5fgW53ZhwABKtNW2xpljPppF+L8hVkNDBdjKSVMYp9K2U1j9qw==
+  dependencies:
+    react-through "^1.1.4"
+
 react-burger-menu@^2.6.11:
   version "2.6.11"
   resolved "https://registry.yarnpkg.com/react-burger-menu/-/react-burger-menu-2.6.11.tgz#e9ec8db2ea156ef9366423be971ae6859ea17570"
@@ -6208,6 +6215,11 @@ react-router@5.1.2:
     react-is "^16.6.0"
     tiny-invariant "^1.0.2"
     tiny-warning "^1.0.0"
+
+react-through@^1.1.4:
+  version "1.1.4"
+  resolved "https://registry.yarnpkg.com/react-through/-/react-through-1.1.4.tgz#163485b56bb03ddd2e5f971ada50a57e76737b78"
+  integrity sha512-7VuRPSfKS3ihmMlTgQwOspjd+TV3u7tpFs07MMgLVA0g/bH7UHodKLpGS1LgJJlWTUqJKeN4wT9getqGUN37iA==
 
 react-transition-group@^4.3.0:
   version "4.3.0"

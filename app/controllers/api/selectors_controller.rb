@@ -1,4 +1,5 @@
 class Api::SelectorsController < ApplicationController
+  #TODO only allow selectors to be returned
   def index
     #Return all selectors in the given table
     @selectors = params[:selector].classify.constantize.all
@@ -14,6 +15,5 @@ class Api::SelectorsController < ApplicationController
   def selector_params
     params.require(:selector)
   end
-
 end
 

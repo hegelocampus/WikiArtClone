@@ -4,6 +4,7 @@ import {
   RECEIVE_ALL_SELECTORS,
 } from '../actions/selector_actions';
 import { RECEIVE_ARTIST } from '../actions/artist_actions';
+import { RECEIVE_ARTWORK } from '../actions/artwork_actions';
 import merge from 'lodash/merge';
 
 export default (state = {}, action) => {
@@ -12,6 +13,7 @@ export default (state = {}, action) => {
     case RECEIVE_SELECTOR:
       return merge({}, state, action.selector );
     case RECEIVE_ARTIST:
+    case RECEIVE_ARTWORK:
       return merge({}, state,  action.selectors);
     case RECEIVE_SELECTORS:
       return merge({}, state, action.selectors);

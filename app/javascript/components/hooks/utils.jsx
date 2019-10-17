@@ -18,7 +18,7 @@ export const useActionOnOutsideClick = (ref, action) => {
 }
 
 export const useFetchAssociations = (obj) => {
-  const parsedAttributes = {};
+  let parsedAttributes = {};
 
   useSelector(state => {
     if (obj) {

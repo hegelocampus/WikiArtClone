@@ -43,10 +43,8 @@ export default (props) => {
         <>
           { crumbs }
           <div className="artwork-detail">
-            <aside>
-              <div
-                className="artwork-detail-image-container"
-              >
+            <aside className="work-detail-image-container">
+              <div>
                 <img
                   src={ artwork.imageUrl }
                   className="artwork-detail-image"
@@ -54,7 +52,7 @@ export default (props) => {
                 />
               </div>
               <span>
-                { artwork.imageCaption || '' }
+                { artwork.imageCaption ? artwork.imageCaption.toTitleCase() : '' }
               </span>
             </aside>
             <article className="artwork-attribute-section">

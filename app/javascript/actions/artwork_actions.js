@@ -5,9 +5,9 @@ export const RECEIVE_ARTWORK = 'RECEIVE_ARTWORK';
 export const DELETE_ARTWORK = 'DELETE_ARTWORK';
 export const RECEIVE_ARTWORK_ERRORS = 'RECEIVE_ARTWORK_ERRORS';
 
-const receiveArtwork = ({artwork, artist, selectors}) => ({
+const receiveArtwork = ({artworks, artist, selectors}) => ({
   type: RECEIVE_ARTWORK,
-  artwork,
+  artworks,
   artist,
   selectors
 });
@@ -49,7 +49,7 @@ export const createArtwork = (newArtwork) => (dispatch) => ArtworkApiUtil.create
       dispatch(receiveArtwork(artwork));
       return artwork;
     },
-    errors => dispatch(receiveErrors(errors))
+    errors => dispatch(receiveErrors(errors.responseJSON))
   );
 
 export const updateArtwork = (newArtwork) => (dispatch) => ArtworkApiUtil.updateArtwork(newArtwork)

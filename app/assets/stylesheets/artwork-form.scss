@@ -1,6 +1,6 @@
 @import "variables";
 
-.artist-form {
+.artwork-form {
   ul > li {
     display: flex;
     flex-direction: column;
@@ -15,7 +15,7 @@
   }
 }
 
-.artist-form-subheader {
+.artwork-form-subheader {
   font-size: 22px;
   margin-bottom: 5px;
   height: auto;
@@ -24,7 +24,7 @@
   border-bottom: none;
 }
 
-.artist-form-input {
+.artwork-form-input {
   width: 100%;
   color: $lightest-accent-color;
   height: 30px;
@@ -39,7 +39,7 @@
   }
 }
 
-.artist-form-buttons-container {
+.artwork-form-buttons-container {
   div {
     background-color: $background-color;
     button {

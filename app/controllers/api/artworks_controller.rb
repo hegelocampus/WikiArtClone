@@ -18,6 +18,7 @@ class Api::ArtworksController < ApplicationController
     @artwork = Artwork.new(artwork_params.slice(
       :name,
       :date,
+      :artist_id,
       :genre_id,
       :style_id,
     ))
@@ -30,7 +31,7 @@ class Api::ArtworksController < ApplicationController
     if @artwork.save && @image.save
       render :show
     else
-      render @artwork.errors + @image.errors
+      render json: (@artwork.errors.full_messages + @image.errors.full_messages), status: 422
     end
   end
 
@@ -41,8 +42,9 @@ class Api::ArtworksController < ApplicationController
       :id,
       :name,
       :date,
-      :genre_id,
-      :style_id,
+      :genre,
+      :style,
+      :artist_id,
       :image_url,
       :image_caption,
     )
@@ -51,9 +53,9 @@ class Api::ArtworksController < ApplicationController
   def selector_params
     params.require(:selectors)
       .permit(
-      :style,
-      :genre,
-    )
+        :style,
+        :genre,
+      )
       .to_hash.transform_keys { |k| k.underscore.to_sym }
       .transform_values(&:to_i)
   end

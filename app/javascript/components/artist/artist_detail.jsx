@@ -35,14 +35,18 @@ export default (props) => {
     <React.Fragment>
       { crumbs }
       <div className="artist-detail">
-        <figure>
-          <img
-            src={artist['imageUrl']}
-            className="artist-detail-image"
-            alt={`image of ${ artist['name'] }`}
-          />
-          <figcaption>{ artist['imageCaption'] || '' }</figcaption>
-        </figure>
+        <aside className="work-detail-image-container">
+          <div>
+            <img
+              src={artist['imageUrl']}
+              className="artist-detail-image"
+              alt={`image of ${ artist['name'] }`}
+            />
+          </div>
+          <span>
+            { artist['imageCaption'] ? artist['imageCaption'].toTitleCase() : '' }
+          </span>
+        </aside>
         <article className="artist-attribute-section">
           <h3>{ artist['name'] }</h3>
           <ul className="artist-attributes">
@@ -101,12 +105,14 @@ export default (props) => {
       <section className="artist-famous-artworks">
         <FamousArtworks />
       </section>
+      {/*
       <section className="artist-related-artworks">
         <h2>Related Artworks</h2>
       </section>
       <section className="artist-featured-artworks">
         <h2>Featured Artworks</h2>
       </section>
+      */}
     </React.Fragment>
   );
 }

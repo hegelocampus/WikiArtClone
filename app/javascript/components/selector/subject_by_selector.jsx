@@ -84,9 +84,9 @@ export default (props) => {
       <div className="selectors-title">
         <h2>{ subSelector }</h2>
       </div>
-      <ul className='subject-ul' >
+      <div className='subject-container' >
         { subjectLis }
-      </ul>
+      </div>
     </React.Fragment>
   )
 }

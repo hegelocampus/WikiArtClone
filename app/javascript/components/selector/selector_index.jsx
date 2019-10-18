@@ -7,11 +7,9 @@ export default ({ type }) => {
   const dispatch = useDispatch();
   const { selector }= useParams();
   const match = useRouteMatch();
-  const mainSelector = selector
-    .replace(/([-_][a-z])/ig, ($1) => {
-      return $1.toUpperCase()
-        .replace('-', '')
-    });
+  const mainSelector = selector.replace(/([-_][a-z])/ig,
+    $1 => $1.toUpperCase().replace('-', '')
+  );
 
   useEffect(() => {
     dispatch(requestSelectors(mainSelector));
@@ -29,7 +27,7 @@ export default ({ type }) => {
     selectorLis = selectors.map(sel => (
       <li key={`subSel-${sel.id}`}>
         <Link to={ `/${ type }-by-${mainSelector}/${sel.id}` }>
-          { sel.name }
+          { sel.name.toTitleCase() }
         </Link>
       </li>
     ))

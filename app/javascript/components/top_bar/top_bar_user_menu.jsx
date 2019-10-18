@@ -1,10 +1,17 @@
 import React, { useState, useRef} from 'react';
 import { Link } from 'react-router-dom';
 import { useActionOnOutsideClick } from '../hooks/utils';
+import {
+  useDispatch,
+  useSelector,
+} from 'react-redux';
+import { logout } from "../../actions/session_actions";
 
 //const emailGrab = /(.+)(?=\@)/;
 
-export default ({ currentUser, logout }) => {
+export default (props) => {
+  const dispatch = useDispatch();
+  const currentUser = useSelector(state => state.entities.users[state.session.id]);
   const [visable, setVisable] = useState(false);
   const dropDown = useRef(null);
 
@@ -22,6 +29,7 @@ export default ({ currentUser, logout }) => {
               { currentUser.username || currentUser.email.match(/(.+)(?=\@)/)[0] }
             </a>
           </li>
+          {/*
           <li>
             <Link
               to={`/profile/${currentUser.id}`}
@@ -39,12 +47,13 @@ export default ({ currentUser, logout }) => {
               My albums
             </Link>
           </li>
+          */}
           <li>
             <Link
               to='/edit/new' className="user-menu-link">Add artist</Link>
           </li>
           <li>
-            <a onClick={ logout } className="user-menu-link">Sign Out</a>
+            <a onClick={ () => dispatch(logout()) } className="user-menu-link">Sign Out</a>
           </li>
         </ul>
       ) : (

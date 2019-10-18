@@ -3,23 +3,22 @@ import { NEW, EDIT } from './edit';
 import RenderErrors from './render_errors';
 //FIXME  Fix cancel button
 //TODO   Break up form into smaller sub-components
-//TODO   Make the artist death date selector only show if the user requests it
 //TODO   Implement errors right above submit button
 
-export default class ArtistForm extends React.Component {
+export default class ArtworkForm extends React.Component {
   constructor(props) {
     super(props);
-    this.state = props.artist;
+    this.state = props.artwork;
     this.handleSubmit = this.handleSubmit.bind(this);
     this.update = this.update.bind(this);
     this.handleCancel = this.handleCancel.bind(this);
   }
 
   componentDidMount(){
-    this.props.requestAllSelectors("artist");
+    this.props.requestAllSelectors("artwork");
 
     if (this.props.formType === EDIT) {
-      this.props.requestArtist(this.props.match.artistId);
+      this.props.requestArtwork(this.props.match.artworkId);
     }
   }
 
@@ -48,14 +47,16 @@ export default class ArtistForm extends React.Component {
       }
     })
 
-    this.props.formAction(parsed).then(({artist}) => {
-      artist ? this.props.history.push(`/${artist.id}`) : null;
+    parsed['artistId'] = this.props.artistId;
+
+    this.props.formAction(parsed).then(({ artwork }) => {
+      artwork ? this.props.history.push(`/${ artwork.id }`) : null;
     });
   }
 
   handleCancel(e) {
     e.preventDefault();
-    if (confirm("All changes will be unsaved. Are you sure?")){
+    if (window.confirm("All changes will be unsaved. Are you sure?")){
       this.props.history.push('/');
     };
   }
@@ -73,12 +74,12 @@ export default class ArtistForm extends React.Component {
           { att[0] }
           <input
             type="text"
-            className="artist-form-input"
+            className="artwork-form-input"
             list={ att[0] }
             onChange={ this.update }
             name={ att[0] }
             value={ this.state[att[0]] }
-            required={ att[0] === "artMovement" }
+            required={ att[0] === "style" }
           />
           <datalist
             id={ att[0] }
@@ -95,35 +96,63 @@ export default class ArtistForm extends React.Component {
     return(
       <form
         onSubmit={ this.handleSubmit }
-        className="artist-form"
+        className="artwork-form"
       >
         <ul>
           <li>
             <header
-              className="artist-form-subheader"
+              className="artwork-form-subheader"
             >
-              Name and Portrait
+              Title and Image
             </header>
-            <div className="artist-form-bio">
+            <div className="artwork-form-bio">
               <label
               >
-                Name:
+                Artwork Title:
                 <input
                   type="text"
                   name="name"
-                  className="artist-form-input"
+                  className="artwork-form-input"
                   value={ this.state.name }
                   onChange={ this.update }
                   required
                 />
               </label>
+            </div>
+          </li>
+          <li>
+            <header
+              className="artwork-form-subheader"
+            >
+              Dates
+            </header>
+            <div className="artwork-form-dates">
               <label
               >
+                Artwork Creation Date:
+                <input
+                  type="date"
+                  name="date"
+                  className="artwork-form-input"
+                  value={ this.state.date }
+                  onChange={ this.update }
+                />
+              </label>
+            </div>
+          </li>
+          <li>
+            <header
+              className="artwork-form-subheader"
+            >
+              Artwork Image
+            </header>
+            <div>
+              <label>
                 Image URL:
                 <input
                   type="url"
                   name="imageUrl"
-                  className="artist-form-input"
+                  className="artwork-form-input"
                   value={ this.state.imageUrl }
                   onChange={ this.update }
                 />
@@ -134,88 +163,39 @@ export default class ArtistForm extends React.Component {
                 <input
                   type="text"
                   name="imageCaption"
-                  className="artist-form-input"
+                  className="artwork-form-input"
                   value={ this.state.imageCaption }
-                  onChange={ this.update }/>
-              </label>
-            </div>
-          </li>
-          <li>
-            <header
-              className="artist-form-subheader"
-            >
-              Dates
-            </header>
-            <div className="artist-form-dates">
-              <label
-              >
-                Artist Birth Date:
-                <input
-                  type="date"
-                  name="birthDate"
-                  className="artist-form-input"
-                  value={ this.state.birthDate }
                   onChange={ this.update }
                 />
               </label>
-              <label
-              >
-                Date the Artist Died (If Applicable):
-              </label>
-              <input
-                type="date"
-                name="deathDate"
-                className="artist-form-input"
-                value={ this.state.deathDate }
-                onChange={ this.update }
-              />
             </div>
           </li>
           <li>
             <header
-              className="artist-form-subheader"
+              className="artwork-form-subheader"
             >
               Classification
             </header>
-            <div className="artist-form-associations">
+            <div className="artwork-form-associations">
               { assocInputs }
-            </div>
-          </li>
-          <li>
-            <header
-              className="artist-form-subheader"
-            >
-              References and links
-            </header>
-            <div className="artist-form-links">
-              <label>
-                Wikipedia URL:
-              </label>
-              <input
-                type="url"
-                name="wikiUrl"
-                className="artist-form-input"
-                value={ this.state.wikiUrl }
-                onChange={ this.update }
-              />
             </div>
           </li>
           <li>
             <RenderErrors />
           </li>
           <li
-            className="artist-form-buttons-container"
+            className="artwork-form-buttons-container"
           >
             <div>
               <button
                 type="submit"
-                className="artist-form-submit"
+                className="artwork-form-submit"
               >
                 Save
               </button>
               <span
                 onClick={ this.handleCancel }
-                className="artist-form-cancel"
+                className="artst-form-cancel"
               >
                 Cancel
               </span>

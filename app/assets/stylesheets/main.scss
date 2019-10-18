@@ -1,12 +1,14 @@
 @import "variables";
 
 .bread-crumbs {
-  max-width: 800px;
+  box-sizing: border-box;
+  max-width: calc(100% - 80px);
   display: block;
   white-space: nowrap;
   overflow: hidden;
-  line-height: 50px;
+  text-overflow: ellipsis;
   a, s {
+    white-space: nowrap;
     line-height: 30px;
     max-width: 100%;
     display: inline-block;
@@ -15,11 +17,7 @@
   }
   a:last-of-type {
     white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    &:hover {
-      cursor: default;
-    }
+    cursor: default;
   }
 }
 

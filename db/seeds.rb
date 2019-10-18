@@ -140,7 +140,7 @@ end
 
 art_photos = HTTP.get('https://dog.ceo/api/breeds/image/random/50').parse["message"]
 
-(0..200).each do |i|
+(0..400).each do |i|
   name = Faker::TvShows::TwinPeaks.quote
   style = Style.all.sample.id
   genre = Genre.all.sample.id

@@ -11,8 +11,56 @@ header {
     justify-content: space-between;
     flex-wrap: nowrap;
     height: 100%;
+  }
+}
 
-    .nav-menu-auth-anchor {
+.top-bar-side-nav {
+  width: 200px;
+  height: 100%;
+  display: flex;
+  .top-bar-edit-menu {
+    display: block;
+    height: 100%;
+  }
+}
+
+.top-menu-edit-menu-wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  line-height: 68px;
+  padding: 0 23px;
+  a {
+    line-height: 55px;
+    font-weight: 800;
+    position: relative;
+    display: block;
+    height: 100%;
+    width: 100%;
+    &:hover {
+      cursor: pointer;
+    }
+  }
+  ul {
+    position: absolute;
+    width: 180px;
+    line-height: 40px;
+    top: 60px;
+    right: 12%;
+    //240px;
+    display: flex;
+    justify-content: space-around;
+    background-color: $dark-accent-color;
+    li {
+      a {
+        font-size: 14px;
+        font-weight: normal;
+      }
+    }
+  }
+}
+
+.nav-menu-auth-anchor {
       font-size: 15px;
       font-weight: 600;
       align-items: center;
@@ -33,14 +81,10 @@ header {
         height: 20px
       }
     }
-
     .nav-menu-auth {
       height: 100%;
       width: 100%;
     }
-
-  }
-}
 
 .top-menu-user-menu-wrapper {
   font-size: 16px;
@@ -70,6 +114,7 @@ header {
   right: 0px;
   background-color: $dark-accent-color;
   width: 210px;
+  max-width: 210px;
   li {
     font-weight: 500;
     font-size: 14px;

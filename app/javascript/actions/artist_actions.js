@@ -48,7 +48,7 @@ export const createArtist = (newArtist) => (dispatch) => ArtistApiUtil.createArt
       dispatch(receiveArtist(artist));
       return artist;
     },
-    errors => dispatch(receiveErrors(errors))
+    errors => dispatch(receiveErrors(errors.responseJSON))
   );
 
 export const updateArtist = (newArtist) => (dispatch) => ArtistApiUtil.updateArtist(newArtist)

@@ -31,7 +31,7 @@ class Api::ArtistsController < ApplicationController
     if @artist.save && @image.save
       render :show
     else
-      render @artist.errors + @image.errors
+      render json: (@artist.errors.full_messages + @image.errors.full_messages), status: 422
     end
   end
 

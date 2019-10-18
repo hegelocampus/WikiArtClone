@@ -16,10 +16,18 @@
   grid-template: auto auto / 38% 1fr;
   grid-gap: 5px;
 }
+
 .work-detail-image-container {
-  
+  div {
+    width: 100%;
+    height: 100%;
+    background-color: $dark-accent-color;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
   span {
-    //color: $medium-accent-color;
+    color: $medium-accent-color;
     display: inline-block;
     color: $light-accent-color;
     font-weight: normal;
@@ -27,12 +35,14 @@
   }
 }
 
-.artist-detail-image, .work-detail-image {
-    width: 100%;
-    height: 100%;
-    display: inline-block;
-    max-height: 200px;
-  }
+.artist-detail-image, .artwork-detail-image {
+  max-width: 100%;
+  max-height: 100%;
+  height: 100%;
+  display: block;
+  margin: 0 auto;
+  object-fit: contain;
+}
 
 .artist-attribute-section, .artwork-attribute-section {
   padding-left: 20px;
@@ -63,10 +73,6 @@
 
 .artist-wiki {
   font-size: 16px;
-  grid-column: 1 / span 3;
-  position: relative;
-  padding: 80px 20px 30px 0;
-  margin: 20px 0;
   h4, p {
     background-color: $dark-accent-color;
   }
@@ -81,16 +87,28 @@
   }
 }
 
-.famous-work-image-container {
+.artist-famous-artworks, .artist-wiki {
+  grid-column: 1 / span 3;
+  grid-column: 1 / span 3;
+  position: relative;
+  padding: 40px 20px 20px 0;
+  margin: 20px 0;
+}
+
+.work-image-container {
   max-height: 100%;
 }
 
 .famous-works-ul-container {
   margin-top: 20px;
 }
+
 .famous-works-masonry-grid {
   display: flex;
-  width: auto;
+  width: 100%;
+  div > div {
+
+  }
 }
 
 .artist-famous-work {

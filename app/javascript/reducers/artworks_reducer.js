@@ -11,9 +11,7 @@ export default (state = {}, action) => {
   switch (action.type) {
     case RECEIVE_ARTWORK:
       let {artwork} = action;
-      return merge({}, state, {
-        [artwork.id]: artwork
-      });
+      return merge({}, state, action.artworks);
     case RECEIVE_ARTIST:
     case RECEIVE_ARTWORKS:
       return merge({}, action.artworks);

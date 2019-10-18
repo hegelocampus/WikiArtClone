@@ -9,6 +9,10 @@ end
 
 json.artist do
   json.partial! @artist, as: :artist
+  json.art_movement_id @artist.art_movement_id
+  json.artworks do
+    json.array! @artist.artworks, :id
+  end
 end
 
 
@@ -28,6 +32,13 @@ json.selectors do
         json.id @artwork.genre.id
         json.name @artwork.genre.name
       end
+    end
+  end
+
+  json.art_movement do
+    json.set! @artist.art_movement_id do
+      json.id @artist.art_movement.id
+      json.name @artist.art_movement.name
     end
   end
 end

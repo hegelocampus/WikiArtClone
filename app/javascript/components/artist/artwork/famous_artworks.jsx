@@ -7,64 +7,58 @@ import {
   Link,
   useParams
 } from 'react-router-dom';
-import { useFetchAssociations } from '../../hooks/utils';
+import Masonry from 'react-masonry-css';
 import { requestArtwork } from '../../../actions/artwork_actions';
+import ArtworkTile from './artwork_tile';
 
 export default (props) => {
   const params = useParams();
   const { artworkId, artistId } = params
   const dispatch = useDispatch();
-  const { artist } = props;
 
-  //const artist = useSelector(state => (
-  //  state.entities.artists[artistId]
-  //));
+  const artist = useSelector(state => (
+    state.entities.artists[artistId]
+  ));
+
+  const artists = useSelector(state => (
+    state.entities.artists
+  ));
+
   const artworks = useSelector(state => {
     return state.entities.artworks
   });
 
-  console.log(artist);
-  debugger
   const artistArtworks = (artist && artist['artworks']) ? (
     Object.values(artworks).filter(val => {
-      return val.artistId === artist.id;
+      return val.artistId === artist.id && val.id != artworkId;
     })
   ) : [];
 
   const artworkLis = artistArtworks.map(work => (
-    <li
-      key={ work.id }
-      className='artist-famous-artwork'
-    >
-      <figure
-        className="famous-artwork-image-container"
-      >
-        <img
-          src={ work.imageUrl }
-          className="artwork-detail-image"
-          alt={`image of ${ work.name }`}
-        />
-        <figcaption>
-          <h5>{ work.name || '' }</h5>
-          <span>{ work.date || '' }</span>
-        </figcaption>
-      </figure>
-    </li>
+    <ArtworkTile artist={ artists[work.artistId] } artwork={ work } key={ work.id } />
   ));
 
   return (
-
-    <div className="famous-works-container">
-      <div className="famous-works-title-container">
-        <h3>{ artist.name }</h3>
-        <span>famous works</span>
-      </div>
-      <div className="famous-works-ul-container">
-        <ul>
-          { artworkLis }
-        </ul>
-      </div>
-    </div>
+    <React.Fragment>
+      { artworkLis.length > 0 ? (
+        <div className="famous-works-container">
+          <div className="famous-works-title-container">
+            <span>{ artist.name }</span>
+            <span>famous works</span>
+          </div>
+          <div className="famous-works-ul-container">
+            <Masonry
+              breakpointCols={{default: 5}}
+              className="famous-works-masonry-grid"
+            >
+              { artworkLis }
+            </Masonry>
+          </div>
+        </div>
+      ) : (
+        null
+      )}
+    </React.Fragment>
   )
 }
 

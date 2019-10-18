@@ -9,7 +9,10 @@ import {
 } from 'react-router-dom';
 import { useFetchAssociations } from '../../hooks/utils';
 import { requestArtwork } from '../../../actions/artwork_actions';
-import { BreadcrumbsItem } from 'react-breadcrumbs-dynamic';
+import ClipLoader from 'react-spinners/ClipLoader';
+import FamousArtworks from './famous_artworks';
+import useBreadcrumbs from '../../breadcrumbs';
+
 //TODO Implement optional wikipedia page section for artworks
 
 export default (props) => {
@@ -21,6 +24,7 @@ export default (props) => {
     state.entities.artworks[artworkId]
   ));
 
+  const crumbs = useBreadcrumbs();
   const artist = useSelector(state => (
     state.entities.artists[artistId]
   ));
@@ -28,66 +32,77 @@ export default (props) => {
   useEffect(() => {
     dispatch(requestArtwork(artistId, artworkId));
   },
-  [params]
+  [params, artistId, artworkId]
   )
 
   let parsed = useFetchAssociations(artwork);
 
   return (
     <React.Fragment>
-      <BreadcrumbsItem to={`/${ artist['id']}`}>{artist['name']}</BreadcrumbsItem>
-      <BreadcrumbsItem to="#">{artwork['name']}</BreadcrumbsItem>
-    { artwork ? (
-      <div className="artwork-detail">
-        <aside>
-          <div
-            className="artwork-detail-image-container"
-          >
-            <img
-              src={ artwork.imageUrl }
-              className="artwork-detail-image"
-              alt={`image of ${ artwork.name }`}
-            />
+      { artwork ? (
+        <>
+          { crumbs }
+          <div className="artwork-detail">
+            <aside>
+              <div
+                className="artwork-detail-image-container"
+              >
+                <img
+                  src={ artwork.imageUrl }
+                  className="artwork-detail-image"
+                  alt={`image of ${ artwork.name }`}
+                />
+              </div>
+              <span>
+                { artwork.imageCaption || '' }
+              </span>
+            </aside>
+            <article className="artwork-attribute-section">
+              <h3
+                className="artwork-name"
+              >
+                { artwork.name }
+              </h3>
+              <Link
+                to={ `/${ artist.id }` }
+                className="artwork-detail-artist-name"
+              >
+                { artist.name }
+              </Link>
+              <ul className="artwork-attributes">
+                            <li className="artwork-attribute-item">
+                  <s>Date:</s>
+                  <span>{ artwork.date }</span>
+                </li>
+                <li className="artwork-attribute-item">
+                  <s>Style:</s>
+                  <Link to={ `/artworks-by-style/${ artwork.styleId }` }>
+                    <span>{ parsed.style }</span>
+                  </Link>
+                </li>
+                <li className="artwork-attribute-item">
+                  <s>Genre:</s>
+                  <Link to={ `/artworks-by-genre/${ artwork.genreId }` }>
+                    <span>{ parsed.genre }</span>
+                  </Link>
+                </li>
+              </ul>
+            </article>
+            <section className="artist-famous-artworks">
+              <FamousArtworks
+                artist={ artist }
+                currentArtworkId={ artwork.id }
+              />
+            </section>
           </div>
-          <span>
-            { artwork.imageCaption || '' }
-          </span>
-        </aside>
-        <article className="artwork-attribute-section">
-          <h3
-            className="artwork-name"
-          >
-            { artwork.name }
-          </h3>
-          <Link
-            to={ `/${ artist.id }` }
-            className="artwork-detail-artist-name"
-          >
-            { artist.name }
-          </Link>
-          <ul className="artwork-attributes">
-                        <li className="artwork-attribute-item">
-              <s>Date:</s>
-              <span>{ artwork.date }</span>
-            </li>
-            <li className="artwork-attribute-item">
-              <s>Style:</s>
-              <Link to={ `/artworks-by-style/${ artwork.styleId }` }>
-                <span>{ parsed.style }</span>
-              </Link>
-            </li>
-            <li className="artwork-attribute-item">
-              <s>Genre:</s>
-              <Link to={ `/artworks-by-genre/${ artwork.genreId }` }>
-                <span>{ parsed.genre }</span>
-              </Link>
-            </li>
-          </ul>
-        </article>
-      </div>
-    ) : (
-      <h2>Artwork not found</h2>
-    )}
+        </>
+      ) : (
+        <ClipLoader
+            sizeUnit={"px"}
+            size={150}
+            loading={true}
+        />
+      )}
     </React.Fragment>
   )
 }

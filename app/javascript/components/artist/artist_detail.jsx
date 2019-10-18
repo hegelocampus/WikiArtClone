@@ -7,11 +7,11 @@ import {
   Link,
   useParams
 } from 'react-router-dom';
-import ArtistWiki from './artist_wiki_container';
+import ArtistWiki from './artist_wiki';
 import { useFetchAssociations } from '../hooks/utils';
 import { requestArtist } from '../../actions/artist_actions';
-import { BreadcrumbsItem } from 'react-breadcrumbs-dynamic';
 import FamousArtworks from './artwork/famous_artworks';
+import useBreadcrumbs from '../breadcrumbs';
 
 export default (props) => {
   const dispatch = useDispatch();
@@ -20,6 +20,8 @@ export default (props) => {
   const artist = useSelector(state => (
     state.entities.artists[artistId] || {}
   ));
+
+  const crumbs = useBreadcrumbs();
 
   useEffect(() => {
     dispatch(requestArtist(artistId));
@@ -31,18 +33,7 @@ export default (props) => {
 
   return (
     <React.Fragment>
-      <BreadcrumbsItem
-        to={`/artists-by-art-movement/${ artist['artMovementId'] }`}
-        weight={ 1 }
-      >
-        {parsed['artMovement']}
-      </BreadcrumbsItem>
-      <BreadcrumbsItem
-        weight={ 5 }
-        to={ `/${ artist['id']}` }
-      >
-        { artist['name'] }
-      </BreadcrumbsItem>
+      { crumbs }
       <div className="artist-detail">
         <figure>
           <img
@@ -108,7 +99,7 @@ export default (props) => {
         )}
       </div>
       <section className="artist-famous-artworks">
-        <FamousArtworks artist={ artist }/>
+        <FamousArtworks />
       </section>
       <section className="artist-related-artworks">
         <h2>Related Artworks</h2>

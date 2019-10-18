@@ -1,6 +1,7 @@
 import React, { useEffect } from 'react';
 import { useSelector } from 'react-redux';
 import { fetchSelector } from '../../actions/selector_actions';
+import toTitleCase from '@gouch/to-title-case';
 
 export const useActionOnOutsideClick = (ref, action) => {
   const handleClickOutside = (event) => {
@@ -28,7 +29,7 @@ export const useFetchAssociations = (obj) => {
 
           let selector = state.entities.selectors[parsedName];
           let attributeVal = (selector && selector[att[1]] ? (
-            selector[att[1]]["name"]
+            selector[att[1]]["name"].toTitleCase()
           ) : (
             null
           ));

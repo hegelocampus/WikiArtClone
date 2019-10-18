@@ -71,4 +71,5 @@ yarn-debug.log*
 !/storage/.keep
 
 # End of https://www.gitignore.io/api/rails
-n
+
+wikiartclone-50f717ec7696.json

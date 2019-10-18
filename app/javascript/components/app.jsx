@@ -8,6 +8,7 @@ import MainNav from './main_nav/main_nav';
 import Edit from './edit/edit.jsx';
 import Selector from './selector/selector';
 
+
 const Splash = () => (
   <h1>Splish Splash</h1>
 )
@@ -24,7 +25,14 @@ export default () => (
         <Route path={'/edit'}>
           <Edit />
         </Route>
-        <Route path={'/artists-by-:selector'} component={ Selector } />
+        <Route
+          path={'/artworks-by-:selector'}>
+          <Selector type="artworks" />
+        </Route>
+        <Route
+          path={'/artists-by-:selector'}>
+          <Selector type="artists" />
+        </Route>
         <Route path={'/:artistId'} component={ Artist } />
         <Route path="/" component={ Splash } />
       </Switch>

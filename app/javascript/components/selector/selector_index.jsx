@@ -1,11 +1,13 @@
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { Link } from 'react-router-dom';
+import { Link, useParams, useRouteMatch } from 'react-router-dom';
 import { requestSelectors } from '../../actions/selector_actions';
 
-export default (props) => {
+export default ({ type }) => {
   const dispatch = useDispatch();
-  const mainSelector = props.match.params.selector
+  const { selector }= useParams();
+  const match = useRouteMatch();
+  const mainSelector = selector
     .replace(/([-_][a-z])/ig, ($1) => {
       return $1.toUpperCase()
         .replace('-', '')
@@ -14,7 +16,7 @@ export default (props) => {
   useEffect(() => {
     dispatch(requestSelectors(mainSelector));
   },
-  [props.match]
+  [match]
   )
 
   const selectors = useSelector(state => {
@@ -26,7 +28,7 @@ export default (props) => {
   selectors ? (
     selectorLis = selectors.map(sel => (
       <li key={`subSel-${sel.id}`}>
-        <Link to={ `/artists-by-${mainSelector}/${sel.id}` }>
+        <Link to={ `/${ type }-by-${mainSelector}/${sel.id}` }>
           { sel.name }
         </Link>
       </li>
@@ -38,7 +40,7 @@ export default (props) => {
   return (
     <React.Fragment>
       <div className="selectors-title">
-        <h2>{ `artists by ${ props.match.params.selector.replace(/\-/ig, ' ') }` }</h2>
+        <h2>{ `${ type } by ${ selector.replace(/\-/ig, ' ') }` }</h2>
       </div>
       <ul className="selectors-ul">
         { selectorLis }

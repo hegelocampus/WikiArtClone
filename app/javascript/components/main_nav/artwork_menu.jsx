@@ -25,13 +25,8 @@ export default () => {
             </Link>
           </li>
           <li>
-            <Link to="/artist-by-genre">
+            <Link to="/artworks-by-genre">
               <h5>Genres</h5>
-            </Link>
-          </li>
-          <li>
-            <Link to="/artist-by-media">
-              <h5>Media</h5>
             </Link>
           </li>
         </ul>

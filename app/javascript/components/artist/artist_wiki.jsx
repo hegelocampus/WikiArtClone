@@ -1,19 +1,29 @@
-import React from 'react'
+import React, { useEffect } from 'react';
+import { useParams } from 'react-router-dom';
+import { useDispatch, useSelector } from 'react-redux';
+import { fetchWiki } from '../../actions/wiki_actions';
 
-export default class ArtistWiki extends React.Component {
-  constructor(props) {
-    super(props);
-  }
-  componentDidMount(){
-    this.props.fetchWiki(this.props.artistWikiUrl, this.props.artistId);
-  }
+export default ({ artistWiki }) => {
+  let { artistId } = useParams();
+  let dispatch = useDispatch();
 
-  render() {
-    return (
-      <div className="artist-wiki">
-        <h4>Wikipedia article</h4>
-        <p>{ this.props.wikiText || null }</p>
-      </div>
-    )
-  }
+  useEffect(() => {
+    dispatch(fetchWiki(artistWiki, artistId))
+  });
+
+  const wikiText = useSelector(state => state.entities.wikis[artistId]);
+
+  return (
+    <React.Fragment>
+      {wikiText ? (
+        <div className="artist-wiki">
+          <h4>Wikipedia article</h4>
+          <p>{ wikiText }</p>
+        </div>
+      ) : (
+        null
+      )}
+    </React.Fragment>
+  )
 }
+

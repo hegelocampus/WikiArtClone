@@ -65,3 +65,5 @@ gem "jquery-rails", "~> 4.3"
 
 
 gem "http", "~> 4.1"
+
+gem "google-cloud-storage", "~> 1.21"

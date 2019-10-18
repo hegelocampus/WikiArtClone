@@ -30,8 +30,10 @@ header {
   justify-content: center;
   line-height: 68px;
   padding: 0 23px;
+  color: $lightest-accent-color;
   a {
-    line-height: 55px;
+    line-height: 60px;
+    font-size: 15px;
     font-weight: 800;
     position: relative;
     display: block;
@@ -64,7 +66,7 @@ header {
       font-size: 15px;
       font-weight: 600;
       align-items: center;
-      color: $light-accent-color;
+      color: $lightest-accent-color;
       width: 88px;
       white-space: nowrap;
       display: flex;

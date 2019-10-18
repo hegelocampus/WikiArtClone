@@ -7,6 +7,7 @@ import {
 import { requestAllSelectors } from '../../actions/selector_actions';
 import { NEW, EDIT } from './edit';
 import ArtistForm from './artist_form';
+import { withRouter } from "react-router";
 
 const _nullArtist = {
   name: '',
@@ -41,5 +42,5 @@ const mapDispatchToProps = (dispatch, ownProps) => {
   }
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(ArtistForm);
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(ArtistForm));
 

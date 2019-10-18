@@ -3,20 +3,22 @@
 .bread-crumbs {
   max-width: 800px;
   display: block;
-  max-width: 100%;
   white-space: nowrap;
   overflow: hidden;
   line-height: 50px;
   a, s {
-    padding-right: 5px
+    line-height: 30px;
+    max-width: 100%;
+    display: inline-block;
+    padding-right: 5px;
+    padding-top: 10px;
   }
   a:last-of-type {
-    max-width: 100%;
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
     &:hover {
-      cursor: normal;
+      cursor: default;
     }
   }
 }

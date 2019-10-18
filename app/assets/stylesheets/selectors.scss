@@ -13,24 +13,25 @@
   }
 }
 
-.selectors-ul, .subject-ul {
+.selectors-div, .subject-container {
   font-size: 16px;
   font-weight: 700;
   columns: 3;
 }
 
-.selectors-ul {
-  li {
+.selectors-div{
+  div {
     text-transform: capitalize;
     line-height: 15px;
     padding: 5px 0;
+    max-height: 100%;
     //color: #5f828b;
     //color: #87a27c;
     font-weight: normal;
   }
 }
 
-.subject-ul {
+.subject-container {
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
   grid-template-rows: 280px;

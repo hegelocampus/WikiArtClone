@@ -50,6 +50,9 @@
       background-color: $dark-accent-color;
     }
     h5 {
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
       line-height: 36px;
       height: 36px;
       font-size: 18px;

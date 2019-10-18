@@ -28,6 +28,7 @@ export default class ArtistForm extends React.Component {
     this.setState({
       [e.target.name]: e.target.value
     })
+    console.log(this.state);
   }
 
   handleSubmit(e) {
@@ -47,6 +48,7 @@ export default class ArtistForm extends React.Component {
         parsed[atr[0]] = atr[1];
       }
     })
+    console.log(parsed);
 
     this.props.formAction(parsed).then(({artist}) => {
       artist ? this.props.history.push(`/${artist.id}`) : null;
@@ -78,7 +80,7 @@ export default class ArtistForm extends React.Component {
             onChange={ this.update }
             name={ att[0] }
             value={ this.state[att[0]] }
-            required={ att[0] === "artMovement" }
+            required={ att[0] === "artMovements" }
           />
           <datalist
             id={ att[0] }

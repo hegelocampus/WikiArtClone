@@ -15,11 +15,11 @@ local:
 #   bucket: your_own_bucket
 
 # Remember not to checkin your GCS keyfile to a repository
- google:
-   service: GCS
-   project: wikiartclone
-   credentials: <%= Rails.root.join("path/to/gcs.keyfile") %>
-   bucket: wikiartclone-dev
+# google:
+#   service: GCS
+#   project: wikiartclone
+#   credentials: <%= Rails.root.join("path/to/gcs.keyfile") %>
+#   bucket: wikiartclone-dev
 
 # Use rails credentials:edit to set the Azure Storage secret (as azure_storage:storage_access_key)
 # microsoft:

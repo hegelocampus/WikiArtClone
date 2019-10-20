@@ -10,7 +10,10 @@ import {
 export default (props) => {
   const currentUser = useSelector(state => state.entities.users[state.session.id]);
   const authContent = (currentUser ? (
-    <UserMenu currentUser={ currentUser } />
+    <>
+      <EditMenu />
+      <UserMenu currentUser={ currentUser } />
+    </>
   ) : (
     <AuthModal />
   ))
@@ -21,7 +24,6 @@ export default (props) => {
           <img src={ window.logoURL } alt="WikiArt logo" className="top-bar-logo" />
         </div>
         <div className="top-bar-side-nav">
-          <EditMenu />
           { authContent }
         </div>
       </nav>

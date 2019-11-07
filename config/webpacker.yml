@@ -87,7 +87,9 @@ production:
   <<: *default
 
   # Production depends on precompilation of packs prior to booting for performance.
-  compile: false
+  compile: true
+  check_yarn_integrity: false
+  webpack_compile_output: false
 
   # Extract and emit a css file
   extract_css: true

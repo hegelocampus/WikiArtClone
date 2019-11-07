@@ -8,9 +8,9 @@
 require 'faker'
 require 'http'
 
-ActiveRecord::Base.connection.tables.each do |t|
-  ActiveRecord::Base.connection.reset_pk_sequence!(t)
-end
+#ActiveRecord::Base.connection.tables.each do |t|
+#  ActiveRecord::Base.connection.reset_pk_sequence!(t)
+#end
 
 User.create(email: 'ExampleUser@example.com', password: 'testusr1')
 

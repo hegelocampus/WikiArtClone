@@ -1,0 +1,30 @@
+{
+  "errors": [
+    "Entry module not found: Error: Can't resolve './src' in '/home/bee/appaccademy/WikiArtClone/app/javascript'\nresolve './src' in '/home/bee/appaccademy/WikiArtClone/app/javascript'\n  using description file: /home/bee/appaccademy/WikiArtClone/package.json (relative path: ./app/javascript)\n    Field 'browser' doesn't contain a valid alias configuration\n    using description file: /home/bee/appaccademy/WikiArtClone/package.json (relative path: ./app/javascript/src)\n      no extension\n        Field 'browser' doesn't contain a valid alias configuration\n        /home/bee/appaccademy/WikiArtClone/app/javascript/src doesn't exist\n      .wasm\n        Field 'browser' doesn't contain a valid alias configuration\n        /home/bee/appaccademy/WikiArtClone/app/javascript/src.wasm doesn't exist\n      .mjs\n        Field 'browser' doesn't contain a valid alias configuration\n        /home/bee/appaccademy/WikiArtClone/app/javascript/src.mjs doesn't exist\n      .js\n        Field 'browser' doesn't contain a valid alias configuration\n        /home/bee/appaccademy/WikiArtClone/app/javascript/src.js doesn't exist\n      .json\n        Field 'browser' doesn't contain a valid alias configuration\n        /home/bee/appaccademy/WikiArtClone/app/javascript/src.json doesn't exist\n      as directory\n        /home/bee/appaccademy/WikiArtClone/app/javascript/src doesn't exist"
+  ],
+  "warnings": [
+    "configuration\nThe 'mode' option has not been set, webpack will fallback to 'production' for this value. Set 'mode' option to 'development' or 'production' to enable defaults for each environment.\nYou can also set it to 'none' to disable any default behavior. Learn more: https://webpack.js.org/configuration/mode/"
+  ],
+  "version": "4.41.2",
+  "hash": "05842a99171bb47a1ada",
+  "time": 64,
+  "builtAt": 1573085413033,
+  "publicPath": "",
+  "outputPath": "/home/bee/appaccademy/WikiArtClone/app/javascript/dist",
+  "assetsByChunkName": {},
+  "assets": [],
+  "filteredAssets": 0,
+  "entrypoints": {},
+  "namedChunkGroups": {},
+  "chunks": [],
+  "modules": [],
+  "filteredModules": 0,
+  "logging": {
+    "webpack.buildChunkGraph.visitModules": {
+      "entries": [],
+      "filteredEntries": 1,
+      "debug": false
+    }
+  },
+  "children": []
+}

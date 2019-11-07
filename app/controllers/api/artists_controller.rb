@@ -10,7 +10,11 @@ class Api::ArtistsController < ApplicationController
 
   def show
     @artist = Artist.find_by(id: params[:id])
-    @artworks = @artist.artworks.where(famous: true)
+    if @artist
+      @artworks = @artist.artworks.where(famous: true)
+    else 
+      render json: "artist not found", status: 422
+    end
   end
 
   def create

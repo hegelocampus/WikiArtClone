@@ -50,6 +50,7 @@ export default (props) => {
             <Masonry
               breakpointCols={{default: 5}}
               className="famous-works-masonry-grid"
+              columnClassName="famous-works-masonry-grid-column"
             >
               { artworkLis }
             </Masonry>

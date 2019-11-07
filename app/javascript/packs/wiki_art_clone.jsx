@@ -1,12 +1,18 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
 import PropTypes from 'prop-types'
-import configureStore from '../store/store.js'
+import * as configureStore from '../store/store.js'
 import Root from '../components/root.jsx'
 import * as SelectorAcions from '../actions/selector_actions';
 
 document.addEventListener('DOMContentLoaded', () => {
-  let store;
+  let store, storeConfig;
+  if (process.env.NODE_ENV == 'production') {
+    storeConfig = configureStore.prod
+  } else {
+    storeConfig = configureStore.dev
+  }
+
   if (window.currentUser) {
     const preloadedState = {
       entities: {
@@ -14,15 +20,11 @@ document.addEventListener('DOMContentLoaded', () => {
       },
       session: { id: window.currentUser.id }
     };
-    store = configureStore(preloadedState);
+    store = storeConfig(preloadedState);
     delete window.currentUser;
   } else {
-    store = configureStore();
+    store = storeConfig();
   }
-
-  //window.store = store;
-  //window.requestAllSelectors = SelectorAcions.requestAllSelectors;
-  //window.fetchSelector = SelectorAcions.fetchSelector;
 
   const root = document.getElementById('root');
   ReactDOM.render(<Root store={store} />, root)

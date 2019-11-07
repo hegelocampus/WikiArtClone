@@ -1,0 +1,19 @@
+version: '3'
+services:
+  db:
+    image: postgres
+    volumes:
+      - ./tmp/db:/var/lib/postgresql/data
+  web:
+    build: .
+    image: hegelocampus/wikiartclone-rails
+    volumes:
+      - '.:/my_app'
+    ports:
+      - '3000:3000'
+    environment:
+      DATABASE_URL: postgres://postgres@db
+      RAILS_ENV: production
+    depends_on:
+      - db
+

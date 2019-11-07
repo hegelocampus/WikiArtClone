@@ -13,7 +13,6 @@ services:
       - '3000:3000'
     environment:
       DATABASE_URL: postgres://postgres@db
-      RAILS_ENV: production
     depends_on:
       - db
 

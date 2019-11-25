@@ -54,7 +54,11 @@ header {
     justify-content: space-around;
     background-color: $dark-accent-color;
     li {
+      width: 100%;
+      height: 100%;
       a {
+        margin: auto;
+        text-align: center;
         font-size: 14px;
         font-weight: normal;
       }

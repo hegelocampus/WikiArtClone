@@ -57,7 +57,6 @@ export default (props) => {
   let subjectLis;
   subjects.length > 0 ? (
     subjectLis = subjects.map(subject => {
-      console.log(subject);
       if (type === 'artists') {
         return (
           <ArtistTile

@@ -10,7 +10,6 @@ export default (props) => {
   const match = useRouteMatch();
   const params = useParams();
   const history = useHistory();
-  console.log(params);
   return (
     <Switch>
       <Route path={`${match.url}/new`}>

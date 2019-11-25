@@ -1,44 +1,62 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { NEW, EDIT } from './edit';
+import { Formik, Form, Field } from 'formik';
 import RenderErrors from './render_errors';
 //FIXME  Fix cancel button
 //TODO   Break up form into smaller sub-components
 //TODO   Implement errors right above submit button
 
-export default class ArtworkForm extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = props.artwork;
-    this.handleSubmit = this.handleSubmit.bind(this);
-    this.update = this.update.bind(this);
-    this.handleCancel = this.handleCancel.bind(this);
-  }
+export default props => {
+  console.log(props);
+  const { artworkId, artistId } = props.match.params;
+  const idMatch = /(.+)(?=Id$)/;
 
-  componentDidMount(){
-    this.props.requestAllSelectors("artwork");
+  useEffect(() => {
+    props.requestAllSelectors("artwork");
 
-    if (this.props.formType === EDIT) {
-      this.props.requestArtwork(this.props.match.artworkId);
+    if (props.formType === EDIT) {
+      props.requestArtwork(artworkId);
     }
-  }
+  },
+    [props.requestAllSelectors, props.requestArtwork, props.match]
+  )
 
-  update(e) {
-    e.preventDefault();
-    this.setState({
-      [e.target.name]: e.target.value
-    })
-  }
+  let assocInputs = [];
+  Object.entries(props.selectors).forEach(att => {
+    let parsedName = `${att[0]}Id`;
+    assocInputs.push(
+      <label
+        key={ `${att[0]}-label` }
+      >
+        { att[0] }
+        <Field
+          type="text"
+          className="artwork-form-input"
+          list={ att[0] }
+          name={ att[0] }
+          required={ att[0] === "style" }
+        />
+        <datalist
+          id={ att[0] }
+        >
+          {Object.values(att[1]).map(({id, name}) =>
+            <option key={id} value={name} />
+          )}
+          }
+        </datalist>
+      </label>
+    )
+  });
 
-  handleSubmit(e) {
-    e.preventDefault();
+  const handleSubmit = values => {
     let parsed = {};
-    Object.entries(this.state).forEach(atr => {
-      if (atr[1] && this.props.selectors[atr[0]]) {
-        let parsedVal = Object.entries(this.props.selectors[atr[0]]).find(ent => {
+    Object.entries(values).forEach(atr => {
+      if (atr[1] && props.selectors[atr[0]]) {
+        let parsedVal = Object.entries(props.selectors[atr[0]]).find(ent => {
           return ent[1].name === atr[1];
         });
         parsed[`${atr[0]}Id`] = parsedVal[1].id;
-      } else if(this.props.selectors[atr[0]]) {
+      } else if(props.selectors[atr[0]]) {
         parsed[`${atr[0]}Id`] = null;
       } else if(atr[1] === "") {
         parsed[atr[0]] = null;
@@ -47,55 +65,21 @@ export default class ArtworkForm extends React.Component {
       }
     })
 
-    parsed['artistId'] = this.props.artistId;
+    parsed['artistId'] = props.artistId;
 
-    this.props.formAction(parsed).then(({ artwork }) => {
-      artwork ? this.props.history.push(`/${ artwork.id }`) : null;
+    props.formAction(parsed).then(({ artworks }) => {
+      console.log(artworks);
+      console.log(artistId, artworkId);
+      artworks[artworkId] ? props.history.push(`/${artistId}/${artworkId}`) : null;
     });
-  }
+  };
 
-  handleCancel(e) {
-    e.preventDefault();
-    if (window.confirm("All changes will be unsaved. Are you sure?")){
-      this.props.history.push('/');
-    };
-  }
-
-  render() {
-    let idMatch = /(.+)(?=Id$)/;
-
-    let assocInputs = [];
-    Object.entries(this.props.selectors).forEach(att => {
-      let parsedName = `${att[0]}Id`;
-      assocInputs.push(
-        <label
-          key={ `${att[0]}-label` }
-        >
-          { att[0] }
-          <input
-            type="text"
-            className="artwork-form-input"
-            list={ att[0] }
-            onChange={ this.update }
-            name={ att[0] }
-            value={ this.state[att[0]] }
-            required={ att[0] === "style" }
-          />
-          <datalist
-            id={ att[0] }
-          >
-            {Object.values(att[1]).map(({id, name}) =>
-              <option key={id} value={name} />
-            )}
-            }
-          </datalist>
-        </label>
-      )
-    });
-
-    return(
-      <form
-        onSubmit={ this.handleSubmit }
+  return(
+    <Formik
+      initialValues={props.artwork}
+      onSubmit={handleSubmit}
+    >
+      <Form
         className="artwork-form"
       >
         <ul>
@@ -106,15 +90,12 @@ export default class ArtworkForm extends React.Component {
               Title and Image
             </header>
             <div className="artwork-form-bio">
-              <label
-              >
+              <label>
                 Artwork Title:
-                <input
+                <Field
                   type="text"
                   name="name"
                   className="artwork-form-input"
-                  value={ this.state.name }
-                  onChange={ this.update }
                   required
                 />
               </label>
@@ -127,15 +108,12 @@ export default class ArtworkForm extends React.Component {
               Dates
             </header>
             <div className="artwork-form-dates">
-              <label
-              >
+              <label>
                 Artwork Creation Date:
-                <input
+                <Field
                   type="date"
                   name="date"
                   className="artwork-form-input"
-                  value={ this.state.date }
-                  onChange={ this.update }
                 />
               </label>
             </div>
@@ -149,23 +127,19 @@ export default class ArtworkForm extends React.Component {
             <div>
               <label>
                 Image URL:
-                <input
+                <Field
                   type="url"
                   name="imageUrl"
                   className="artwork-form-input"
-                  value={ this.state.imageUrl }
-                  onChange={ this.update }
                 />
               </label>
               <label
               >
                 Caption for Image:
-                <input
+                <Field
                   type="text"
                   name="imageCaption"
                   className="artwork-form-input"
-                  value={ this.state.imageCaption }
-                  onChange={ this.update }
                 />
               </label>
             </div>
@@ -194,16 +168,21 @@ export default class ArtworkForm extends React.Component {
                 Save
               </button>
               <span
-                onClick={ this.handleCancel }
-                className="artst-form-cancel"
+                onClick={ e => {
+                  e.preventDefault();
+                  if (window.confirm("All changes will be unsaved. Are you sure?")){
+                    props.history.push('/');
+                  };
+                }}
+                className="artist-form-cancel"
               >
                 Cancel
               </span>
             </div>
           </li>
         </ul>
-      </form>
-    )
-  }
+      </Form>
+    </Formik>
+  )
 }
 

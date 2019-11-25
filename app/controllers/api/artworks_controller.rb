@@ -35,6 +35,32 @@ class Api::ArtworksController < ApplicationController
     end
   end
 
+  def update
+    @artwork = Artwork.find_by(id: params[:id])
+    @artist = @artwork.artist
+    @image = @artwork.image
+
+    artist_update = artwork_params.slice(
+      :name,
+      :date,
+      :artist_id,
+      :genre_id,
+      :style_id,
+    )
+    artist_update[:date] = Date.parse(artist_update[:date])
+
+   image_update = {
+      url: artwork_params[:image_url],
+      caption: artwork_params[:image_caption],
+    }
+
+    if @artwork.update(artist_update) && @image.update(image_update)
+      render :show
+    else
+      render json: (@artwork.errors.full_messages + @image.errors.full_messages), status: 422
+    end
+  end
+
   private
 
   def artwork_params
@@ -42,8 +68,8 @@ class Api::ArtworksController < ApplicationController
       :id,
       :name,
       :date,
-      :genre,
-      :style,
+      :genre_id,
+      :style_id,
       :artist_id,
       :image_url,
       :image_caption,

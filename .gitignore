@@ -7,12 +7,14 @@ capybara-*.html
 .rspec
 /db/*.sqlite3
 /db/*.sqlite3-journal
+pg_upgrade_*
 /public/system
 /coverage/
 /spec/tmp
 *.orig
 rerun.txt
 pickle-email-*.html
+old.*
 
 # Ignore all logfiles and tempfiles.
 /log/*

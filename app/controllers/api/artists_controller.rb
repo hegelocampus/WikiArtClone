@@ -12,7 +12,7 @@ class Api::ArtistsController < ApplicationController
     @artist = Artist.find_by(id: params[:id])
     if @artist
       @artworks = @artist.artworks.where(famous: true)
-    else 
+    else
       render json: "artist not found", status: 422
     end
   end
@@ -64,6 +64,39 @@ class Api::ArtistsController < ApplicationController
       render :show
     else
       render @artist.errors + @image.errors
+    end
+  end
+
+  def update
+    @artist = Artist.find_by(id: params[:id])
+    @image = @artist.image
+
+    artist_update = artist_params.slice(
+      :id,
+      :name,
+      :birth_date,
+      :death_date,
+      :nationality_id,
+      :school_id,
+      :field_id,
+      :art_movement_id,
+      :wiki_url,
+    )
+    artist_update[:birth_date] = Date.parse(artist_update[:birth_date])
+    if artist_update[:death_date] != ''
+      artist_update[:death_date] = Date.parse(artist_update[:death_date])
+    end
+
+    image_update = {
+      url: artist_params[:image_url],
+      caption: artist_params[:image_caption],
+    }
+
+    if @artist.update(artist_update) && @image.update(image_update)
+      @artworks = @artist.artworks.where(famous: true)
+      render :show
+    else
+      render json: (@artwork.errors.full_messages + @image.errors.full_messages), status: 422
     end
   end
 

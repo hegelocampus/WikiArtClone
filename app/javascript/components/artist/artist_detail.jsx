@@ -30,6 +30,7 @@ export default (props) => {
   )
 
   let parsed = useFetchAssociations(artist);
+  console.log(parsed);
 
   return (
     <React.Fragment>

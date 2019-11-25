@@ -38,7 +38,7 @@ const mapDispatchToProps = (dispatch, ownProps) => {
   const formAction = (ownProps.formType === NEW ? createArtwork : updateArtwork);
   return {
     requestArtist: artistId => dispatch(requestArtist(artistId)),
-    requestArtwork: artworkId => dispatch(requestArtist(artworkId)),
+    requestArtwork: (artworkId, artistId) => dispatch(requestArtwork(artworkId, artistId)),
     formAction: artwork => dispatch(formAction(artwork)),
     requestAllSelectors: type => dispatch(requestAllSelectors(type)),
   }

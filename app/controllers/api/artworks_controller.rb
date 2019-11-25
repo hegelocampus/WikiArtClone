@@ -40,21 +40,21 @@ class Api::ArtworksController < ApplicationController
     @artist = @artwork.artist
     @image = @artwork.image
 
-    artist_update = artwork_params.slice(
+    artwork_update = artwork_params.slice(
       :name,
       :date,
       :artist_id,
       :genre_id,
       :style_id,
     )
-    artist_update[:date] = Date.parse(artist_update[:date])
+    artwork_update[:date] = Date.parse(artwork_update[:date])
 
    image_update = {
       url: artwork_params[:image_url],
       caption: artwork_params[:image_caption],
     }
 
-    if @artwork.update(artist_update) && @image.update(image_update)
+    if @artwork.update(artwork_update) && @image.update(image_update)
       render :show
     else
       render json: (@artwork.errors.full_messages + @image.errors.full_messages), status: 422

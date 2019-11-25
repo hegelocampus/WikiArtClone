@@ -2,23 +2,24 @@ import React, { useEffect } from 'react';
 import { NEW, EDIT } from './edit';
 import { Formik, Form, Field } from 'formik';
 import RenderErrors from './render_errors';
-//FIXME  Fix cancel button
 //TODO   Break up form into smaller sub-components
 //TODO   Implement errors right above submit button
 
 export default props => {
-  const { artworkId, artistId } = props.match.params;
+  const { artistId } = props.match.params;
   const idMatch = /(.+)(?=Id$)/;
 
   useEffect(() => {
-    props.requestAllSelectors("artwork");
+    props.requestAllSelectors("artist");
 
     if (props.formType === EDIT) {
-      props.requestArtwork(artistId, artworkId);
+      props.requestArtist(artistId);
     }
   },
-    [props.requestAllSelectors, props.formType, props.match]
+    [props.requestAllSelectors, props.requestArtist, props.match]
   )
+
+  if ((!props.artist) || (!props.selectors)) return <span>Loading...</span>;
 
   let assocInputs = [];
   Object.entries(props.selectors).forEach(att => {
@@ -29,11 +30,10 @@ export default props => {
       >
         { att[0] }
         <Field
-          type="text"
-          className="artwork-form-input"
+          className="artist-form-input"
           as="select"
           name={ parsedName }
-          required={ att[0] === "style" }
+          required={ att[0] === "artMovements" }
         >
           {Object.values(att[1]).map(({id, name}) =>
             <option key={id} value={name}>{name}</option>
@@ -61,70 +61,47 @@ export default props => {
     })
 
     parsed['artistId'] = props.artistId;
+    delete parsed['artworks'];
 
-    props.formAction(parsed).then(({ artworks }) => {
-      artworks[artworkId] ? props.history.push(`/${artistId}/${artworkId}`) : null;
+    props.formAction(parsed).then(() => {
+      props.history.push(`/${artistId}`);
     });
   };
 
-  if ((!props.artwork)) return <span>Loading...</span>;
+  props.artist.deathDate = '';
   return(
     <Formik
-      initialValues={props.artwork}
+      initialValues={props.artist}
       onSubmit={handleSubmit}
     >
       <Form
-        className="artwork-form"
+        className="artist-form"
       >
         <ul>
           <li>
             <header
-              className="artwork-form-subheader"
+              className="artist-form-subheader"
             >
-              Title and Image
+              Name and Portrait
             </header>
-            <div className="artwork-form-bio">
-              <label>
-                Artwork Title:
+            <div className="artist-form-bio">
+              <label
+              >
+                Name:
                 <Field
                   type="text"
                   name="name"
-                  className="artwork-form-input"
+                  className="artist-form-Field"
                   required
                 />
               </label>
-            </div>
-          </li>
-          <li>
-            <header
-              className="artwork-form-subheader"
-            >
-              Dates
-            </header>
-            <div className="artwork-form-dates">
-              <label>
-                Artwork Creation Date:
-                <Field
-                  type="date"
-                  name="date"
-                  className="artwork-form-input"
-                />
-              </label>
-            </div>
-          </li>
-          <li>
-            <header
-              className="artwork-form-subheader"
-            >
-              Artwork Image
-            </header>
-            <div>
-              <label>
+              <label
+              >
                 Image URL:
                 <Field
                   type="url"
                   name="imageUrl"
-                  className="artwork-form-input"
+                  className="artist-form-Field"
                 />
               </label>
               <label
@@ -133,41 +110,83 @@ export default props => {
                 <Field
                   type="text"
                   name="imageCaption"
-                  className="artwork-form-input"
+                  className="artist-form-Field"
                 />
               </label>
             </div>
           </li>
           <li>
             <header
-              className="artwork-form-subheader"
+              className="artist-form-subheader"
+            >
+              Dates
+            </header>
+            <div className="artist-form-dates">
+              <label
+              >
+                Artist Birth Date:
+                <Field
+                  type="date"
+                  name="birthDate"
+                  className="artist-form-Field"
+                />
+              </label>
+              <label
+              >
+                Date the Artist Died (If Applicable):
+              </label>
+              <Field
+                type="date"
+                name="deathDate"
+                className="artist-form-Field"
+              />
+            </div>
+          </li>
+          <li>
+            <header
+              className="artist-form-subheader"
             >
               Classification
             </header>
-            <div className="artwork-form-associations">
+            <div className="artist-form-associations">
               { assocInputs }
+            </div>
+          </li>
+          <li>
+            <header
+              className="artist-form-subheader"
+            >
+              References and links
+            </header>
+            <div className="artist-form-links">
+              <label>
+                Wikipedia URL:
+              </label>
+              <Field
+                type="url"
+                name="wikiUrl"
+                className="artist-form-Field"
+              />
             </div>
           </li>
           <li>
             <RenderErrors />
           </li>
           <li
-            className="artwork-form-buttons-container"
+            className="artist-form-buttons-container"
           >
             <div>
               <button
                 type="submit"
-                className="artwork-form-submit"
+                className="artist-form-submit"
               >
                 Save
               </button>
               <span
                 onClick={ e => {
                   e.preventDefault();
-                  if (
-                    window.confirm("All changes will be unsaved. Are you sure you want to discard these changes?")
-                  ) {
-                    props.history.push(`/${artistId}/${artworkId}`);
+                  if (window.confirm("All changes will be unsaved. Are you sure you want to discard these changes?")){
+                    props.history.push(`/${artistId}`);
                   };
                 }}
                 className="artist-form-cancel"

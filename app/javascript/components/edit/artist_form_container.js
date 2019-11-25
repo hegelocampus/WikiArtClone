@@ -6,7 +6,7 @@ import {
 } from '../../actions/artist_actions';
 import { requestAllSelectors } from '../../actions/selector_actions';
 import { NEW, EDIT } from './edit';
-import ArtistForm from './artist_form';
+import ArtistForm from './new_artist_form';
 import { withRouter } from "react-router";
 
 const _nullArtist = {

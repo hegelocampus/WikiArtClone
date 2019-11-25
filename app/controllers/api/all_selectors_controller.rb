@@ -4,15 +4,15 @@ class Api::AllSelectorsController < ApplicationController
     type = params[:type]
     if type == "artist"
       @selectors = {
-        art_movements: ArtMovement.all,
-        fields: Field.all,
-        nationalities: Nationality.all,
-        schools: School.all,
+        art_movement: ArtMovement.all,
+        field: Field.all,
+        nationality: Nationality.all,
+        school: School.all,
       }
     elsif type == "artwork"
       @selectors = {
-        styles: Style.all,
-        genres: Genre.all
+        style: Style.all,
+        genre: Genre.all
       }
     end
   end

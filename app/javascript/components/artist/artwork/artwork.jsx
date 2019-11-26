@@ -1,17 +1,11 @@
 import React, { useEffect, } from 'react';
-import {
-  useDispatch,
-  useSelector
-} from 'react-redux';
-import {
-  Link,
-  useParams
-} from 'react-router-dom';
-import { useFetchAssociations } from '../../hooks/utils';
-import { requestArtwork } from '../../../actions/artwork_actions';
+import { useDispatch, useSelector } from 'react-redux';
+import { Link, useParams } from 'react-router-dom';
 import ClipLoader from 'react-spinners/ClipLoader';
+import ArtworkAttributes from './artwork_attributes';
+import { requestArtwork } from '../../../actions/artwork_actions';
 import FamousArtworks from './famous_artworks';
-import useBreadcrumbs from '../../breadcrumbs';
+import Breadcrumbs from '../../breadcrumbs';
 
 //TODO Implement optional wikipedia page section for artworks
 
@@ -24,7 +18,6 @@ export default (props) => {
     state.entities.artworks[artworkId]
   ));
 
-  const crumbs = useBreadcrumbs();
   const artist = useSelector(state => (
     state.entities.artists[artistId]
   ));
@@ -35,13 +28,11 @@ export default (props) => {
   [params, artistId, artworkId]
   )
 
-  let parsed = useFetchAssociations(artwork);
-
   return (
     <React.Fragment>
       { artwork ? (
         <>
-          { crumbs }
+          <Breadcrumbs />
           <div className="artwork-detail">
             <aside className="work-detail-image-container">
               <div>
@@ -55,37 +46,7 @@ export default (props) => {
                 { artwork.imageCaption ? artwork.imageCaption.toTitleCase() : '' }
               </span>
             </aside>
-            <article className="artwork-attribute-section">
-              <h3
-                className="artwork-name"
-              >
-                { artwork.name }
-              </h3>
-              <Link
-                to={ `/${ artist.id }` }
-                className="artwork-detail-artist-name"
-              >
-                { artist.name }
-              </Link>
-              <ul className="artwork-attributes">
-                            <li className="artwork-attribute-item">
-                  <s>Date:</s>
-                  <span>{ artwork.date }</span>
-                </li>
-                <li className="artwork-attribute-item">
-                  <s>Style:</s>
-                  <Link to={ `/artworks-by-style/${ artwork.styleId }` }>
-                    <span>{ parsed.style }</span>
-                  </Link>
-                </li>
-                <li className="artwork-attribute-item">
-                  <s>Genre:</s>
-                  <Link to={ `/artworks-by-genre/${ artwork.genreId }` }>
-                    <span>{ parsed.genre }</span>
-                  </Link>
-                </li>
-              </ul>
-            </article>
+            <ArtworkAttributes artwork={ artwork } artist={ artist } />
             <section className="artist-famous-artworks">
               <FamousArtworks
                 artist={ artist }

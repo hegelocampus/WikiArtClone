@@ -9,7 +9,9 @@ export default ({ artistWiki }) => {
 
   useEffect(() => {
     dispatch(fetchWiki(artistWiki, artistId))
-  });
+  },
+    [artistWiki, artistId]
+  );
 
   const wikiText = useSelector(state => state.entities.wikis[artistId]);
 

@@ -5,6 +5,7 @@ import { AuthRoute, ProtectedRoute } from '../utils/route_utils';
 import AuthModal from './auth_modal/auth_modal.jsx';
 import MainNav from './main_nav/main_nav';
 import Artist from'./artist/artist';
+import Footer from './footer/footer';
 
 const Edit      =   lazy(() => import('./edit/edit.jsx'));
 const Selector  =   lazy(() => import('./selector/selector'));
@@ -41,6 +42,7 @@ export default () => (
           </Route>
         </Switch>
       </Suspense>
+      <Footer />
     </main>
   </React.Fragment>
 );

@@ -1,0 +1,35 @@
+@import "variables";
+
+.footer {
+  width: 100%;
+  margin: auto;
+  height: 10rem;
+  grid-column: 1 / -1;
+}
+
+.social-link-list {
+  height: 100%;
+  display: flex;
+  justify-content: flex-end;
+  .list-inline-item {
+  }
+}
+
+.social-link {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.5rem;
+  height: 4rem;
+  margin-right: 1rem;
+  width: 4rem;
+  border-radius: 50%;
+  color: $lightest-accent-color;
+  background-color: $dark-accent-color;
+  box-shadow: 0 3px 3px 0 rgba(0,0,0,.1);
+  svg {
+    line-height: 1;
+    box-sizing: border-box;
+  }
+}
+

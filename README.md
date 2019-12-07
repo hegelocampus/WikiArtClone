@@ -1,6 +1,7 @@
 # README
 Icky Art is a clone of WikiArt, an online art encyclopedia that allows users browse artworks and artists by a multitude of different categories. A major focus for this project was building modular components that could be used to display a variety of different types of information in order to foster re-usability of components throughout the project.  
 [Link to live site](https://wikiartclone.herokuapp.com/)
+![Screenshot of webpage](https://github.com/hegelocampus/WikiArtClone/raw/master/doc_assets/ickyart.png)
 
 ## Rails & React
 This website uses a rails back-end with a react front-end. The rails back-end allowed me to set up a fairly complex framework of tables very rapidly, which allowed me to spend the majority of my time working on setting up my, also fairly complex, front-end.  

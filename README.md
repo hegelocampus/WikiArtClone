@@ -5,8 +5,8 @@ Icky Art is a clone of WikiArt, an online art encyclopedia that allows users bro
 ![Screenshot of webpage](https://github.com/hegelocampus/WikiArtClone/raw/master/doc_assets/ickyart.png)
 
 ## Rails & React
-This website uses a rails back-end with a react front-end. The rails back-end allowed me to set up a fairly complex framework of tables very rapidly, which allowed me to spend the majority of my time working on setting up my, also fairly complex, front-end.  
-I tried my best to utilize react hooks to their fullest extent throughout this project. I had read about hooks and had become very intrigued so I decided this project would be the perfect place to test out hooks and see how they can be used to simplify my react components and allowed me to write extremely modular code.
+This website uses a rails back-end with a React front-end. The rails back-end allowed me to set up a fairly complex framework of tables very rapidly, which allowed me to spend the majority of my time working on setting up my, also fairly complex, front-end.  
+I tried my best to utilize React hooks to their fullest extent throughout this project. I had read about hooks and had become very intrigued so I decided this project would be the perfect place to test out hooks and see how they can be used to simplify my React components and allowed me to write extremely modular code.
 
 ## Features:
 ### Artists / Artworks

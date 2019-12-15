@@ -1,23 +1,31 @@
 import React from 'react';
-import {
-  Link
-} from 'react-router-dom';
+import { useSelector } from 'react-redux';
+import { Link } from 'react-router-dom';
 
-export default ({ artist: {id, name, imageUrl } }) => {
+export default ({ artistId }) => {
+  const artist = useSelector(state => state.entities.artists[artistId]);
+  const profileImage = useSelector(state => {
+    if (artist && artist.profileImageId) {
+      return state.entities.artworks[artist.profileImageId];
+    }
+  });
+
   return (
     <li
-       key={ `subject-${ id }` }
+       key={ `subject-${ artist.id }` }
        className='subject-li'
      >
-        <Link to={ `/${ id }` }>
-          <figure className='subject-li-fig' >
-            <img
-              src={ imageUrl }
-              alt={`${ name } profile image`}
-            />
-          </figure>
-          <span>{ name }</span>
-        </Link>
+       {artist && profileImage && (
+         <Link to={ `/${ artist.id }` }>
+           <figure className='subject-li-fig' >
+             <img
+               src={ profileImage.imageThumbUrl }
+               alt={`${ artist.name } profile image`}
+             />
+           </figure>
+           <span>{ artist.name }</span>
+         </Link>
+       )}
       </li>
   )
 }

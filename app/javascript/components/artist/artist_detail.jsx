@@ -14,16 +14,26 @@ export default (props) => {
   const dispatch = useDispatch();
   const { artistId } = useParams();
 
-
   const artist = useSelector(state => (
     state.entities.artists[artistId] || {}
   ));
+
+  const profileImage = useSelector(state => {
+    if (artist && artist.profileImageId) {
+      return state.entities.artworks[artist.profileImageId]
+    }
+  });
+  console.log(profileImage);
 
   useEffect(() => {
     dispatch(requestArtist(artistId));
   },
   [artistId]
   )
+
+  if (!artist || !profileImage) {
+    return <span>loading...</span>;
+  }
 
   return (
     <React.Fragment>
@@ -32,13 +42,16 @@ export default (props) => {
         <aside className="work-detail-image-container">
           <div>
             <img
-              src={artist['imageUrl']}
+              src={profileImage.imageUrl}
               className="artist-detail-image"
-              alt={`image of ${ artist['name'] }`}
+              alt={`image of ${ artist.name }`}
             />
           </div>
+          <cite>
+            { profileImage ? profileImage.name.toTitleCase() : '' }
+          </cite>
           <span>
-            { artist['imageCaption'] ? artist['imageCaption'].toTitleCase() : '' }
+            { profileImage ? profileImage.imageCaption.toTitleCase() : '' }
           </span>
         </aside>
         <ArtistAttributes artist={ artist } />

@@ -6,5 +6,9 @@ class Artist < ApplicationRecord
   has_one :image, as: :imageable
   has_many :artworks
 
+  def profile_image
+    @profile_image ||= (self.artworks.find_by(famous: true) || self.artworks.sample)
+  end
+
   validates :name, presence: true
 end

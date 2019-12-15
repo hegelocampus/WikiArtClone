@@ -23,7 +23,6 @@ export default (props) => {
       return state.entities.artworks[artist.profileImageId]
     }
   });
-  console.log(profileImage);
 
   useEffect(() => {
     dispatch(requestArtist(artistId));

@@ -4,7 +4,8 @@ class Api::ArtistsController < ApplicationController
   def index
     parsedSelectors = selector_params
 
-    @artists = Artist.joins(parsedSelectors.keys)
+    @artists = Artist
+      .joins(parsedSelectors.keys)
       .where(parsedSelectors)
   end
 

@@ -16,7 +16,7 @@ export default ({ artist, artwork }) => {
           >
             <Link to={ `/${ artist.id }/${ artwork.id }` }>
               <img
-                src={ artwork.imageUrl }
+                src={ artwork.imageThumbUrl }
                 className="work-detail-image"
                 alt={`image of ${ artwork.name }`}
               />

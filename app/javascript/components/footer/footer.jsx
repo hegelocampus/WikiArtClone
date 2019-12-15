@@ -4,15 +4,15 @@ import { faAddressCard} from '@fortawesome/free-solid-svg-icons';
 import { faGithub } from '@fortawesome/free-brands-svg-icons';
 
 export default () => (
-  <footer class="footer">
-    <ul class="social-link-list">
-      <li class="list-inline-item">
-        <a class="social-link" href="https://bellis.dev">
+  <footer className="footer">
+    <ul className="social-link-list">
+      <li className="list-inline-item">
+        <a className="social-link" href="https://bellis.dev">
           <FontAwesomeIcon icon={faAddressCard} />
         </a>
       </li>
-      <li class="list-inline-item">
-        <a class="social-link" href="https://github.com/hegelocampus/WikiArtClone">
+      <li className="list-inline-item">
+        <a className="social-link" href="https://github.com/hegelocampus/WikiArtClone">
           <FontAwesomeIcon icon={faGithub} />
         </a>
       </li>

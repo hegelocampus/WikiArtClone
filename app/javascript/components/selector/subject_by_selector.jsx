@@ -60,7 +60,7 @@ export default (props) => {
       if (type === 'artists') {
         return (
           <ArtistTile
-            artist={ subject }
+            artistId={ subject.id }
             key={ subject.id }
           />
         )

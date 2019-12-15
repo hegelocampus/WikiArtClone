@@ -12,8 +12,8 @@ import merge from 'lodash/merge';
 export default (state = {}, action) => {
   Object.freeze(state);
   switch (action.type) {
-    case RECEIVE_ARTWORK:
     case RECEIVE_ARTIST:
+    case RECEIVE_ARTWORK:
       let {artist} = action;
       return merge({}, state, {
         [artist.id]: artist

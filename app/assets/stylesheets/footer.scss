@@ -1,10 +1,16 @@
 @import "variables";
 
 .footer {
-  width: 100%;
-  margin: auto;
+  display: flex;
+  justify-content: space-between;
+  width: 90%;
+  margin: 50px 0 0 0;
   height: 10rem;
-  grid-column: 1 / -1;
+  grid-column: 2 / -1;
+}
+
+.attribution {
+  width: 80%;
 }
 
 .social-link-list {

@@ -2,7 +2,7 @@
 
 header {
   width: 100%;
-  height: 60px;
+  height: 65px;
   border-bottom: $medium-accent-color solid 1px;
   .top-nav {
     padding: 0 20px;
@@ -45,7 +45,7 @@ header {
   }
   ul {
     position: absolute;
-    width: 180px;
+    width: 18rem;
     line-height: 40px;
     top: 60px;
     right: 12%;
@@ -54,7 +54,7 @@ header {
     justify-content: space-around;
     background-color: $dark-accent-color;
     li {
-      width: 100%;
+      width: 50%;
       height: 100%;
       a {
         margin: auto;
@@ -143,13 +143,14 @@ header {
 
 .top-bar-logo-container {
   height: 100%;
-  margin: 4px;
-  padding: 2px 0px;
+  margin: 4px 0;
+  padding: 0 0;
   .top-bar-logo {
+    margin: 4px 0;
     display: block;
     font-size: 30px;
     width: 200px;
-    height: 85%;
+    height: 50px;
   }
 }
 

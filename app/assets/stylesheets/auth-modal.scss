@@ -7,8 +7,8 @@
 
 .ReactModal__Content {
   position: fixed;
-  height: 450px;
-  width: 600px;
+  height: 85%;
+  width: 85%;
   margin: 30px auto;
   padding: 0;
   background-color: $background-color;
@@ -66,5 +66,15 @@
 
 .modal-content-errors-container {
   margin: 15px auto 0 auto;
+}
+
+.modal-content-secondary {
+  a {
+    color: $light-accent-color;
+    margin-left: 10px;
+    &:hover {
+      color: $medium-accent-color;
+    }
+  }
 }
 

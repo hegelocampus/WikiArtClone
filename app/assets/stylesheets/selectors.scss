@@ -26,10 +26,10 @@
   }
 }
 
-.selectors-div{
+.selector-container{
+  min-height: 70vh;
   div {
     text-transform: capitalize;
-    line-height: 15px;
     padding: 5px 0;
     max-height: 100%;
     //color: #5f828b;

@@ -15,13 +15,14 @@ class Api::ArtworksController < ApplicationController
   end
 
   def create
-    @artwork = Artwork.new(artwork_params.slice(
+    artwork_params.slice(
       :name,
       :date,
       :artist_id,
       :genre_id,
       :style_id,
-    ))
+    ).each_pai
+    @artwork = Artwork.new()
 
     @image = @artwork.build_image(
       url: artwork_params[:image_url],
@@ -51,6 +52,7 @@ class Api::ArtworksController < ApplicationController
 
    image_update = {
       url: artwork_params[:image_url],
+      thumb_url: artwork_params[:image_thumb_url],
       caption: artwork_params[:image_caption],
     }
 
@@ -64,7 +66,7 @@ class Api::ArtworksController < ApplicationController
   private
 
   def artwork_params
-    params.require(:artwork).transform_keys(&:underscore).permit(
+    params = params.require(:artwork).transform_keys(&:underscore).permit(
       :id,
       :name,
       :date,
@@ -72,8 +74,15 @@ class Api::ArtworksController < ApplicationController
       :style_id,
       :artist_id,
       :image_url,
+      :image_thumb_url,
       :image_caption,
-    )
+    ).to_hash.map do |attribute, val|
+      #TODO: Fill out this map to get the id for the desired attribute
+      parsed_attribute = attribute.match(/\S+_id/i)
+      parsed_val = parsed_attribute[0] ?  : val)
+      [attribute, parsed_val]}
+    end
+    params.to_h
   end
 
   def selector_params

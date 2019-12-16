@@ -1,12 +1,6 @@
-import React, { useEffect, } from 'react';
-import {
-  useDispatch,
-  useSelector
-} from 'react-redux';
-import {
-  Link,
-  useParams
-} from 'react-router-dom';
+import React, { useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { Link, useParams } from 'react-router-dom';
 import Masonry from 'react-masonry-css';
 import { requestArtwork } from '../../../actions/artwork_actions';
 import ArtworkTile from './artwork_tile';
@@ -43,17 +37,13 @@ export default (props) => {
       { artworkLis.length > 0 ? (
         <div className="famous-works-container">
           <div className="famous-works-title-container">
-            <span>{ artist.name }</span>
+            <span>{ artist.name } •</span>
             <span>famous works</span>
           </div>
           <div className="famous-works-ul-container">
-            <Masonry
-              breakpointCols={{default: 5}}
-              className="famous-works-masonry-grid"
-              columnClassName="famous-works-masonry-grid-column"
-            >
+            <ul className="famous-works-ul">
               { artworkLis }
-            </Masonry>
+            </ul>
           </div>
         </div>
       ) : (

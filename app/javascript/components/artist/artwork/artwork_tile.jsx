@@ -25,13 +25,13 @@ export default ({ artist, artwork }) => {
           <div
             className="famous-work-caption"
           >
-            <Link to={ `/${ artist.id }/${ artwork.id }` }>
+            <Link className="artwork-tile-title" to={ `/${ artist.id }/${ artwork.id }` }>
               <span>{ artwork.name || '' }</span>
             </Link>
-            <Link to={ `/${ artist.id }` }>
-              <span>{ artist.name || '' }</span>
+            <Link className="artwork-tile-artist" to={ `/${ artist.id }` }>
+              <span>{ artist.name || '' } • </span>
+              <span className="artwork-tile-date">{ artwork.date || '' }</span>
             </Link>
-            <span>{ artwork.date || '' }</span>
           </div>
         </div>
       ) : (

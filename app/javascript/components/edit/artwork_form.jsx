@@ -6,22 +6,31 @@ import RenderErrors from './render_errors';
 //TODO   Break up form into smaller sub-components
 //TODO   Implement errors right above submit button
 
-export default props => {
-  const { artworkId, artistId } = props.match.params;
+export default ({
+  artwork,
+  formType,
+  formAction,
+  history,
+  selectors,
+  match,
+  requestAllSelectors,
+  requestArtwork,
+}) => {
+  const { artworkId, artistId } = match.params;
   const idMatch = /(.+)(?=Id$)/;
 
   useEffect(() => {
-    props.requestAllSelectors("artwork");
+    requestAllSelectors("artwork");
 
-    if (props.formType === EDIT) {
-      props.requestArtwork(artistId, artworkId);
+    if (formType === EDIT) {
+      requestArtwork(artistId, artworkId);
     }
   },
-    [props.requestAllSelectors, props.formType, props.match]
+    [requestAllSelectors, formType, match]
   )
 
   let assocInputs = [];
-  Object.entries(props.selectors).forEach(att => {
+  Object.entries(selectors).forEach(att => {
     let parsedName = `${att[0]}Id`;
     assocInputs.push(
       <label
@@ -46,12 +55,12 @@ export default props => {
   const handleSubmit = values => {
     let parsed = {};
     Object.entries(values).forEach(atr => {
-      if (atr[1] && props.selectors[atr[0]]) {
-        let parsedVal = Object.entries(props.selectors[atr[0]]).find(ent => {
+      if (atr[1] && selectors[atr[0]]) {
+        let parsedVal = Object.entries(selectors[atr[0]]).find(ent => {
           return ent[1].name === atr[1];
         });
         parsed[`${atr[0]}Id`] = parsedVal[1].id;
-      } else if(props.selectors[atr[0]]) {
+      } else if(selectors[atr[0]]) {
         parsed[`${atr[0]}Id`] = null;
       } else if(atr[1] === "") {
         parsed[atr[0]] = null;
@@ -60,17 +69,17 @@ export default props => {
       }
     })
 
-    parsed['artistId'] = props.artistId;
+    parsed['artistId'] = artistId;
 
-    props.formAction(parsed).then(({ artworks }) => {
-      artworks[artworkId] ? props.history.push(`/${artistId}/${artworkId}`) : null;
+    formAction(parsed).then(({ artworks }) => {
+      artworks[artworkId] ? history.push(`/${artistId}/${artworkId}`) : null;
     });
   };
 
-  if ((!props.artwork)) return <span>Loading...</span>;
+  if ((!artwork)) return <span>Loading...</span>;
   return(
     <Formik
-      initialValues={props.artwork}
+      initialValues={artwork}
       onSubmit={handleSubmit}
     >
       <Form
@@ -127,6 +136,14 @@ export default props => {
                   className="artwork-form-input"
                 />
               </label>
+              <label>
+                Image thumbnail URL:
+                <Field
+                  type="url"
+                  name="imageThumbUrl"
+                  className="artwork-form-input"
+                />
+              </label>
               <label
               >
                 Caption for Image:
@@ -167,7 +184,7 @@ export default props => {
                   if (
                     window.confirm("All changes will be unsaved. Are you sure you want to discard these changes?")
                   ) {
-                    props.history.push(`/${artistId}/${artworkId}`);
+                    history.push(`/${artistId}/${artworkId}`);
                   };
                 }}
                 className="artist-form-cancel"

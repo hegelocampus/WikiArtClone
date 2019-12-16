@@ -18,6 +18,7 @@ const _nullArtwork = {
   genre: '',
   style: '',
   imageUrl: '',
+  imageThumbUrl: '',
   imageCaption: '',
 };
 

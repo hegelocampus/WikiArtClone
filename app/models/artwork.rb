@@ -4,6 +4,6 @@ class Artwork < ApplicationRecord
   belongs_to :artist
   has_one :image, as: :imageable
 
-  validates :name, :style_id, presence: true
+  validates :name, presence: true
   #validates :date, allow_nil: true, allow_blank: true
 end

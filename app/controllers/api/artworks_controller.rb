@@ -10,29 +10,36 @@ class Api::ArtworksController < ApplicationController
   end
 
   def show
+    p params
     @artist = Artist.find_by(id: params[:artist_id])
     @artwork = @artist.artworks.find_by(id: params[:id])
   end
 
   def create
-    artwork_params.slice(
-      :name,
-      :date,
-      :artist_id,
-      :genre_id,
-      :style_id,
-    ).each_pai
-    @artwork = Artwork.new()
+    @artist = Artist.find(params[:artwork][:artistId])
+    p @artist
+    if (@artist)
+      parsed_params = artwork_params
+      @artwork = @artist.artworks.build(
+        name: parsed_params["name"],
+        date: parsed_params["date"],
+        style_id: parsed_params["style_id"],
+        genre_id: parsed_params["genre_id"],
+      )
 
-    @image = @artwork.build_image(
-      url: artwork_params[:image_url],
-      caption: artwork_params[:image_caption],
-    )
+      @image = @artwork.build_image(
+        url: parsed_params["image_url"],
+        thumb_url: parsed_params["image_thumb_url"],
+        caption: parsed_params["image_caption"]
+      )
 
-    if @artwork.save && @image.save
-      render :show
+      if @artwork.save && @image.save
+        render :show
+      else
+        render json: (@artwork.errors.full_messages + @image.errors.full_messages), status: 422
+      end
     else
-      render json: (@artwork.errors.full_messages + @image.errors.full_messages), status: 422
+      render json: (['Artist not found']), status: 422
     end
   end
 
@@ -66,7 +73,7 @@ class Api::ArtworksController < ApplicationController
   private
 
   def artwork_params
-    params = params.require(:artwork).transform_keys(&:underscore).permit(
+    @artwork_params ||= params.require(:artwork).transform_keys(&:underscore).permit(
       :id,
       :name,
       :date,
@@ -76,13 +83,15 @@ class Api::ArtworksController < ApplicationController
       :image_url,
       :image_thumb_url,
       :image_caption,
-    ).to_hash.map do |attribute, val|
-      #TODO: Fill out this map to get the id for the desired attribute
-      parsed_attribute = attribute.match(/\S+_id/i)
-      parsed_val = parsed_attribute[0] ?  : val)
-      [attribute, parsed_val]}
+    ).to_hash.map.to_h do |att, val|
+      parsed_att = att.match(/\S+(?=_id)/)
+      if parsed_att && parsed_att[0] != "artist"
+        parsed_val = parsed_att[0].classify.constantize.find_by(name: val).id
+      else
+        parsed_val = val
+      end
+      [att, parsed_val]
     end
-    params.to_h
   end
 
   def selector_params

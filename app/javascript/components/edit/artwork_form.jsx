@@ -71,8 +71,10 @@ export default ({
 
     parsed['artistId'] = artistId;
 
-    formAction(parsed).then(({ artworks }) => {
-      artworks[artworkId] ? history.push(`/${artistId}/${artworkId}`) : null;
+    formAction(parsed).then((val) => {
+      if (val.artwork.id) {
+        history.push(`/${artistId}/${val.artwork.id}`);
+      }
     });
   };
 

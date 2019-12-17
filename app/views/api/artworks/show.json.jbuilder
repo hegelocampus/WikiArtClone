@@ -1,11 +1,8 @@
 json.key_format! camelize: :lower
 
-#json.artwork do
-#  json.partial! @artwork, as: :artwork
-#  json.image_caption (@artwork.image ? @artwork.image.caption : nil)
-#  json.style_id (@artwork[:style_id] ? @artwork.style_id : nil)
-#  json.genre_id (@artwork[:genre_id] ? @artwork.genre_id : nil)
-#end
+json.artwork do
+  json.id @artwork.id
+end
 
 json.artist do
   json.partial! @artist, as: :artist
@@ -16,9 +13,9 @@ json.artist do
 end
 
 json.artworks do
-  @artist.artworks.where(famous: true).each do |f_art|
-    json.set! f_art.id do
-        json.partial! f_art, as: :artwork
+  @artist.artworks.where(famous: true).each do |famous_art|
+    json.set! famous_art.id do
+        json.partial! famous_art, as: :artwork
     end
   end
 

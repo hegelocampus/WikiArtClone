@@ -1,9 +1,13 @@
 Rails.application.routes.draw do
+  namespace :api do
+    get 'random/show'
+  end
   root 'static_pages#root'
 
   namespace :api, defaults: {format: :json} do
     resources :all_selectors, only: [:index]
     resources :selectors, only: [:index, :show]
+    resource :random, only: [:show]
     resources :artists, only: [:index, :show, :create, :update] do
       resources :artworks, only: [:show, :index]
     end

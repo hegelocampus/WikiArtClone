@@ -5,15 +5,11 @@ import { AuthRoute, ProtectedRoute } from '../utils/route_utils';
 import AuthModal from './auth_modal/auth_modal.jsx';
 import MainNav from './main_nav/main_nav';
 import Artist from'./artist/artist';
+import RandomArtist from './artist/random_artist.jsx';
 import Footer from './footer/footer';
 
 const Edit      =   lazy(() => import('./edit/edit.jsx'));
 const Selector  =   lazy(() => import('./selector/selector'));
-
-
-const Splash = () => (
-  <h1>Splish Splash</h1>
-)
 
 export default () => (
   <React.Fragment>
@@ -35,14 +31,11 @@ export default () => (
             <Selector type="artists" />
           </Route>
           <Route path={'/:artistId(\\d+)'} component={ Artist } />
-          <Route path="/" component={ Splash }>
-            <Redirect
-              to={`/${ Math.floor(Math.random() * (Math.floor(20) - Math.floor(1))) }`}
-            />
-          </Route>
+          <Route path="/" component={ RandomArtist } />
         </Switch>
       </Suspense>
       <Footer />
     </main>
   </React.Fragment>
 );
+

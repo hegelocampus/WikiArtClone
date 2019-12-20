@@ -7,6 +7,9 @@ export const fetchArtist = id => $.ajax({
   url: `/api/artists/${id}`,
 });
 
+export const fetchRandomArtistId = () => $.ajax({
+  url: `/api/random/`,
+});
 
 export const createArtist = artist => $.ajax({
   url: 'api/artists',
@@ -14,7 +17,6 @@ export const createArtist = artist => $.ajax({
   data: { artist }
 });
 
-//TODO Test updateArtist
 export const updateArtist = artist => $.ajax({
   url: `api/artists/${artist.id}`,
   type: 'patch',
@@ -22,7 +24,6 @@ export const updateArtist = artist => $.ajax({
 });
 
 //TODO Implement delete artist
-
 export const deleteArtist = artistId => $.ajax({
   url: `api/artists/${artistId}`,
   type: 'delete'

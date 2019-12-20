@@ -4,6 +4,14 @@ import {
 } from 'react-router-dom';
 
 export default ({ artist, artwork }) => {
+
+  let artworkName = '';
+  if (artwork.name && artwork.name.length > 60) {
+    artworkName = `${artwork.name.substring(0, 50)}...`
+  } else if (artwork.name) {
+    artworkName = artwork.name;
+  }
+
   return (
     <React.Fragment>
       { artist && artwork ? (
@@ -26,7 +34,7 @@ export default ({ artist, artwork }) => {
             className="famous-work-caption"
           >
             <Link className="artwork-tile-title" to={ `/${ artist.id }/${ artwork.id }` }>
-              <span>{ artwork.name || '' }</span>
+              <span>{ artworkName }</span>
             </Link>
             <Link className="artwork-tile-artist" to={ `/${ artist.id }` }>
               <span>{ artist.name || '' } • </span>

@@ -19,7 +19,7 @@ const receiveErrors = errors => ({
   errors
 });
 
-export const login = formUser => dispatch => ApiUtil.login(formUser).then(
+export const oldLogin = formUser => dispatch => ApiUtil.login(formUser).then(
   user => dispatch(receiveCurrentUser(user)),
   errors => dispatch(receiveErrors(errors.responseJSON))
 );

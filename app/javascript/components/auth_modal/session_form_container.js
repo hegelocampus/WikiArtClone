@@ -9,7 +9,7 @@ const mapStateToProps = (state, ownProps) => ({
 
 const mapDispatchToProps = (dispatch, ownProps) => {
   let process = (ownProps.formType === 'login' ? login : signup);
-  return { processForm: user => dispatch(process(user))};
+  return { processForm: user => dispatch({ type: "LOGIN_CURRENT_USER", payload: user })};
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(Form);

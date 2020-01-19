@@ -2,6 +2,7 @@ import React from 'react'
 import ReactDOM from 'react-dom'
 import PropTypes from 'prop-types'
 import * as configureStore from '../store/store.js'
+import saga from '../sagas/index';
 import Root from '../components/root.jsx'
 
 document.addEventListener('DOMContentLoaded', () => {
@@ -24,6 +25,8 @@ document.addEventListener('DOMContentLoaded', () => {
   } else {
     store = storeConfig();
   }
+
+  configureStore.sagaMiddleware.run(saga);
 
   const root = document.getElementById('root');
   ReactDOM.render(<Root store={store} />, root)

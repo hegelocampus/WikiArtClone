@@ -1,36 +1,31 @@
 import * as ApiUtil from '../utils/session_api_util';
 
-export const RECEIVE_CURRENT_USER = 'RECEIVE_CURRENT_USER';
-export const LOGOUT_CURRENT_USER = 'LOGOUT_CURRENT_USER';
-export const RECEIVE_ERRORS = 'RECEIVE_ERRORS';
-export const CLEAR_ERRORS = 'CLEAR_ERRORS';
+export const USER = {
+  SIGNUP: 'REQUEST_SIGNUP',
+  LOGIN: 'REQUEST_LOGIN',
+  RECEIVE: 'RECEIVE_CURRENT_USER',
+  REQUEST_LOGOUT: 'REQUEST_LOGOUT',
+  LOGOUT: 'LOGOUT_CURRENT_USER',
+  ERRORS: 'RECEIVE_ERRORS',
+  CLEAR_ERRORS: 'CLEAR_ERRORS'
+}
 
-const receiveCurrentUser = currentUser => ({
-  type: RECEIVE_CURRENT_USER,
+export const receiveUser = currentUser => ({
+  type: USER.RECEIVE,
   currentUser
 });
 
-const logoutCurrentUser = () => ({
-  type: LOGOUT_CURRENT_USER
+export const logoutCurrentUser = () => ({
+  type: USER.LOGOUT
 });
 
-const receiveErrors = errors => ({
-  type: RECEIVE_ERRORS,
+export const receiveErrors = errors => ({
+  type: USER.ERRORS,
   errors
 });
 
-export const oldLogin = formUser => dispatch => ApiUtil.login(formUser).then(
+const oldLogin = formUser => dispatch => ApiUtil.login(formUser).then(
   user => dispatch(receiveCurrentUser(user)),
-  errors => dispatch(receiveErrors(errors.responseJSON))
-);
-
-export const signup = formUser => dispatch => ApiUtil.signup(formUser).then(
-  user => dispatch(receiveCurrentUser(user)),
-  errors => dispatch(receiveErrors(errors.responseJSON))
-);
-
-export const logout = () => dispatch => ApiUtil.logout().then(
-  () => dispatch(logoutCurrentUser()),
   errors => dispatch(receiveErrors(errors.responseJSON))
 );
 

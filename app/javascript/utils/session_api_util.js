@@ -4,8 +4,7 @@ $.ajaxSetup({
   headers: {
     'X-CSRF-Token': AUTH_TOKEN
   },
-  dataType: 'json',
-  error: (e, type) => alert(`${e} \n ${type}`)
+  dataType: 'json'
 });
 
 export const signup = user => $.ajax({

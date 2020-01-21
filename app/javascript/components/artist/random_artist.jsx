@@ -11,9 +11,9 @@ export default () => {
     fetchRandomArtistId().then(({ id }) => {
       setArtistId(id);
     });
-  });
-
-  console.log(artistId);
+  },
+    []
+  );
 
   if (artistId === null) {
     return <span>Loading...</span>;

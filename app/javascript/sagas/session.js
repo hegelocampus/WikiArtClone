@@ -9,7 +9,7 @@ import {
 
 function* loginUser({ payload: { userData }}) {
   try {
-    const { response }= yield call(ApiUtil.login, userData);
+    const { response } = yield call(ApiUtil.login, userData);
     yield put(receiveUser(response));
   } catch (error) {
     console.log(error);

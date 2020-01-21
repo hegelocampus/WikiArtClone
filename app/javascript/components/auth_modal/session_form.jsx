@@ -40,7 +40,7 @@ export default class SessionForm extends React.Component {
 
   render() {
     let errors;
-    if (this.props.errors) {
+    if (this.props.errors && this.props.errors.length) {
       errors = this.props.errors.map((error, idx) => (
         <p key={ idx }>{error}</p>
       ));
@@ -54,6 +54,7 @@ export default class SessionForm extends React.Component {
           <input
             name='email'
             placeholder='E-mail'
+            autoComplete='username'
             type='text'
             required
             onChange={ this.update }
@@ -62,6 +63,7 @@ export default class SessionForm extends React.Component {
           <input
             name='password'
             placeholder='password'
+            autoComplete='current-password'
             type='password'
             required
             onChange={ this.update }

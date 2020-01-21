@@ -1,4 +1,5 @@
-import { call, fork, put, take } from 'redux-saga/effects';
+import { call, fork, put, take, takeLatest } from 'redux-saga/effects';
+import * as ApiUtil from '../utils/session_api_util';
 import {
   USER,
   receiveUser,
@@ -6,39 +7,28 @@ import {
   receiveErrors
 } from '../actions/session_actions';
 
-function* loginUser(action) {
+function* loginUser({ payload: { userData }}) {
   try {
-    const currentUser = yield call(ApiUtil.login, action.payload.userData);
-    yield put(receiveCurrentUser(currentUser));
+    const loginUser = yield call(ApiUtil.login, userData);
+    yield put(receiveUser(loginUser));
   } catch (error) {
+    console.log(error);
     yield put(receiveErrors(error));
   }
-}
-
-function* loginWatcher(action, signupTask) {
-  const { login } = yield takeLatest(USER.LOGIN);
-  yield call(loginUser, login);
-  yield cancel(signupTask);
 }
 
 function* signupUser(action) {
   try {
-    const currentUser = yield call(ApiUtil.signup, action.payload.userData);
-    yield put(receiveCurrentUser(currentUser));
+    const user = yield call(ApiUtil.signup, action.payload.userData);
+    yield put(receiveUser(user));
   } catch (error) {
     yield put(receiveErrors(error));
   }
 }
 
-function* signupWatcher(action, loginTask) {
-  const { login } = yield takeLatest(USER.SIGNUP);
-  yield call(signupUser, login);
-  yield cancel(loginTask);
-}
-
 function* logoutUser() {
   try {
-    yield call(ApiUtil.logout());
+    yield call(ApiUtil.logout);
     yield put(logoutCurrentUser());
   } catch (error) {
     yield put(receiveErrors(error));
@@ -46,11 +36,8 @@ function* logoutUser() {
 }
 
 export default function* sessionWatcher() {
-  while (true) {
-    let loginTask, signupTask;
-    loginTask = yield fork(loginUser, signupTask);
-    signupTask = yield fork(signupUser, loginTask);
-    yield take(USER.REQUEST_LOGOUT, logoutUser);
-  }
+  yield takeLatest(USER.LOGIN, loginUser);
+  yield takeLatest(USER.SIGNUP, signupUser);
+  yield takeLatest(USER.LOGOUT, logoutUser);
 }
 

@@ -1,10 +1,11 @@
 import React, { useState, useRef} from 'react';
 import { Link } from 'react-router-dom';
-import { useActionOnOutsideClick } from '../hooks/utils';
 import {
   useDispatch,
   useSelector,
 } from 'react-redux';
+import { useActionOnOutsideClick } from '../hooks/utils';
+import { requestLogout } from '../../actions/session_actions';
 
 //const emailGrab = /(.+)(?=\@)/;
 
@@ -52,7 +53,7 @@ export default (props) => {
               to='/edit/new' className="user-menu-link">Add artist</Link>
           </li>
           <li>
-            <a onClick={ () => dispatch({ action: "LOGOUT_CURRENT_USER" }) } className="user-menu-link">Sign Out</a>
+            <a onClick={ () => dispatch(requestLogout()) } className="user-menu-link">Sign Out</a>
           </li>
         </ul>
       ) : (

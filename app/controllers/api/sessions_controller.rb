@@ -3,7 +3,7 @@ class Api::SessionsController < ApplicationController
     @user = User.find_by(email: user_params[:email])
       .try(:authenticate, user_params[:password])
     if @user && log_in(@user)
-      render "api/users/show", status: :created
+      render "api/users/show", status: 201
     else
       render json: ["Incorrect Email/Password combination"], status: :unprocessable_entity
     end
@@ -11,7 +11,7 @@ class Api::SessionsController < ApplicationController
 
   def destroy
     if sign_out(current_user)
-      render json: {}
+      render json: { "message": "User successfully signed out" }, status: 201
     else
       render json: ["I don't know how you just did that, but you can't do that"], status: 404
     end

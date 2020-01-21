@@ -21,9 +21,9 @@ export default (props) => {
     headerContent = "Sign In";
     footer = (
       <span>Don't have an account?
-        <a href='#' onClick={ changeForm("signup") } >
+        <button onClick={ changeForm("signup") } >
           Sign up
-        </a>
+        </button>
       </span>
     )
   } else {

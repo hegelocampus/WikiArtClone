@@ -4,8 +4,8 @@ export const USER = {
   SIGNUP: 'REQUEST_SIGNUP',
   LOGIN: 'REQUEST_LOGIN',
   RECEIVE: 'RECEIVE_CURRENT_USER',
-  REQUEST_LOGOUT: 'REQUEST_LOGOUT',
-  LOGOUT: 'LOGOUT_CURRENT_USER',
+  LOGOUT: 'REQUEST_LOGOUT',
+  REMOVE: 'LOGOUT_CURRENT_USER',
   ERRORS: 'RECEIVE_ERRORS',
   CLEAR_ERRORS: 'CLEAR_ERRORS'
 }
@@ -15,8 +15,12 @@ export const receiveUser = currentUser => ({
   currentUser
 });
 
-export const logoutCurrentUser = () => ({
+export const requestLogout = () => ({
   type: USER.LOGOUT
+});
+
+export const logoutCurrentUser = () => ({
+  type: USER.REMOVE
 });
 
 export const receiveErrors = errors => ({

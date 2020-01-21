@@ -9,7 +9,7 @@ export default (state = _nullSession, action) => {
   switch (action.type) {
     case USER.RECEIVE:
       return { id: action.currentUser.id };
-    case USER.LOGOUT:
+    case USER.REMOVE:
       return _nullSession;
     default:
       return state;

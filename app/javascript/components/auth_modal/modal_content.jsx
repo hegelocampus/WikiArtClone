@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
-import { CLEAR_ERRORS  } from '../../actions/session_actions';
+import { USER } from '../../actions/session_actions';
 
 import SessionForm from './session_form_container.js';
 
@@ -12,7 +12,7 @@ export default (props) => {
     return (e) => {
       e.preventDefault();
       setFormType(type);
-      dispatch({type: CLEAR_ERRORS});
+      dispatch({type: USER.CLEAR_ERRORS});
     }
   }
 
@@ -21,9 +21,9 @@ export default (props) => {
     headerContent = "Sign In";
     footer = (
       <span>Don't have an account?
-        <a href='#' onClick={ changeForm("signup") } >
+        <button onClick={ changeForm("signup") } >
           Sign up
-        </a>
+        </button>
       </span>
     )
   } else {

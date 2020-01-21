@@ -9,8 +9,8 @@ import {
 
 function* loginUser({ payload: { userData }}) {
   try {
-    const loginUser = yield call(ApiUtil.login, userData);
-    yield put(receiveUser(loginUser));
+    const { response }= yield call(ApiUtil.login, userData);
+    yield put(receiveUser(response));
   } catch (error) {
     console.log(error);
     yield put(receiveErrors(error));
@@ -19,8 +19,8 @@ function* loginUser({ payload: { userData }}) {
 
 function* signupUser(action) {
   try {
-    const user = yield call(ApiUtil.signup, action.payload.userData);
-    yield put(receiveUser(user));
+    const { response } = yield call(ApiUtil.signup, action.payload.userData);
+    yield put(receiveUser(response));
   } catch (error) {
     yield put(receiveErrors(error));
   }

@@ -1,24 +1,23 @@
-import React, { useEffect, useState } from 'react';
-import { useHistory, Redirect } from 'react-router-dom';
-import { fetchRandomArtistId } from '../../utils/artist_api_util.js';
+import React, { useEffect, useState } from 'react'
+import { useHistory, Redirect } from 'react-router-dom'
+import { fetchRandomArtistId } from '../../utils/artist_api_util.js'
 
 export default () => {
-  let history = useHistory();
+  const history = useHistory()
 
-  const [artistId, setArtistId] = useState(null);
+  const [artistId, setArtistId] = useState(null)
 
   useEffect(() => {
     fetchRandomArtistId().then(({ id }) => {
-      setArtistId(id);
-    });
+      setArtistId(id)
+    })
   },
-    []
-  );
+  []
+  )
 
   if (artistId === null) {
-    return <span>Loading...</span>;
+    return <span>Loading...</span>
   } else {
-    return <Redirect to={ `/${ artistId }` } />;
+    return <Redirect to={`/${artistId}`} />
   }
 }
-

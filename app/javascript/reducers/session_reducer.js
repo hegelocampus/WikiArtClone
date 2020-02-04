@@ -1,17 +1,17 @@
-import { USER } from '../actions/session_actions';
+import { USER } from '../actions/session_actions'
 
 const _nullSession = {
-  id: null,
-};
+  id: null
+}
 
 export default (state = _nullSession, action) => {
-  Object.freeze(state);
+  Object.freeze(state)
   switch (action.type) {
     case USER.RECEIVE:
-      return { id: action.currentUser.id };
+      return { id: action.currentUser.id }
     case USER.REMOVE:
-      return _nullSession;
+      return _nullSession
     default:
-      return state;
+      return state
   }
 }

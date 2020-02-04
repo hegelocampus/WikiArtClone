@@ -1,32 +1,33 @@
-import React, { useState, useRef} from 'react';
-import { Link } from 'react-router-dom';
+import React, { useState, useRef } from 'react'
+import { Link } from 'react-router-dom'
 import {
   useDispatch,
-  useSelector,
-} from 'react-redux';
-import { useActionOnOutsideClick } from '../hooks/utils';
-import { requestLogout } from '../../actions/session_actions';
+  useSelector
+} from 'react-redux'
+import { useActionOnOutsideClick } from '../hooks/utils'
+import { requestLogout } from '../../actions/session_actions'
 
-//const emailGrab = /(.+)(?=\@)/;
+// const emailGrab = /(.+)(?=\@)/;
 
 export default (props) => {
-  const dispatch = useDispatch();
-  const currentUser = useSelector(state => state.entities.users[state.session.id]);
-  const [visable, setVisable] = useState(false);
-  const dropDown = useRef(null);
+  const dispatch = useDispatch()
+  const currentUser = useSelector(state => state.entities.users[state.session.id])
+  const [visable, setVisable] = useState(false)
+  const dropDown = useRef(null)
 
-  useActionOnOutsideClick(dropDown, () => setVisable(false));
+  useActionOnOutsideClick(dropDown, () => setVisable(false))
 
   return (
-    <div className="top-menu-user-menu-wrapper" ref={ dropDown }>
-      <a className="top-menu-user-menu"
-        onClick={ () => visable ? setVisable(false) : setVisable(true) }
+    <div className='top-menu-user-menu-wrapper' ref={dropDown}>
+      <a
+        className='top-menu-user-menu'
+        onClick={() => visable ? setVisable(false) : setVisable(true)}
       />
-      { visable ? (
-        <ul className="top-menu-user-menu-list">
+      {visable ? (
+        <ul className='top-menu-user-menu-list'>
           <li>
-            <a className="display-name">
-              { currentUser.username || currentUser.email.match(/(.+)(?=\@)/)[0] }
+            <a className='display-name'>
+              {currentUser.username || currentUser.email.match(/(.+)(?=\@)/)[0]}
             </a>
           </li>
           {/*
@@ -50,17 +51,17 @@ export default (props) => {
           */}
           <li>
             <Link
-              to='/edit/new' className="user-menu-link">Add artist</Link>
+              to='/edit/new' className='user-menu-link'
+            >Add artist
+            </Link>
           </li>
           <li>
-            <a onClick={ () => dispatch(requestLogout()) } className="user-menu-link">Sign Out</a>
+            <a onClick={() => dispatch(requestLogout())} className='user-menu-link'>Sign Out</a>
           </li>
         </ul>
       ) : (
         null
-      )
-    }
+      )}
     </div>
   )
 }
-

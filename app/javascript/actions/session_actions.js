@@ -1,4 +1,4 @@
-import * as ApiUtil from '../utils/session_api_util';
+import * as ApiUtil from '../utils/session_api_util'
 
 export const USER = {
   SIGNUP: 'REQUEST_SIGNUP',
@@ -13,23 +13,22 @@ export const USER = {
 export const receiveUser = currentUser => ({
   type: USER.RECEIVE,
   currentUser
-});
+})
 
 export const requestLogout = () => ({
   type: USER.LOGOUT
-});
+})
 
 export const logoutCurrentUser = () => ({
   type: USER.REMOVE
-});
+})
 
 export const receiveErrors = errors => ({
   type: USER.ERRORS,
   errors
-});
+})
 
 const oldLogin = formUser => dispatch => ApiUtil.login(formUser).then(
   user => dispatch(receiveCurrentUser(user)),
   errors => dispatch(receiveErrors(errors.responseJSON))
-);
-
+)

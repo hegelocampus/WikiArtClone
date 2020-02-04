@@ -1,13 +1,13 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
-import ArtistMenu from './artist_menu';
-import ArtworkMenu from './artwork_menu';
+import React from 'react'
+import { Link } from 'react-router-dom'
+import ArtistMenu from './artist_menu'
+import ArtworkMenu from './artwork_menu'
 
 export default (props) => {
   return (
-    <ul className="main-nav">
-      <li >
-        <Link className="main-nav-main-cat" to={"/"}>Home</Link>
+    <ul className='main-nav'>
+      <li>
+        <Link className='main-nav-main-cat' to='/'>Home</Link>
       </li>
       <li>
         <ArtistMenu />
@@ -18,4 +18,3 @@ export default (props) => {
     </ul>
   )
 }
-

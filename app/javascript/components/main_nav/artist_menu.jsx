@@ -1,9 +1,9 @@
-import React, { useState } from 'react'
-import { Link } from 'react-router-dom'
-import { CSSTransition } from 'react-transition-group'
+import React, { useState } from 'react';
+import { Link } from 'react-router-dom';
+import { CSSTransition } from 'react-transition-group';
 
 export default () => {
-  const [visable, setVisable] = useState(false)
+  const [visable, setVisable] = useState(false);
 
   return (
     <>
@@ -43,5 +43,5 @@ export default () => {
         </ul>
       </CSSTransition>
     </>
-  )
-}
+  );
+};

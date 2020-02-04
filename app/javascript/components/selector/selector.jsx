@@ -1,14 +1,14 @@
-import React from 'react'
+import React from 'react';
 import {
   Route,
   Switch,
   useRouteMatch
-} from 'react-router-dom'
-import SelectorSubjects from './subject_by_selector'
-import SelectorIndex from './selector_index'
+} from 'react-router-dom';
+import SelectorSubjects from './subject_by_selector';
+import SelectorIndex from './selector_index';
 
 export default ({ type }) => {
-  const match = useRouteMatch()
+  const match = useRouteMatch();
 
   return (
     <div className='selector-container'>
@@ -25,5 +25,5 @@ export default ({ type }) => {
         </Route>
       </Switch>
     </div>
-  )
-}
+  );
+};

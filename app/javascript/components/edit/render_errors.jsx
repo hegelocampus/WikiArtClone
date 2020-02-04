@@ -1,8 +1,8 @@
-import React from 'react'
-import { useSelector } from 'react-redux'
+import React from 'react';
+import { useSelector } from 'react-redux';
 
 export default (props) => {
-  const errors = useSelector(state => state.errors.artwork)
+  const errors = useSelector(state => state.errors.artwork);
 
   return (
     <>
@@ -14,5 +14,5 @@ export default (props) => {
         null
       )}
     </>
-  )
-}
+  );
+};

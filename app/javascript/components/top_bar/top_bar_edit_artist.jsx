@@ -1,20 +1,20 @@
 import React, {
   useState,
   useRef
-} from 'react'
-import { useActionOnOutsideClick } from '../hooks/utils'
+} from 'react';
+import { useActionOnOutsideClick } from '../hooks/utils';
 import {
   Link,
   useRouteMatch
-} from 'react-router-dom'
+} from 'react-router-dom';
 
 export default (props) => {
-  const match = useRouteMatch(['/:artistId(\\d+)/:artworkId', '/:artistId(\\d+)'])
-  const { artistId, artworkId } = (match ? match.params : {})
-  const [visable, setVisable] = useState(false)
-  const dropDown = useRef(null)
+  const match = useRouteMatch(['/:artistId(\\d+)/:artworkId', '/:artistId(\\d+)']);
+  const { artistId, artworkId } = (match ? match.params : {});
+  const [visable, setVisable] = useState(false);
+  const dropDown = useRef(null);
 
-  useActionOnOutsideClick(dropDown, () => setVisable(false))
+  useActionOnOutsideClick(dropDown, () => setVisable(false));
 
   return (
     <div className='top-menu-edit-menu-wrapper' ref={dropDown}>
@@ -66,5 +66,5 @@ export default (props) => {
         null
       )}
     </div>
-  )
-}
+  );
+};

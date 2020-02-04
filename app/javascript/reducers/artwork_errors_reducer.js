@@ -1,18 +1,18 @@
 import {
   RECEIVE_ARTWORK,
   RECEIVE_ARTWORK_ERRORS
-} from '../actions/artwork_actions'
+} from '../actions/artwork_actions';
 
-const _nullErrors = []
+const _nullErrors = [];
 
 export default (state = _nullErrors, action) => {
-  Object.freeze(state)
+  Object.freeze(state);
   switch (action.type) {
     case RECEIVE_ARTWORK:
-      return _nullErrors
+      return _nullErrors;
     case RECEIVE_ARTWORK_ERRORS:
-      return action.errors
+      return action.errors;
     default:
-      return state
+      return state;
   }
-}
+};

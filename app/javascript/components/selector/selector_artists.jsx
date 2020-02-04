@@ -1,49 +1,49 @@
 import React, {
   useEffect
-} from 'react'
+} from 'react';
 import {
   useDispatch,
   useSelector
-} from 'react-redux'
+} from 'react-redux';
 import {
   Link,
   useRouteMatch
-} from 'react-router-dom'
+} from 'react-router-dom';
 
-import { fetchSelector } from '../../actions/selector_actions'
-import { requestArtistsBySelector } from '../../actions/artist_actions'
+import { fetchSelector } from '../../actions/selector_actions';
+import { requestArtistsBySelector } from '../../actions/artist_actions';
 
 export default (props) => {
-  const dispatch = useDispatch()
-  const match = useRouteMatch()
+  const dispatch = useDispatch();
+  const match = useRouteMatch();
 
   const mainSelector = match.params.selector
     .replace(/([-_][a-z])/ig, ($1) => {
       return $1.toUpperCase()
-        .replace('-', '')
-    })
+        .replace('-', '');
+    });
 
   useEffect(() => {
     dispatch(requestArtistsBySelector({
       [mainSelector]: match.params.SubSelId
-    }))
-    dispatch(fetchSelector(mainSelector, match.params.SubSelId))
+    }));
+    dispatch(fetchSelector(mainSelector, match.params.SubSelId));
   },
   [props, match]
-  )
+  );
 
-  const artists = useSelector(state => Object.values(state.entities.artists))
+  const artists = useSelector(state => Object.values(state.entities.artists));
   const subSelector = useSelector(state => {
     if (state.entities.selectors[mainSelector]) {
       return state
         .entities
-        .selectors[mainSelector][match.params.SubSelId].name
+        .selectors[mainSelector][match.params.SubSelId].name;
     } else {
-      return null
+      return null;
     }
-  })
+  });
 
-  let artistLis
+  let artistLis;
   artists.length > 0 ? (
     artistLis = artists.map(({ id, name, imageUrl }) => (
       <li key={`artist-${id}`} className='artist-li'>
@@ -57,7 +57,7 @@ export default (props) => {
     ))
   ) : (
     null
-  )
+  );
 
   return (
     <>
@@ -68,5 +68,5 @@ export default (props) => {
         {artistLis}
       </ul>
     </>
-  )
-}
+  );
+};

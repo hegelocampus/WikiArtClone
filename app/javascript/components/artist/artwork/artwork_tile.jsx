@@ -1,14 +1,14 @@
-import React from 'react'
+import React from 'react';
 import {
   Link
-} from 'react-router-dom'
+} from 'react-router-dom';
 
 export default ({ artist, artwork }) => {
-  let artworkName = ''
+  let artworkName = '';
   if (artwork.name && artwork.name.length > 60) {
-    artworkName = `${artwork.name.substring(0, 50)}...`
+    artworkName = `${artwork.name.substring(0, 50)}...`;
   } else if (artwork.name) {
-    artworkName = artwork.name
+    artworkName = artwork.name;
   }
 
   return (
@@ -45,5 +45,5 @@ export default ({ artist, artwork }) => {
         null
       )}
     </>
-  )
-}
+  );
+};

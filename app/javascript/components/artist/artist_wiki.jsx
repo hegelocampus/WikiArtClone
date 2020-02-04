@@ -1,20 +1,20 @@
-import React, { useEffect } from 'react'
-import { useParams } from 'react-router-dom'
-import { useDispatch, useSelector } from 'react-redux'
-import ReactHtmlParser from 'react-html-parser'
-import { fetchWiki } from '../../actions/wiki_actions'
+import React, { useEffect } from 'react';
+import { useParams } from 'react-router-dom';
+import { useDispatch, useSelector } from 'react-redux';
+import ReactHtmlParser from 'react-html-parser';
+import { fetchWiki } from '../../actions/wiki_actions';
 
 export default ({ artistWiki }) => {
-  const { artistId } = useParams()
-  const dispatch = useDispatch()
+  const { artistId } = useParams();
+  const dispatch = useDispatch();
 
   useEffect(() => {
-    dispatch(fetchWiki(artistWiki, artistId))
+    dispatch(fetchWiki(artistWiki, artistId));
   },
   [artistWiki, artistId]
-  )
+  );
 
-  const wikiText = useSelector(state => state.entities.wikis[artistId])
+  const wikiText = useSelector(state => state.entities.wikis[artistId]);
 
   return (
     <>
@@ -29,5 +29,5 @@ export default ({ artistWiki }) => {
         null
       )}
     </>
-  )
-}
+  );
+};

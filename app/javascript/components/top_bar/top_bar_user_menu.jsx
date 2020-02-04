@@ -1,21 +1,21 @@
-import React, { useState, useRef } from 'react'
-import { Link } from 'react-router-dom'
+import React, { useState, useRef } from 'react';
+import { Link } from 'react-router-dom';
 import {
   useDispatch,
   useSelector
-} from 'react-redux'
-import { useActionOnOutsideClick } from '../hooks/utils'
-import { requestLogout } from '../../actions/session_actions'
+} from 'react-redux';
+import { useActionOnOutsideClick } from '../hooks/utils';
+import { requestLogout } from '../../actions/session_actions';
 
 // const emailGrab = /(.+)(?=\@)/;
 
 export default (props) => {
-  const dispatch = useDispatch()
-  const currentUser = useSelector(state => state.entities.users[state.session.id])
-  const [visable, setVisable] = useState(false)
-  const dropDown = useRef(null)
+  const dispatch = useDispatch();
+  const currentUser = useSelector(state => state.entities.users[state.session.id]);
+  const [visable, setVisable] = useState(false);
+  const dropDown = useRef(null);
 
-  useActionOnOutsideClick(dropDown, () => setVisable(false))
+  useActionOnOutsideClick(dropDown, () => setVisable(false));
 
   return (
     <div className='top-menu-user-menu-wrapper' ref={dropDown}>
@@ -63,5 +63,5 @@ export default (props) => {
         null
       )}
     </div>
-  )
-}
+  );
+};

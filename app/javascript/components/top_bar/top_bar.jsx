@@ -1,15 +1,15 @@
-import React from 'react'
-import { NavLink } from 'react-router-dom'
-import AuthModal from '../auth_modal/auth_modal'
-import UserMenu from './top_bar_user_menu'
-import EditMenu from './top_bar_edit_artist'
+import React from 'react';
+import { NavLink } from 'react-router-dom';
+import AuthModal from '../auth_modal/auth_modal';
+import UserMenu from './top_bar_user_menu';
+import EditMenu from './top_bar_edit_artist';
 
 import {
   useSelector
-} from 'react-redux'
+} from 'react-redux';
 
 export default (props) => {
-  const currentUser = useSelector(state => state.entities.users[state.session.id])
+  const currentUser = useSelector(state => state.entities.users[state.session.id]);
   const authContent = (currentUser ? (
     <>
       <EditMenu />
@@ -17,7 +17,7 @@ export default (props) => {
     </>
   ) : (
     <AuthModal />
-  ))
+  ));
   return (
     <header>
       <nav className='top-nav'>
@@ -31,5 +31,5 @@ export default (props) => {
         </div>
       </nav>
     </header>
-  )
-}
+  );
+};

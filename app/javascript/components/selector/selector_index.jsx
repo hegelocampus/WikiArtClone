@@ -1,28 +1,28 @@
-import React, { useEffect } from 'react'
-import { useDispatch, useSelector } from 'react-redux'
-import { Link, useParams, useRouteMatch } from 'react-router-dom'
-import { requestSelectors } from '../../actions/selector_actions'
+import React, { useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { Link, useParams, useRouteMatch } from 'react-router-dom';
+import { requestSelectors } from '../../actions/selector_actions';
 
 export default ({ type }) => {
-  const dispatch = useDispatch()
-  const { selector } = useParams()
-  const match = useRouteMatch()
+  const dispatch = useDispatch();
+  const { selector } = useParams();
+  const match = useRouteMatch();
   const mainSelector = selector.replace(/([-_][a-z])/ig,
     $1 => $1.toUpperCase().replace('-', '')
-  )
+  );
 
   useEffect(() => {
-    dispatch(requestSelectors(mainSelector))
+    dispatch(requestSelectors(mainSelector));
   },
   [match]
-  )
+  );
 
   const selectors = useSelector(state => {
-    const sel = state.entities.selectors[mainSelector]
-    return (sel ? Object.values(sel) : sel)
-  })
+    const sel = state.entities.selectors[mainSelector];
+    return (sel ? Object.values(sel) : sel);
+  });
 
-  let selectorLis
+  let selectorLis;
   selectors ? (
     selectorLis = selectors.map(sel => (
       <li key={`subSel-${sel.id}`}>
@@ -33,7 +33,7 @@ export default ({ type }) => {
     ))
   ) : (
     null
-  )
+  );
 
   return (
     <>
@@ -44,5 +44,5 @@ export default ({ type }) => {
         {selectorLis}
       </ul>
     </>
-  )
-}
+  );
+};

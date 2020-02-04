@@ -1,19 +1,19 @@
-import React from 'react'
-import { useParams, useLocation, NavLink } from 'react-router-dom'
-import { useSelector } from 'react-redux'
+import React from 'react';
+import { useParams, useLocation, NavLink } from 'react-router-dom';
+import { useSelector } from 'react-redux';
 
 export default (props) => {
-  const { artistId, artworkId } = useParams()
-  const location = useLocation().pathname
+  const { artistId, artworkId } = useParams();
+  const location = useLocation().pathname;
 
-  const artist = useSelector(state => state.entities.artists[artistId])
-  const artwork = useSelector(state => state.entities.artworks[artworkId])
+  const artist = useSelector(state => state.entities.artists[artistId]);
+  const artwork = useSelector(state => state.entities.artworks[artworkId]);
   const artMovement = useSelector(state => {
-    return artist && artist.artMovementId ? state.entities.selectors.artMovement[artist.artMovementId] : 'unknown'
-  })
+    return artist && artist.artMovementId ? state.entities.selectors.artMovement[artist.artMovementId] : 'unknown';
+  });
 
-  const slicedPath = location.split('/')
-  const prettyPath = []
+  const slicedPath = location.split('/');
+  const prettyPath = [];
 
   switch (slicedPath.length) {
     case 3:
@@ -25,7 +25,7 @@ export default (props) => {
           >
             {artwork.name}
           </NavLink>
-        )
+        );
       }
     case 2:
       if (artist) {
@@ -36,7 +36,7 @@ export default (props) => {
           >
             {artist.name}
           </NavLink>
-        )
+        );
         prettyPath.unshift(
           <NavLink
             key='movement'
@@ -44,7 +44,7 @@ export default (props) => {
           >
             {artMovement.name}
           </NavLink>
-        )
+        );
       }
     case 1:
       prettyPath.unshift(
@@ -54,7 +54,7 @@ export default (props) => {
         >
           Home
         </NavLink>
-      )
+      );
   }
 
   return (
@@ -66,15 +66,15 @@ export default (props) => {
               <s>/</s>
               {item}
             </React.Fragment>
-          )
+          );
         } else {
           return (
             <React.Fragment key={i}>
               {item}
             </React.Fragment>
-          )
+          );
         }
       })}
     </div>
-  )
-}
+  );
+};

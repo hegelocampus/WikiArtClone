@@ -1,6 +1,6 @@
-import React from 'react'
-import { Route } from 'react-router-dom'
-import { Breadcrumb } from 'react-breadcrumbs'
+import React from 'react';
+import { Route } from 'react-router-dom';
+import { Breadcrumb } from 'react-breadcrumbs';
 
 export default ({
   component: Component,
@@ -20,4 +20,4 @@ export default ({
       </Breadcrumb>
     )}
   />
-)
+);

@@ -1,14 +1,14 @@
-import React from 'react'
-import { useSelector } from 'react-redux'
-import { Link } from 'react-router-dom'
+import React from 'react';
+import { useSelector } from 'react-redux';
+import { Link } from 'react-router-dom';
 
 export default ({ artistId }) => {
-  const artist = useSelector(state => state.entities.artists[artistId])
+  const artist = useSelector(state => state.entities.artists[artistId]);
   const profileImage = useSelector(state => {
     if (artist && artist.profileImageId) {
-      return state.entities.artworks[artist.profileImageId]
+      return state.entities.artworks[artist.profileImageId];
     }
-  })
+  });
 
   return (
     <li
@@ -27,5 +27,5 @@ export default ({ artistId }) => {
         </Link>
       )}
     </li>
-  )
-}
+  );
+};

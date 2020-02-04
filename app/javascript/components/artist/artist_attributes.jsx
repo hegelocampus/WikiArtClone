@@ -1,11 +1,11 @@
-import React from 'react'
-import { Link } from 'react-router-dom'
-import { useFetchAssociations } from '../hooks/utils'
+import React from 'react';
+import { Link } from 'react-router-dom';
+import { useFetchAssociations } from '../hooks/utils';
 
 export default ({ artist }) => {
-  const parsed = useFetchAssociations(artist)
+  const parsed = useFetchAssociations(artist);
 
-  if (!artist) return <span>...</span>
+  if (!artist) return <span>...</span>;
   return (
     <article className='artist-attribute-section'>
       <h3>{artist.name}</h3>
@@ -56,5 +56,5 @@ export default ({ artist }) => {
         </li>
       </ul>
     </article>
-  )
-}
+  );
+};

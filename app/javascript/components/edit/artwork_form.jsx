@@ -1,7 +1,7 @@
-import React, { useEffect } from 'react'
-import { NEW, EDIT } from './edit'
-import { Formik, Form, Field } from 'formik'
-import RenderErrors from './render_errors'
+import React, { useEffect } from 'react';
+import { NEW, EDIT } from './edit';
+import { Formik, Form, Field } from 'formik';
+import RenderErrors from './render_errors';
 // FIXME  Fix cancel button
 // TODO   Break up form into smaller sub-components
 // TODO   Implement errors right above submit button
@@ -16,22 +16,22 @@ export default ({
   requestAllSelectors,
   requestArtwork
 }) => {
-  const { artworkId, artistId } = match.params
-  const idMatch = /(.+)(?=Id$)/
+  const { artworkId, artistId } = match.params;
+  const idMatch = /(.+)(?=Id$)/;
 
   useEffect(() => {
-    requestAllSelectors('artwork')
+    requestAllSelectors('artwork');
 
     if (formType === EDIT) {
-      requestArtwork(artistId, artworkId)
+      requestArtwork(artistId, artworkId);
     }
   },
   [requestAllSelectors, formType, match]
-  )
+  );
 
-  const assocInputs = []
+  const assocInputs = [];
   Object.entries(selectors).forEach(att => {
-    const parsedName = `${att[0]}Id`
+    const parsedName = `${att[0]}Id`;
     assocInputs.push(
       <label
         key={`${att[0]}-label`}
@@ -49,36 +49,36 @@ export default ({
           )}
         </Field>
       </label>
-    )
-  })
+    );
+  });
 
   const handleSubmit = values => {
-    const parsed = {}
+    const parsed = {};
     Object.entries(values).forEach(atr => {
       if (atr[1] && selectors[atr[0]]) {
         const parsedVal = Object.entries(selectors[atr[0]]).find(ent => {
-          return ent[1].name === atr[1]
-        })
-        parsed[`${atr[0]}Id`] = parsedVal[1].id
+          return ent[1].name === atr[1];
+        });
+        parsed[`${atr[0]}Id`] = parsedVal[1].id;
       } else if (selectors[atr[0]]) {
-        parsed[`${atr[0]}Id`] = null
+        parsed[`${atr[0]}Id`] = null;
       } else if (atr[1] === '') {
-        parsed[atr[0]] = null
+        parsed[atr[0]] = null;
       } else {
-        parsed[atr[0]] = atr[1]
+        parsed[atr[0]] = atr[1];
       }
-    })
+    });
 
-    parsed.artistId = artistId
+    parsed.artistId = artistId;
 
     formAction(parsed).then((val) => {
       if (val.artwork.id) {
-        history.push(`/${artistId}/${val.artwork.id}`)
+        history.push(`/${artistId}/${val.artwork.id}`);
       }
-    })
-  }
+    });
+  };
 
-  if ((!artwork)) return <span>Loading...</span>
+  if ((!artwork)) return <span>Loading...</span>;
   return (
     <Formik
       initialValues={artwork}
@@ -181,12 +181,12 @@ export default ({
               </button>
               <span
                 onClick={e => {
-                  e.preventDefault()
+                  e.preventDefault();
                   if (
                     window.confirm('All changes will be unsaved. Are you sure you want to discard these changes?')
                   ) {
-                    history.push(`/${artistId}/${artworkId}`)
-                  };
+                    history.push(`/${artistId}/${artworkId}`);
+                  }
                 }}
                 className='artist-form-cancel'
               >
@@ -197,5 +197,5 @@ export default ({
         </ul>
       </Form>
     </Formik>
-  )
-}
+  );
+};

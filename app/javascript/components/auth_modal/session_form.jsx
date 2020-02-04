@@ -1,50 +1,50 @@
-import React from 'react'
+import React from 'react';
 
 export default class SessionForm extends React.Component {
   constructor (props) {
-    super(props)
+    super(props);
 
     const state = {
       email: '',
       password: ''
-    }
+    };
 
     if (props.formType === 'signup') {
-      state.passwordConfirmation = ''
+      state.passwordConfirmation = '';
     }
-    this.state = state
+    this.state = state;
 
-    this.handleSubmit = this.handleSubmit.bind(this)
-    this.update = this.update.bind(this)
-    this.handleGuestLogin = this.handleGuestLogin.bind(this)
+    this.handleSubmit = this.handleSubmit.bind(this);
+    this.update = this.update.bind(this);
+    this.handleGuestLogin = this.handleGuestLogin.bind(this);
   }
 
   handleSubmit (e) {
     if (e) {
-      e.preventDefault()
+      e.preventDefault();
     }
 
-    this.props.processForm(this.state)
+    this.props.processForm(this.state);
   }
 
   update (e) {
-    this.setState({ [e.target.name]: e.target.value })
+    this.setState({ [e.target.name]: e.target.value });
   }
 
   handleGuestLogin (e) {
     this.setState({
       email: 'ExampleUser@example.com',
       password: 'testusr1'
-    }, () => this.handleSubmit())
+    }, () => this.handleSubmit());
   }
 
   render () {
-    let errors
+    let errors;
     if (this.props.errors && this.props.errors.length) {
       errors = this.props.errors.map((error, idx) => (
         <p key={idx}>{error}</p>
-      ))
-    };
+      ));
+    }
     return (
       <>
         <div className='modal-content-errors-container'>
@@ -95,6 +95,6 @@ export default class SessionForm extends React.Component {
           ))}
         </form>
       </>
-    )
+    );
   }
 }

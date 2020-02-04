@@ -1,7 +1,7 @@
-import React from 'react'
-import { Link } from 'react-router-dom'
-import ArtistMenu from './artist_menu'
-import ArtworkMenu from './artwork_menu'
+import React from 'react';
+import { Link } from 'react-router-dom';
+import ArtistMenu from './artist_menu';
+import ArtworkMenu from './artwork_menu';
 
 export default (props) => {
   return (
@@ -16,5 +16,5 @@ export default (props) => {
         <ArtworkMenu />
       </li>
     </ul>
-  )
-}
+  );
+};

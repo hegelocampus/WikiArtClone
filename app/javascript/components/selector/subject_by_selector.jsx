@@ -1,60 +1,60 @@
 import React, {
   useEffect
-} from 'react'
+} from 'react';
 import {
   useDispatch,
   useSelector
-} from 'react-redux'
+} from 'react-redux';
 import {
   Link,
   useRouteMatch
-} from 'react-router-dom'
+} from 'react-router-dom';
 
-import { fetchSelector } from '../../actions/selector_actions'
-import { requestArtistsBySelector } from '../../actions/artist_actions'
-import { requestArtworksBySelector } from '../../actions/artwork_actions'
-import ArtistTile from '../artist/artist_tile'
-import ArtworkTile from '../artist/artwork/artwork_tile'
+import { fetchSelector } from '../../actions/selector_actions';
+import { requestArtistsBySelector } from '../../actions/artist_actions';
+import { requestArtworksBySelector } from '../../actions/artwork_actions';
+import ArtistTile from '../artist/artist_tile';
+import ArtworkTile from '../artist/artwork/artwork_tile';
 
 export default (props) => {
-  const dispatch = useDispatch()
-  const match = useRouteMatch()
-  const { type } = props
+  const dispatch = useDispatch();
+  const match = useRouteMatch();
+  const { type } = props;
 
   const mainSelector = match.params.selector
     .replace(/([-_][a-z])/ig, ($1) => {
       return $1.toUpperCase()
-        .replace('-', '')
-    })
+        .replace('-', '');
+    });
 
   useEffect(() => {
     if (type === 'artists') {
       dispatch(requestArtistsBySelector({
         [mainSelector]: match.params.SubSelId
-      }))
+      }));
     } else if (type === 'artworks') {
       dispatch(requestArtworksBySelector({
         [mainSelector]: match.params.SubSelId
-      }))
+      }));
     }
-    dispatch(fetchSelector(mainSelector, match.params.SubSelId))
+    dispatch(fetchSelector(mainSelector, match.params.SubSelId));
   },
   [props, match]
-  )
+  );
 
-  const _artists = useSelector(state => state.entities.artists)
-  const subjects = useSelector(state => Object.values(state.entities[type]))
+  const _artists = useSelector(state => state.entities.artists);
+  const subjects = useSelector(state => Object.values(state.entities[type]));
   const subSelector = useSelector(state => {
     if (state.entities.selectors[mainSelector]) {
       return state
         .entities
-        .selectors[mainSelector][match.params.SubSelId].name
+        .selectors[mainSelector][match.params.SubSelId].name;
     } else {
-      return null
+      return null;
     }
-  })
+  });
 
-  let subjectLis
+  let subjectLis;
   subjects.length > 0 ? (
     subjectLis = subjects.map(subject => {
       if (type === 'artists') {
@@ -63,7 +63,7 @@ export default (props) => {
             artistId={subject.id}
             key={subject.id}
           />
-        )
+        );
       } else if (type === 'artworks') {
         return (
           <ArtworkTile
@@ -71,12 +71,12 @@ export default (props) => {
             artwork={subject}
             key={subject.id}
           />
-        )
+        );
       }
     })
   ) : (
     null
-  )
+  );
 
   return (
     <>
@@ -87,5 +87,5 @@ export default (props) => {
         {subjectLis}
       </div>
     </>
-  )
-}
+  );
+};

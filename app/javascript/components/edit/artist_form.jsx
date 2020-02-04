@@ -1,6 +1,6 @@
-import React from 'react'
-import { NEW, EDIT } from './edit'
-import RenderErrors from './render_errors'
+import React from 'react';
+import { NEW, EDIT } from './edit';
+import RenderErrors from './render_errors';
 // FIXME  Fix cancel button
 // TODO   Break up form into smaller sub-components
 // TODO   Make the artist death date selector only show if the user requests it
@@ -8,66 +8,66 @@ import RenderErrors from './render_errors'
 
 export default class ArtistForm extends React.Component {
   constructor (props) {
-    super(props)
-    this.state = props.artist
-    this.handleSubmit = this.handleSubmit.bind(this)
-    this.update = this.update.bind(this)
-    this.handleCancel = this.handleCancel.bind(this)
+    super(props);
+    this.state = props.artist;
+    this.handleSubmit = this.handleSubmit.bind(this);
+    this.update = this.update.bind(this);
+    this.handleCancel = this.handleCancel.bind(this);
   }
 
   componentDidMount () {
-    this.props.requestAllSelectors('artist')
+    this.props.requestAllSelectors('artist');
 
     if (this.props.formType === EDIT) {
-      this.props.requestArtist(this.props.match.artistId)
+      this.props.requestArtist(this.props.match.artistId);
     }
   }
 
   update (e) {
-    e.preventDefault()
+    e.preventDefault();
     this.setState({
       [e.target.name]: e.target.value
-    })
-    console.log(this.state)
+    });
+    console.log(this.state);
   }
 
   handleSubmit (e) {
-    e.preventDefault()
-    const parsed = {}
+    e.preventDefault();
+    const parsed = {};
     Object.entries(this.state).forEach(atr => {
       if (atr[1] && this.props.selectors[atr[0]]) {
         const parsedVal = Object.entries(this.props.selectors[atr[0]]).find(ent => {
-          return ent[1].name === atr[1]
-        })
-        parsed[`${atr[0]}Id`] = parsedVal[1].id
+          return ent[1].name === atr[1];
+        });
+        parsed[`${atr[0]}Id`] = parsedVal[1].id;
       } else if (this.props.selectors[atr[0]]) {
-        parsed[`${atr[0]}Id`] = null
+        parsed[`${atr[0]}Id`] = null;
       } else if (atr[1] === '') {
-        parsed[atr[0]] = null
+        parsed[atr[0]] = null;
       } else {
-        parsed[atr[0]] = atr[1]
+        parsed[atr[0]] = atr[1];
       }
-    })
-    console.log(parsed)
+    });
+    console.log(parsed);
 
     this.props.formAction(parsed).then(({ artist }) => {
-      artist ? this.props.history.push(`/${artist.id}`) : null
-    })
+      artist ? this.props.history.push(`/${artist.id}`) : null;
+    });
   }
 
   handleCancel (e) {
-    e.preventDefault()
+    e.preventDefault();
     if (confirm('All changes will be unsaved. Are you sure?')) {
-      this.props.history.push('/')
-    };
+      this.props.history.push('/');
+    }
   }
 
   render () {
-    const idMatch = /(.+)(?=Id$)/
+    const idMatch = /(.+)(?=Id$)/;
 
-    const assocInputs = []
+    const assocInputs = [];
     Object.entries(this.props.selectors).forEach(att => {
-      const parsedName = `${att[0]}Id`
+      const parsedName = `${att[0]}Id`;
       assocInputs.push(
         <label
           key={`${att[0]}-label`}
@@ -91,8 +91,8 @@ export default class ArtistForm extends React.Component {
             }
           </datalist>
         </label>
-      )
-    })
+      );
+    });
 
     return (
       <form
@@ -221,6 +221,6 @@ export default class ArtistForm extends React.Component {
           </li>
         </ul>
       </form>
-    )
+    );
   }
 }

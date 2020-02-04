@@ -1,10 +1,10 @@
-import React, { useState } from 'react'
-import Modal from 'react-modal'
-import ModalContent from './modal_content.jsx'
+import React, { useState } from 'react';
+import Modal from 'react-modal';
+import ModalContent from './modal_content.jsx';
 
-Modal.setAppElement('#root')
+Modal.setAppElement('#root');
 export default (props) => {
-  const [showModal, setShowModal] = useState(false)
+  const [showModal, setShowModal] = useState(false);
 
   return (
     <>
@@ -32,5 +32,5 @@ export default (props) => {
         <ModalContent formType='login' />
       </Modal>
     </>
-  )
-}
+  );
+};

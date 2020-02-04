@@ -1,37 +1,37 @@
-import React, { useEffect } from 'react'
+import React, { useEffect } from 'react';
 import {
   useDispatch,
   useSelector
-} from 'react-redux'
-import { useParams } from 'react-router-dom'
-import ArtistWiki from './artist_wiki'
-import { requestArtist } from '../../actions/artist_actions'
-import ArtistAttributes from './artist_attributes'
-import FamousArtworks from './artwork/famous_artworks'
-import Breadcrumbs from '../breadcrumbs'
+} from 'react-redux';
+import { useParams } from 'react-router-dom';
+import ArtistWiki from './artist_wiki';
+import { requestArtist } from '../../actions/artist_actions';
+import ArtistAttributes from './artist_attributes';
+import FamousArtworks from './artwork/famous_artworks';
+import Breadcrumbs from '../breadcrumbs';
 
 export default (props) => {
-  const dispatch = useDispatch()
-  const { artistId } = useParams()
+  const dispatch = useDispatch();
+  const { artistId } = useParams();
 
   const artist = useSelector(state => (
     state.entities.artists[artistId] || {}
-  ))
+  ));
 
   const profileImage = useSelector(state => {
     if (artist && artist.profileImageId) {
-      return state.entities.artworks[artist.profileImageId]
+      return state.entities.artworks[artist.profileImageId];
     }
-  })
+  });
 
   useEffect(() => {
-    dispatch(requestArtist(artistId))
+    dispatch(requestArtist(artistId));
   },
   [artistId]
-  )
+  );
 
   if (!artist || !profileImage) {
-    return <span>loading...</span>
+    return <span>loading...</span>;
   }
 
   return (
@@ -64,5 +64,5 @@ export default (props) => {
         <FamousArtworks />
       </section>
     </>
-  )
-}
+  );
+};
